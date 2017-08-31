@@ -23,7 +23,7 @@
 <div style="margin-left:25%">
 
 <!-- Use any element to open the sidenav -->
-<span onclick="openNav()">open</span>
+<span onclick="openNav()">close</span>
 
 
 

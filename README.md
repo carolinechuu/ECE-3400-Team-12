@@ -1,8 +1,9 @@
 # Team 12
-
+(Insert our slogan here?)
 * [Home](default.asp)
-* [About The Team](about.asp)
-* [Contact Us](contact.asp)
+* [About](about.asp)
+* [Assignments](assignments.asp)
+* [Contact](contact.asp)
 
 ***
 
@@ -17,21 +18,20 @@ Our website is still under construction.
   <a href="#">Services</a>
   <a href="#">Clients</a>
   <a href="#">Contact</a>
-</div>
+</div> -->
 
-
+<!--
 <div class="w3-sidebar w3-bar-block" style="width:25%"> 
   <a href="#" class="w3-bar-item w3-button">Link 1</a>
   <a href="#" class="w3-bar-item w3-button">Link 2</a>
   <a href="#" class="w3-bar-item w3-button">Link 3</a>
 </div>
+-->
 
-<div style="margin-left:25%">
+<!--<div style="margin-left:25%">-->
 
 <!-- Use any element to open the sidenav 
 <span onclick="openNav()">close</span>
-
-
 
 -->
 

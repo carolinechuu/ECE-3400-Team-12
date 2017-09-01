@@ -1,9 +1,10 @@
 # Team 12
 (Insert our slogan here?)
-* [Home](default.asp)
-* [About](about.asp)
-* [Assignments](assignments.asp)
-* [Contact](contact.asp)
+* [Home](index.md)
+* [About](/docs/about.md)
+* [Assignments](/docs/assignments.md)
+* [Tutorials](/docs/tutorials.md)
+* [Contact](/docs/contact.md)
 
 ***
 

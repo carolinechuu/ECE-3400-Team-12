@@ -1,8 +1,27 @@
+<ul class="top-navbar">
+  <li><a href = "index.md">Home</a></li>
+  <li><a href = "/pages/about.md">About</a></li>
+  <li><a href = "/pages/assignments.md">Assignments</a></li>
+  <li><a href = "/pages/tutorials.md">Tutorials</a></li>
+  <li><a href= "/pages/contact.md">Contact</a></li>
+</ul>
+
+***
+
+# I know you really want to know about us but...
+Our website is still under construction, so be sure to check back later!
+
+***
+
 # Logistics
 Lab session: Thursday 7:30-10:30pm
 
+***
+
 # Team Contract
 See our team contract [here](/docs/contract.pdf).
+
+***
 
 # Team Members
 

@@ -23,6 +23,8 @@
   <li><a href="contact.asp">Contact</a></li>
   <li><a href="about.asp">About</a></li>
   list-style-type: none;
+  margin: 0;
+  padding: 0;
 </ul>
 
 </body>

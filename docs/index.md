@@ -3,7 +3,7 @@
 <head>
 	<style>
 	h1{
-		background-color: salmon;
+		background-color: maroon;
 
 	}
 		
@@ -59,8 +59,6 @@
 
 
 -->
-
-
 
 
 

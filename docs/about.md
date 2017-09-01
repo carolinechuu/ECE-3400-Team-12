@@ -1,22 +1,19 @@
-# Christina Chang :smile:
+# Logistics
+Lab session: Thursday 7:30-10:30pm
 
-***
+# Team Contract
+See our team contract [here](/docs/contract.pdf).
 
-# Caroline Chu :relaxed:
+# Team Members
 
+## Christina Chang :smile:
 
-***
+## Caroline Chu :relaxed:
 
-# Felipe Fortuna :grin:
+## Felipe Fortuna :grin:
 
-***
+## Ian Kranz :smiley:
 
-# Ian Kranz :smiley:
+## Pei-Yi Lin :grinning:
 
-***
-
-# Pei-Yi Lin :grinning:
-
-***
-
-# Xitang Zhao :stuck_out_tongue:
+## Xitang Zhao :stuck_out_tongue:

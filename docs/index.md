@@ -4,6 +4,7 @@
 	<style>
 	h1{
 		background-color: purple;
+
 	}
 		
 	</style>
@@ -21,6 +22,7 @@
   <li><a href="news.asp">News</a></li>
   <li><a href="contact.asp">Contact</a></li>
   <li><a href="about.asp">About</a></li>
+  list-style-type: none;
 </ul>
 
 </body>

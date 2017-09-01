@@ -22,7 +22,7 @@
   <li><a href="news.asp">Labs</a></li>
   <li><a href="contact.asp">Contact</a></li>
   <li><a href="about.asp">About</a></li>
-  list-style-type: none;
+ 
 </ul>
 
 </body>

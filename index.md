@@ -1,7 +1,7 @@
 # Team 12
 (Insert our slogan here?)
 
-<ul class="navbar">
+<ul class="top-navbar">
   <li><a href = "index.md">Home</a></li>
   <li><a href = "/pages/about.md">About</a></li>
   <li><a href = "/pages/assignments.md">Assignments</a></li>

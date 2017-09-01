@@ -1,12 +1,10 @@
 <ul class="top-navbar">
-  <li><a href = "index.md">Home</a></li>
-  <li><a href = "/pages/about.md">About</a></li>
-  <li><a href = "/pages/assignments.md">Assignments</a></li>
-  <li><a href = "/pages/tutorials.md">Tutorials</a></li>
-  <li><a href= "/pages/contact.md">Contact</a></li>
+  <li><a href = "ECE-3400-Team-12/index.md">Home</a></li>
+  <li><a href = "ECE-3400-Team-12/pages/about.md">About</a></li>
+  <li><a href = "ECE-3400-Team-12/pages/assignments.md">Assignments</a></li>
+  <li><a href = "ECE-3400-Team-12/pages/tutorials.md">Tutorials</a></li>
+  <li><a href = "ECE-3400-Team-12/pages/contact.md">Contact</a></li>
 </ul>
-
-***
 
 # I know you really want to know about us but...
 Our website is still under construction, so be sure to check back later!

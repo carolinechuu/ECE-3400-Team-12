@@ -12,3 +12,6 @@
 
 # Hello, Professor and TAs
 My dog ate my homework...
+
+# Team Contract
+In case you didn't go into our "About" page... [here]("./docs/contract.pdf") is our team contract.

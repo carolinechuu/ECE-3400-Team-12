@@ -1,11 +1,11 @@
 <link rel="stylesheet" href="ECE-3400-Team-12/myStyles.css">
 
 <div class="top-navbar">
-  <a class="top-navbar" href = "ECE-3400-Team-12/index.md">Home</a>
-  <a class="top-navbar" href = "ECE-3400-Team-12/pages/about.md">About</a>
-  <a class="top-navbar" href = "ECE-3400-Team-12/pages/assignments.md">Assignments</a>
-  <a class="top-navbar" href = "ECE-3400-Team-12/pages/tutorials.md">Tutorials</a>
-  <a class="top-navbar" href = "ECE-3400-Team-12/pages/contact.md">Contact</a>
+  <a class="top-navbar" href = "https://carolinechuu.github.io/ECE-3400-Team-12/index.md">Home</a>
+  <a class="top-navbar" href = "https://carolinechuu.github.io/ECE-3400-Team-12/pages/about.md">About</a>
+  <a class="top-navbar" href = "https://carolinechuu.github.io/ECE-3400-Team-12/pages/assignments.md">Assignments</a>
+  <a class="top-navbar" href = "https://carolinechuu.github.io/ECE-3400-Team-12/pages/tutorials.md">Tutorials</a>
+  <a class="top-navbar" href = "https://carolinechuu.github.io/ECE-3400-Team-12/pages/contact.md">Contact</a>
 </div>
 
 # Team 12

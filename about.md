@@ -21,7 +21,7 @@ Lab session: Thursday 7:30-10:30pm
 ***
 
 # Team Contract
-See our team contract [here](./docs/contract.pdf).
+See our team contract [here](docs/contract.pdf).
 
 ***
 

@@ -21,7 +21,7 @@ Lab session: Thursday 7:30-10:30pm
 ***
 
 # Team Contract
-See our team contract [here](./docs/ECE 3400 Team 12 Contract.pdf).
+See our team contract [here](./docs/contract.pdf).
 
 ***
 

@@ -3,7 +3,7 @@
 <head>
 	<style>
 	h1{
-		background-color: maroon;
+		background-color: salmon;
 
 	}
 		

@@ -14,4 +14,4 @@
 My dog ate my homework...
 
 # Team Contract
-In case you didn't go into our "About" page... <a href="./docs/contract.pdf">here</a> is our team contract.
+In case you didn't go into our "About" page... <a href="{{site.url}}/docs/contract.pdf">here</a> is our team contract.

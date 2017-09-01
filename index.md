@@ -1,5 +1,4 @@
-# Team 12
-(Insert our slogan here?)
+<link rel="stylesheet" href="ECE-3400-Team-12/myStyles.css">
 
 <div class="top-navbar">
   <a href = "ECE-3400-Team-12/index.md">Home</a>
@@ -8,6 +7,9 @@
   <a href = "ECE-3400-Team-12/pages/tutorials.md">Tutorials</a>
   <a href = "ECE-3400-Team-12/pages/contact.md">Contact</a>
 </div>
+
+# Team 12
+(Insert our slogan here?)
 
 ***
 

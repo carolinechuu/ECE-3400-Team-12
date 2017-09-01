@@ -14,4 +14,4 @@
 My dog ate my homework...
 
 # Team Contract
-In case you didn't go into our "About" page... [here](docs/contract.pdf) is our team contract.
+Go back and use our "About" page!

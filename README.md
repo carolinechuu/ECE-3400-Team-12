@@ -1,38 +1,13 @@
-<!doctype html>
-<html>
-<head>
-	<style>
-	h1{
-		background-color: salmon;
+# Team 12
 
-	}
-		
-	</style>
-</head>
+* [Home](default.asp)
+* [About The Team](about.asp)
+* [Contact Us](contact.asp)
 
-<body>
+***
 
-<header>
-<h1> Welcome to our homepage! </h1>
-</header>
-<h2> Team Biography </h2>
-<h3> Caroline </h3>
-<ul>
-  <li><a href="default.asp">Home</a></li>
-  <li><a href="news.asp">News</a></li>
-  <li><a href="contact.asp">Contact</a></li>
-  <li><a href="about.asp">About</a></li>
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  <h4> hello </h4>
-</ul>
-
-</body>
-
-
-
-
+# Pardon our dust!
+Our website is still under construction.
 
 
 <!--

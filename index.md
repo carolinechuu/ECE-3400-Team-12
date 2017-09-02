@@ -3,22 +3,19 @@
 </head>
 
 <div class="top-navbar">
-  <a href="index.html" class="active">Home</a>
+  <a href="index.html" class="current">Home</a>
   <a href="about.html">About</a>
   <a href="assignments.html">Assignments</a>
   <a href="tutorials.html">Tutorials</a>
   <a href="contact.html">Contact</a>
 </div>
 
-# **Warm Welcome from Team Firework**
-Welcome to our website, people! 
+# **♩ ♪ ♫ 'Cause baby, we're a firework!' ♬ ♮ ♯**
+Welcome to our website, professors, TAs, students, and surfers!
 
-You have reached Team Firework ♩ ♪ ♫ 'Cause baby, we're a firework!' ♬ ♮ ♯
+You have reached Team Firework. Members in our amazing team are Christina ♩, Caroline ♪, Felipe ♫ , Pei-Yi ♬, Ian ♮ and Xitang ♯.
 
-Members in our amazing team are Christina ♩, Caroline ♪, Felipe ♫ , Pei-Yi ♬, Ian ♮ and Xitang ♯.
-
-This website will be used to document our Team 12 Thurday Lab progess in ECE 3400. 
-
+This website is used to document Team 12's Thursday Lab progess in ECE 3400.
 
 ***
 

@@ -10,8 +10,10 @@
   <a class="top-navbar" href="contact.md">Contact</a>
 </div>
 
-# Warm Welcome from **Team Firework**
-Welcome to our websites, people! You have reached <bold>Team Firework</bold> ♩ ♪ ♫ 'Cause baby, we're a firework!' ♬ ♮ ♯
+# **Warm Welcome from Team Firework**
+Welcome to our websites, people! 
+
+You have reached Team Firework ♩ ♪ ♫ 'Cause baby, we're a firework!' ♬ ♮ ♯
 
 Members in our amazing team are Christina ♩, Caroline ♪, Felipe ♫ , Pei-Yi ♬, Ian ♮ and Xitang ♯.
 

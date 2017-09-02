@@ -18,9 +18,14 @@
   color: black;
 }
 
-.topnav a.active {
-    background-color: #4CAF50;
-    color: white;
+.topnav a:active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.current a {
+  background-color: #fd625e;
+  color: white;
 }
 
 h1:hover, h1:focus {

@@ -1,2 +1,4 @@
 theme: jekyll-theme-cayman
 baseurl: /ECE-3400-Team-12
+plugins:
+  - jemoji

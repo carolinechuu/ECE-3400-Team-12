@@ -3,7 +3,7 @@
 </head>
 
 <div class="top-navbar">
-  [Home](index.md)
+  <a href="index.html">Home</a>
   [About](about.md)
   [Assignments](assignments.md)
   [Tutorials](tutorials.md)

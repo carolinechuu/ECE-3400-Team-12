@@ -3,7 +3,7 @@
 </head>
 
 <div class="top-navbar">
-  <div class="current"><a href="index.html">Home</a></div>
+  <a href="index.html" class="current">Home</a>
   <a href="about.html">About</a>
   <a href="assignments.html">Assignments</a>
   <a href="tutorials.html">Tutorials</a>

@@ -3,11 +3,11 @@
 </head>
 
 <div class="top-navbar">
-  <a class="top-navbar" href="index.md">Home</a>
-  <a class="top-navbar" href="about.md">About</a>
-  <a class="top-navbar" href="assignments.md">Assignments</a>
-  <a class="top-navbar" href="tutorials.md">Tutorials</a>
-  <a class="top-navbar" href="contact.md">Contact</a>
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="assignments.html">Assignments</a>
+  <a href="tutorials.html">Tutorials</a>
+  <a href="contact.html">Contact</a>
 </div>
 
 # We Are Top Secret

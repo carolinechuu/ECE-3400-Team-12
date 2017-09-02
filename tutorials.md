@@ -10,5 +10,5 @@
   <a href="contact.html">Contact</a>
 </div>
 
-# We're Slow And Dumb
-Tutorials coming soon!
+# GitHub
+[Set up a local repository](docs/github_local_setup.pdf)

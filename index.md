@@ -3,7 +3,7 @@
 </head>
 
 <div class="top-navbar">
-  <a href="index.html">Home</a>
+  <a href="index.html" class="current">Home</a>
   <a href="about.html">About</a>
   <a href="assignments.html">Assignments</a>
   <a href="tutorials.html">Tutorials</a>
@@ -11,7 +11,7 @@
 </div>
 
 # **Warm Welcome from Team Firework**
-Welcome to our websites, people! 
+Welcome to our website, people! 
 
 You have reached Team Firework ♩ ♪ ♫ 'Cause baby, we're a firework!' ♬ ♮ ♯
 

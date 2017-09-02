@@ -4,16 +4,11 @@
 
 <div class="top-navbar">
   <a href="index.html">Home</a>
-  <a href="about.html">About</a>
+  <a href="about.html" class="active">About</a>
   <a href="assignments.html">Assignments</a>
   <a href="tutorials.html">Tutorials</a>
   <a href="contact.html">Contact</a>
 </div>
-
-# I know you really want to know about us but...
-Our website is still under construction, so be sure to check back later!
-
-***
 
 # Logistics
 Lab session: Thursday 7:30-10:30pm
@@ -28,14 +23,14 @@ If that doesn't work, check [here](https://docs.google.com/document/d/1BFS_Ct3Cy
 
 # Team Members
 
-## Christina Chang :smile:
+### Christina Chang :smile:
 
-## Caroline Chu :relaxed:
+### Caroline Chu :relaxed:
 
-## Felipe Fortuna :grin:
+### Felipe Fortuna :grin:
 
-## Ian Kranz :smiley:
+### Ian Kranz :smiley:
 
-## Pei-Yi Lin :grinning:
+### Pei-Yi Lin :grinning:
 
-## Xitang Zhao :stuck_out_tongue:
+### Xitang Zhao :stuck_out_tongue:

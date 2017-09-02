@@ -30,6 +30,7 @@ If that doesn't work, check [here](https://docs.google.com/document/d/1BFS_Ct3Cy
 
 # Team Meeting Minutes
 See our team meeting minutes [here](docs/meetingminutes.pdf).
+If that doesn't work, check [here](https://docs.google.com/a/cornell.edu/spreadsheets/d/1vhfM_gMNideeZbRUcSIsAk-V-7qY1DLUrqEXSxbL3QI/edit?usp=sharing).
 
 ***
 

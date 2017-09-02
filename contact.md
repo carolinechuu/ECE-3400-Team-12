@@ -10,5 +10,7 @@
   <a href="contact.html">Contact</a>
 </div>
 
+/play secret
+
 # We Are Top Secret
 No contact info for now

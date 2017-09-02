@@ -13,7 +13,7 @@
   font-size: 17px;
 }
 
-.top-navbar a:hover {
+.top-navbar a:hover, dropdown:hover {
   background-color: #facdb9;
   color: black;
 }
@@ -26,6 +26,10 @@
 .current {
   background-color: #ec1b5b;
   color: white;
+}
+
+.drop-menu {
+  display: inline-block;
 }
 
 h1:hover, h1:focus {

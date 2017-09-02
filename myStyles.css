@@ -37,7 +37,7 @@
   background-color: #e57b7b;
 }
 
-.drop-button:hover .drop-menu {
+.drop-button:hover .drop-menu a {
 	display: block;
 }
 

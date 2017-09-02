@@ -35,14 +35,14 @@ If that doesn't work, check [here](https://docs.google.com/a/cornell.edu/spreads
 
 # Members
 
-### Christina Chang :smile:
+### Christina Chang :stuck_out_tongue_closed_eyes:
 
 ### Caroline Chu :relaxed:
 
 ### Felipe Fortuna :grin:
 
-### Ian Kranz :smiley:
+### Ian Kranz :ghost:
 
 ### Pei-Yi Lin :bird:
 
-### Xitang Zhao :stuck_out_tongue:
+### Xitang Zhao :full_moon_with_face:

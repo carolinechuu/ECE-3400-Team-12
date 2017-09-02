@@ -7,7 +7,7 @@
   <a href="about.html">About</a>
   <a href="assignments.html">Assignments</a>
   <a href="tutorials.html">Tutorials</a>
-  <a href="contact.html">Contact</a>
+  <a href="contact.html" class="current">Contact</a>
 </div>
 
 /play secret

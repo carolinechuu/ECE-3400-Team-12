@@ -4,10 +4,10 @@
 
 <div class="top-navbar">
   <a href="index.html">Home</a>
-  [About](about.md)
-  [Assignments](assignments.md)
-  [Tutorials](tutorials.md)
-  [Contact](contact.md)
+  <a href="about.html">About</a>
+  <a href="assignments.html">Assignments</a>
+  <a href="tutorials.html">Tutorials</a>
+  <a href="contact.html">Contact</a>
 </div>
 
 # **Warm Welcome from Team Firework**

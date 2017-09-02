@@ -10,8 +10,8 @@
   <a class="top-navbar" href="./contact.md">Contact</a>
 </div>
 
-# Team 12
-(Insert our slogan here?)
+# Team Firework
+'Cause baby, we're a firework!
 
 ***
 

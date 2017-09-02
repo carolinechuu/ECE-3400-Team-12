@@ -3,11 +3,11 @@
 </head>
 
 <div class="top-navbar">
-  <a  href="index.md">Home</a>
-  <a href="about.md">About</a>
-  <a href="assignments.md">Assignments</a>
-  <a href="tutorials.md">Tutorials</a>
-  <a href="contact.md">Contact</a>
+  [Home](index.md)
+  [About](about.md)
+  [Assignments](assignments.md)
+  [Tutorials](tutorials.md)
+  [Contact](contact.md)
 </div>
 
 # **Warm Welcome from Team Firework**

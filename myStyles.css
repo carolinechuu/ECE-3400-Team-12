@@ -24,14 +24,10 @@
 }
 
 h1:hover, h1:focus {
-    -ms-transform: rotate3d(179,0,10,360deg);
-    -webkit-transform: rotate3d(179,0,10,360deg);
-    -moz-transform: rotate3d(179,0,10,360deg);
-    -o-transform: rotate3d(179,0,10,360deg);
-    transform: rotate3d(179,0,10,360deg);
-    -webkit-transition: all 2s;
-    -moz-transition: all 2s;
-    -o-transition: all 2s;
-    transition: all 2s;
+    -ms-animation: introstyle 1s ease-in-out 1 alternate;
+    -webkit-animation: introstyle 1s ease-in-out 1 alternate;
+    -moz-animation: introstyle 1s ease-in-out 1 alternate;
+    -o-animation: introstyle 1s ease-in-out 1 alternate;
+    animation: introstyle 1s ease-in-out 1 alternate;
 }
 

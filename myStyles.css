@@ -28,6 +28,11 @@
   color: white;
 }
 
+.drop-button {
+	position: relative;
+	display: inline-block;
+}
+
 .drop-menu {
   display: none;
   background-color: #facdb9;
@@ -37,7 +42,7 @@
   background-color: #e57b7b;
 }
 
-.drop-button:hover .drop-menu a {
+.drop-button:hover .drop-menu {
 	display: block;
 }
 

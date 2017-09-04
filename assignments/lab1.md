@@ -26,7 +26,7 @@
 * LED
 * 3306F-103 Potentiometer
 * 330 Ohm Resistors
-* Line sensors QRE1113
+* Line sensor QRE1113
 
 # 1. Blinking An Internal LED
 The first mini project is to blink the Internal LED on the Arduino board every second. A built-in LED is already connected to the Arduino board and it is wired to Pin 13. The following code, one of the Arduino IDE example programs, sets up Pin 13 as digital output in the setup() function, and it then repeatedly turns Pin 13 HIGH, waits for one second, turns Pin 13 LOW, waits for one second, creating the blinking effect.

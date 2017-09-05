@@ -1,6 +1,6 @@
-﻿
+<head>﻿
 <link rel="stylesheet" href="~/myStyles.css ">
-
+</head>
 
 <div class="top-navbar">
   <a href="~/index.html">Home</a>

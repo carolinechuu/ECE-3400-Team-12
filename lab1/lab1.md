@@ -1,6 +1,6 @@
-﻿<head>
-<link rel="stylesheet" href="ECE-3400-Team-12/myStyles.css ">
-</head>
+﻿
+<link rel="stylesheet" href="~/myStyles.css ">
+
 
 <div class="top-navbar">
   <a href="~/index.html">Home</a>

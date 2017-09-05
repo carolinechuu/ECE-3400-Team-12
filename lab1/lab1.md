@@ -3,17 +3,17 @@
 </head>
 
 <div class="top-navbar">
-  <a href="ECE-3400-Team-12/index.html">Home</a>
-  <a href="ECE-3400-Team-12/about.html" class="current drop-button">About</a>
+  <a href="/ECE-3400-Team-12/index.html">Home</a>
+  <a href="/ECE-3400-Team-12/about.html" class="current drop-button">About</a>
     <div class="drop-menu">
-      <a href="ECE-3400-Team-12/about.html">Logistics</a>
-      <a href="ECE-3400-Team-12/about.html">Team Contract</a>
-      <a href="ECE-3400-Team-12/about.html">Meeting Minutes</a>
-      <a href="ECE-3400-Team-12/about.html">Members</a>
+      <a href="/ECE-3400-Team-12/about.html">Logistics</a>
+      <a href="/ECE-3400-Team-12/about.html">Team Contract</a>
+      <a href="/ECE-3400-Team-12/about.html">Meeting Minutes</a>
+      <a href="/ECE-3400-Team-12/about.html">Members</a>
     </div>
-  <a href="ECE-3400-Team-12/assignments.html">Assignments</a>
-  <a href="ECE-3400-Team-12/tutorials.html">Tutorials</a>
-  <a href="ECE-3400-Team-12/contact.html">Contact</a>
+  <a href="/ECE-3400-Team-12/assignments.html">Assignments</a>
+  <a href="/ECE-3400-Team-12/tutorials.html">Tutorials</a>
+  <a href="/ECE-3400-Team-12/contact.html">Contact</a>
 </div>
 
 # Purpose

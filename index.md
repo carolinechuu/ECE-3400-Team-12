@@ -21,9 +21,9 @@
 </audio>
 
 # **♩ ♪ ♫ 'Cause baby, we're a firework!' ♬ ♮ ♯**
-Welcome to our website, professors, TAs, students, and surfers! You have reached Team Firework :fireworks:. Members in our amazing team are Christina ♩, Caroline ♪, Felipe ♫ , Pei-Yi ♬, Ian ♮ and Xitang ♯. This website is used to document Team 12's Thursday Lab progess in ECE 3400.
+Welcome to our website, professors, TAs, students, and/or robot enthusiasts! You have reached Team Firework :fireworks:. Members in our amazing team are Christina ♩, Caroline ♪, Felipe ♫ , Pei-Yi ♬, Ian ♮ and Xitang ♯. This website is used to document Team 12's Thursday Lab progess in ECE 3400.
 
-<audio src="/audio/firework.mp3">
+<audio src="audio/firework.mp3">
 <p>Oh no! You can't hear our music.</p>
 </audio>
 

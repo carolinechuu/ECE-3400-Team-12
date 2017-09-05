@@ -17,7 +17,7 @@
 </div>
 
 # Labs
-[Lab 1](assignments/lab1.md)
+[Lab 1](lab1/lab1.md)
 
 ***
 

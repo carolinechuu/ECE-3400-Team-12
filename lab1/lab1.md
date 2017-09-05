@@ -1,4 +1,4 @@
-<head>﻿
+<head>
 <link rel="stylesheet" href="~/myStyles.css ">
 </head>
 

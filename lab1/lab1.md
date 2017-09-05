@@ -1,5 +1,5 @@
 <head>
-<link rel="stylesheet" href="ECE-3400-Team-12/myStyles.css">
+<link rel="stylesheet" href="../../myStyles.css">
 </head>
 
 <div class="top-navbar">

@@ -67,6 +67,7 @@ void loop() {
 
 # 3. Reading Value of Potentiometer via Serial Port
 In the third mini project, we built a voltage divider and measured the voltage across the potentiometer using analog pin 0. The Arduino has a 10 bit ADC, so its resolution is 2^10 = 1024. When using analog read from Pin 0, it returns a value from 0 to 1023. To convert the input value into voltage, voltage drop across potentiometer = reading value*5/1024. The circuit setup can be viewed below.
+
 ![Wiring Setup for Reading Value of Pot](setup_pot_serial_display.png)
 ![Reading Value of Pot via Serial Port](code_pot_serial_display.jpg)
 

@@ -136,25 +136,35 @@ After completing the first five projects, we began assembling our robot. Using t
 ![Preliminary Robot](robot2.jpg)
 
 # 7. Driving Our Robot Autonomously
-To drive the robot, we have to set up two servos, which are connected to Pin 3 and Pin 5, respectively. We used these two pins, because they are the first two pins that can do PWM. We created three functions to drive the robot: walkForward(), walkLeft() and walkRight(). 
+To drive the robot, we have to set up two servos, which are connected to Pin 3 and Pin 5, respectively. We used these two pins, because they are the first two pins that can do PWM. We created a new tab called "robot.h" that contains functions to drive the robot: walkForward(), walkLeft(), walkRight(), turnLeft() and turnRight().
 
-To drive the robot forward, two servos need to move in the same directions. Because the two servos are mirrored of each other, the values we are writing to them are opposite of each other: 180 to left and 0 to right. To drive the robot to the left, we stop the left servo by writing 90 to it and continue moving right servo forward by writing 0 to it. Similarly, to drive the robot to the right, we stop the right servo by writing 90 to it and continue moving left servo forward by writing 180 to it.
+To drive the robot forward, two servos need to move in the same directions. Because the two servos are mirrored of each other, the values we are writing to them are opposite of each other. We tested it out and fighured out that writing 180 drive left servo forward and and writing 0 drive the right servo forward. To drive the robot to the left, we stop the left servo and drive the right servo forward. Similarly, to drive the robot to the right, we stop the right servo and drive the left servo forward. To make a fast turn to the left, we drive the left servo backward and drive the right servo forward. Similarly, to make a fast turn to the right, we drive the left servo forward and drive the right servo backward.
 ```
-#include <Servo.h>
-int lineMid1, lineMid2; //Line Sensor Values Variables
-Servo left, right;
-int toleranceForward = 100;
-int blackDetect = 850;
-
-//Function for robot to walk
-void walkForward(){left.write(180);right.write(0);}
-void walkLeft(){
-  left.write(90); //Stop left
-  right.write(0); //Move left to turn left
+Servo leftWheel, rightWheel;
+//Functions for robot to walk and turn
+void walkForward(){ //Moving forward full speed
+  leftWheel.write(180);
+  rightWheel.write(0);
 }
-void walkRight(){
-  left.write(180); //Move left to turn right
-  right.write(90); //Stop right
+
+void walkLeft(){ //Slow turn: turn left on just one wheel
+  leftWheel.write(90); //Stop left wheel moving
+  rightWheel.write(0); //Move right wheel forward
+}
+
+void walkRight(){ //Slow turn: turn right on one wheel
+  leftWheel.write(180); //Move left wheel forward
+  rightWheel.write(90); //Stop right wheel moving
+}
+
+void turnLeft(){ //Fast turn: turn left on both wheels
+  leftWheel.write(0);   //Move left wheel backward
+  rightWheel.write(0);  //Move right wheel forward
+}
+
+void turnRight(){ //Fast turn: turn right on both wheels
+  leftWheel.write(180); //Move left wheel forward
+  rightWheel.write(180);//Move right wheel backward
 }
 ```
 We also have two line sensor values readings, which are stored into variables lineMid1 and lineMid2. The line sensors are used to keep the robot to move along the line. The line sensor value reading is ranged from 0 to 1023. If it is in the high end 900+, it means it is on top of the black line. If it is in the low end, less than 700 or 400 (depending how close it is to the floor),  it means it is on top of the white line. We attached two line sensors to the front of our robot: lineMid1 is the left one and lineMid2 is the right one. If the difference between the two line sensors value is less than a tolerance value, say 100, it means the robot is on top of the black line and we just move forward. Else, if the left sensor has higher value than the right sensor, it means the robot is tilted to the right white space and we have to turn left, so we do the walkLeft() function. Similarly, if the right sensor has higher value than the left sensor, it means the robot is tilted to the left white space and we have to turn right, so we do the walkRight() function.

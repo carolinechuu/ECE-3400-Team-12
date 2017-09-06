@@ -100,7 +100,7 @@ Acquiring a reading from the potentiometer for this task was the same as the pre
 
 In the loop, we wrote a value to myservo using the Servo write() function which takes values between 0 and 180 as input and outputs a PWM signal to control the servo. For our continuous rotation servos 0 to 89 rotates the servo counter-clockwise, 90 stops the servo, and 91 to 180 rotates the servo clockwise. We mapped the potentiometer reading (0 to 1023) to the servo (0 to 180) by dividing the potentiometer reading by 5.7 (approximately 1023/180). 
 
-Below are oscilloscope readings for the PWM outputs of the Arduino. PWM (Pulse Width Modulation) is a protocol used to control motors through, as the name states, modulating the width of pulses (square waves). For our servos, the pulses are typically between 1ms and 2ms in width and 5V in amplitude. The Arduino Servo library creates these pulses by mapping the function input of 0-180 to a pulse width from 1ms to 2ms.
+Below are oscilloscope readings for the PWM outputs of the Arduino. PWM (Pulse Width Modulation) is a protocol used to control motors through, as the name states, modulating the width of pulses (square waves). For our servos, the pulses are typically between 1ms and 2ms in width and 5V in amplitude. The Arduino Servo library creates these pulses by mapping the function input of 0-180 to a pulse width from 1ms to 2ms. From the oscillascope, we learn that the frequency of the servo PWM is about 50Hz and period is about 20ms.
 ```
 int potInput;
 Servo myservo;
@@ -117,9 +117,12 @@ void loop() {
 	delay(100); //optional, updates servo value 10 times a second
 }
 ```
-![Reading from oscilloscope](oscilloscope1.png)
-![Reading from oscilloscope](oscilloscope2.png)
-![Reading from oscilloscope](oscilloscope3.png)
+![Reading from oscilloscope](oscilloscope1.png) 
+(Image: Full speed clockwise, Measured high pulse duration: 2.4ms, Duty cycle: 2.4ms/20ms = 12%, Datasheet high pulse duration reference: 1.7ms or 8.5% duty cycle)
+![Reading from oscilloscope](oscilloscope2.png) 
+(Image: Full speed counterclockwise, Measured high pulse duration: 0.52ms, Duty cycle: 0.52ms/20ms = 2.6%, Datasheet high pulse duration reference: 1.3ms or 6.5% duty cycle)
+![Reading from oscilloscope](oscilloscope3.png) 
+(Image: No rotation, Measured high pulse duration: 1.48ms, Duty cycle: 1.48ms/20ms = 7.4%, Datasheet high pulse duration reference: 1.5ms or 7.5% duty cycle)
 
 # 6. Assemble Our Robot
 After completing the first five projects, we began assembling our robot. Using the mounts provided for us, we attached two servos and the Arduino Uno to a small chassis, and placed a small breadboard temporarily underneath the Arduino to facilitate wiring. We wired the power and ground pins of the servos through the breadboard and to an external power supply providing 5V output, and connected the data lines of the two servos to pins 3 and 5 of the Arduino (for left and right servos, respectively). Additionally, we mounted two QRE1113 line sensors to the front of the robot and wired their data lines to the Arduino’s A1 and A2 analog inputs. We provided power to the line sensors by wiring them through the breadboard to the Arduino’s 5V and GND pins.

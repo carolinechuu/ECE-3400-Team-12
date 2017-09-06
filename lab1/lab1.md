@@ -118,11 +118,17 @@ void loop() {
 }
 ```
 ![Reading from oscilloscope](oscilloscope1.png) 
-(Image: Full speed clockwise, Measured high pulse duration: 2.4ms, Duty cycle: 2.4ms/20ms = 12%, Datasheet high pulse duration reference: 1.7ms or 8.5% duty cycle)
+
+(Image: Full speed clockwise, Measured high pulse duration: 2.4ms, Duty cycle: 2.4ms/20ms = 12%
+Datasheet high pulse duration reference: 1.7ms or 8.5% duty cycle)
 ![Reading from oscilloscope](oscilloscope2.png) 
-(Image: Full speed counterclockwise, Measured high pulse duration: 0.52ms, Duty cycle: 0.52ms/20ms = 2.6%, Datasheet high pulse duration reference: 1.3ms or 6.5% duty cycle)
+
+(Image: Full speed counterclockwise, Measured high pulse duration: 0.52ms, Duty cycle: 0.52ms/20ms = 2.6%
+Datasheet high pulse duration reference: 1.3ms or 6.5% duty cycle)
 ![Reading from oscilloscope](oscilloscope3.png) 
-(Image: No rotation, Measured high pulse duration: 1.48ms, Duty cycle: 1.48ms/20ms = 7.4%, Datasheet high pulse duration reference: 1.5ms or 7.5% duty cycle)
+
+(Image: No rotation, Measured high pulse duration: 1.48ms, Duty cycle: 1.48ms/20ms = 7.4%
+Datasheet high pulse duration reference: 1.5ms or 7.5% duty cycle)
 
 # 6. Assemble Our Robot
 After completing the first five projects, we began assembling our robot. Using the mounts provided for us, we attached two servos and the Arduino Uno to a small chassis, and placed a small breadboard temporarily underneath the Arduino to facilitate wiring. We wired the power and ground pins of the servos through the breadboard and to an external power supply providing 5V output, and connected the data lines of the two servos to pins 3 and 5 of the Arduino (for left and right servos, respectively). Additionally, we mounted two QRE1113 line sensors to the front of the robot and wired their data lines to the Arduino’s A1 and A2 analog inputs. We provided power to the line sensors by wiring them through the breadboard to the Arduino’s 5V and GND pins.

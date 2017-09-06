@@ -21,12 +21,12 @@
 * Take initial steps in building and controlling our robot
 
 # Lab Materials
-* Parallax Continuous Rotation Servo
+* [Parallax Continuous Rotation Servo](https://www.parallax.com/sites/default/files/downloads/900-00008-Continuous-Rotation-Servo-Documentation-v2.2.pdf)
 * Arduino Uno
 * LED
 * 3306F-103 Potentiometer
 * 330 Ohm Resistors
-* Line sensor QRE1113
+* [Line sensor QRE1113](http://www.robotshop.com/media/files/pdf/qre1113-datasheet-rob-09454.pdf)
 
 # 1. Blinking An Internal LED
 The first mini project is to blink the Internal LED on the Arduino board every second. A built-in LED is already connected to the Arduino board and it is wired to Pin 13. The following code, one of the Arduino IDE example programs, sets up Pin 13 as digital output in the setup() function, and it then repeatedly turns Pin 13 HIGH, waits for one second, turns Pin 13 LOW, waits for one second, creating the blinking effect.

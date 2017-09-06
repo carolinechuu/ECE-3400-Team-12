@@ -167,34 +167,50 @@ void turnRight(){ //Fast turn: turn right on both wheels
   rightWheel.write(180);//Move right wheel backward
 }
 ```
-We also have two line sensor values readings, which are stored into variables lineMid1 and lineMid2. The line sensors are used to keep the robot to move along the line. The line sensor value reading is ranged from 0 to 1023. If it is in the high end 900+, it means it is on top of the black line. If it is in the low end, less than 700 or 400 (depending how close it is to the floor),  it means it is on top of the white line. We attached two line sensors to the front of our robot: lineMid1 is the left one and lineMid2 is the right one. If the difference between the two line sensors value is less than a tolerance value, say 100, it means the robot is on top of the black line and we just move forward. Else, if the left sensor has higher value than the right sensor, it means the robot is tilted to the right white space and we have to turn left, so we do the walkLeft() function. Similarly, if the right sensor has higher value than the left sensor, it means the robot is tilted to the left white space and we have to turn right, so we do the walkRight() function.
+We went a step further and soldered two line sensors, which are connected to analog Pin 1 and 2, and their values readings are stored into variables lineMidLeft and lineMidRight. The line sensors keep the robot moving along the line. Their values are ranged from 0 to 1023. If it is above 850, it means it is on top of the black line. If it is below 850, it means it is on top of white space. We attached two line sensors to the front of our robot: lineMidLeft is the left one and lineMidRight is the right one. 
+
+We wrote a sample main code so that the robot follows a black line square. If both sensors detect white space, we make it turn right. If the robot is on top of the black line and the difference between the two line sensors value is less than a tolerance value, say 100, it means the robot is on top of the black line and we just move forward. (We note that sensor value readings tend to fluctuate during sensor testing, therefore, we created a tolerance to address the fluctuations.) Next, if the left sensor has higher value than the right sensor, it means the robot is tilted to the right white space and we have to turn left, so we do the walkLeft() function. Similarly, if the right sensor has higher value than the left sensor, it means the robot is tilted to the left white space and we have to turn right, so we do the walkRight() function.
 ```
-//Main Function
+#include <Servo.h>
+#include "Robot.h"
+int lineMidLeft, lineMidRight; //Line Sensor Values Variables
+int toleranceForward = 100;
+int blackDetect = 850; //Under this value means robot is on top of whiteish, above this value means is blackish
+
 void setup() {
-  Serial.begin(9600);  
-  left.attach(3); right.attach(5); //Setup Servo
+  Serial.begin(9600);  //Debug
+  leftWheel.attach(3); rightWheel.attach(5); //Setup Servo, Pin3 left wheel, Pin5 right wheel
 }
 
 void loop() {
-   lineMid1 = analogRead(1);
-   lineMid2 = analogRead(2);
-   //Make sure it walks straight
-   if (abs(lineMid1-lineMid2) < toleranceForward){
+   //Read line sensor values
+   lineMidLeft = analogRead(1); lineMidRight = analogRead(2);
+  
+   //If robot is on top of white space, fast turn right
+   if (lineMidLeft < blackDetect && lineMidRight < blackDetect){
+   turnRight();
+   }
+   //Now robot is on top of black line, if two sensors different less than a tolerance, walk forward
+   else if ((abs(lineMidLeft-lineMidRight) < toleranceForward)){
     walkForward(); 
    }
-   else if (lineMid1 >= lineMid2){ // right side is white, turn left
+   //Otherwises, if sensor to the left has higher value than sensor to the right
+   //it means robot is hitting white space on the right, so we turn left 
+   else if (lineMidLeft >= lineMidRight){
     walkLeft();
    }
-   else if (lineMid1 < lineMid2){
+   else if (lineMidLeft < lineMidRight){
     walkRight();
    }
 
-   Serial.print(lineMid1); //Debugging            
+   //Debugging
+   Serial.print(lineMidLeft);           
    Serial.print("\t"); 
-   Serial.print(lineMid2);            
+   Serial.print(lineMidRight);            
    Serial.println("\t");  
 }
 ```
+It works out beautifully and check out our video demostrations:
 
 # Extra FUN
 ### F is for friends who do stuff together, U is for you and me, N is for anywhere and anytime at all, down here in Phillips 427.

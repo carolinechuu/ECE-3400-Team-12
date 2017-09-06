@@ -118,15 +118,15 @@ void loop() {
 }
 ```
 Full speed clockwise image, Measured high pulse duration: 2.4ms, Duty cycle: 2.4ms/20ms = 12%
-Datasheet high pulse duration reference: 1.7ms or 8.5% duty cycle
+<br>Datasheet high pulse duration reference: 1.7ms or 8.5% duty cycle
 ![Reading from oscilloscope](oscilloscope1.png) 
 
 Full speed counterclockwise image, Measured high pulse duration: 0.52ms, Duty cycle: 0.52ms/20ms = 2.6%
-Datasheet high pulse duration reference: 1.3ms or 6.5% duty cycle
+<br>Datasheet high pulse duration reference: 1.3ms or 6.5% duty cycle
 ![Reading from oscilloscope](oscilloscope2.png) 
 
 No rotation image, Measured high pulse duration: 1.48ms, Duty cycle: 1.48ms/20ms = 7.4%
-Datasheet high pulse duration reference: 1.5ms or 7.5% duty cycle)
+<br>Datasheet high pulse duration reference: 1.5ms or 7.5% duty cycle)
 ![Reading from oscilloscope](oscilloscope3.png) 
 
 # 6. Assemble Our Robot

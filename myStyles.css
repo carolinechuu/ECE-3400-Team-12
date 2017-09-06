@@ -58,3 +58,7 @@ h1:hover, h1:focus {
     transform: rotate3d(179,0,10,360deg);
 }
 
+page-header {
+    background-image: url("fireworkBackground.gif");
+}
+

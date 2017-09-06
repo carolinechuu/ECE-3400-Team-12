@@ -234,4 +234,8 @@ void loop() {
 ```
 
 *Soldering*: soldered pins to the line sensor QRE1113
-![Soldered pins on line sensor][line_sensor_solder.jpg]
+![Soldered pins on line sensor](line_sensor_solder.jpg)
+<br>Caroline Soldering
+![CarolineSoldering](Caroline_Soldering.png)
+<br>Ian Soldering
+![IanSoldering](Ian_Soldering.png)

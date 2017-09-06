@@ -128,6 +128,7 @@ Full speed counterclockwise image, Measured high pulse duration: 0.52ms, Duty cy
 No rotation image, Measured high pulse duration: 1.48ms, Duty cycle: 1.48ms/20ms = 7.4%
 <br>Datasheet high pulse duration reference: 1.5ms or 7.5% duty cycle)
 ![Reading from oscilloscope](oscilloscope3.png) 
+<br>We can observe that the maximum duty cycle occurs when the servo is going full speed clockwise, which is 12%. And the minium duty cycle occurs when the servo is going full speed counterclockwise, which is 2.6%. From the datasheet, we learn that for this servo, we only need duty cycle ranges from 6.5% to 8.5%. Guess the Arduino is overkilling it so it works for different kinds of servo :D
 
 # 6. Assemble Our Robot
 After completing the first five projects, we began assembling our robot. Using the mounts provided for us, we attached two servos and the Arduino Uno to a small chassis, and placed a small breadboard temporarily underneath the Arduino to facilitate wiring. We wired the power and ground pins of the servos through the breadboard and to an external power supply providing 5V output, and connected the data lines of the two servos to pins 3 and 5 of the Arduino (for left and right servos, respectively). Additionally, we mounted two QRE1113 line sensors to the front of the robot and wired their data lines to the Arduino’s A1 and A2 analog inputs. We provided power to the line sensors by wiring them through the breadboard to the Arduino’s 5V and GND pins.

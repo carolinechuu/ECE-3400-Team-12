@@ -128,7 +128,7 @@ void loop() {
 	delay(100); //optional, updates servo value 10 times a second
 }
 ```
-<table width="100%">
+<table>
 <tr>
 	<td width="33%"><img src="oscilloscope1.png" alt="Reading from oscilloscope"></td>
 	<td width="33%"><img src="oscilloscope2.png" alt="Reading from oscilloscope"></td>
@@ -259,7 +259,7 @@ void loop() {
 *Soldering*: soldered pins to the line sensor QRE1113
 <table>
 <tr>
-	<td colspan="2"><img src="line_sensor_solder.jpg" alt="Pins soldered on line sensor">
+	<td colspan="2"><img src="line_sensor_solder.jpg" alt="Pins soldered on line sensor"></td>
 </tr>
 <tr>
 	<td><img src="Caroline_Soldering.png" alt="Caroline Soldering"></td>

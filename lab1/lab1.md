@@ -259,14 +259,17 @@ void loop() {
 *Soldering*: soldered pins to the line sensor QRE1113
 <table>
 <tr>
-	<td colspan="2"><img src="line_sensor_solder.jpg" alt="Pins soldered on line sensor"></td>
+	<th colspan="2">Pins Soldered on Line Sensor</th>
+</tr>
+<tr>
+	<td align="center" colspan="2"><img src="line_sensor_solder.jpg" alt="Pins soldered on line sensor"></td>
 </tr>
 <tr>
 	<td><img src="Caroline_Soldering.png" alt="Caroline Soldering"></td>
 	<td><img src="Ian_Soldering.png" alt="Ian Soldering"></td>
 </tr>
 <tr>
-	<td>Caroline Soldering</td>
-	<td>Ian Soldering</td>
+	<td align="center">Caroline Soldering</td>
+	<td align="center">Ian Soldering</td>
 </tr>
 </table>

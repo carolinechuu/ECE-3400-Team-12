@@ -128,23 +128,23 @@ void loop() {
 	delay(100); //optional, updates servo value 10 times a second
 }
 ```
-<table>
+<table width="100%">
 <tr>
-	<td><img src="oscilloscope1.png" alt="Reading from oscilloscope"></td>
-	<td><img src="oscilloscope2.png" alt="Reading from oscilloscope"></td>
-	<td><img src="oscilloscope3.png" alt="Reading from oscilloscope"></td>
+	<td width="33%"><img src="oscilloscope1.png" alt="Reading from oscilloscope"></td>
+	<td width="33%"><img src="oscilloscope2.png" alt="Reading from oscilloscope"></td>
+	<td width="33%"><img src="oscilloscope3.png" alt="Reading from oscilloscope"></td>
 </tr>
 <tr>
 	<td>Full speed clockwise image
-		<br>Measured high pulse duration: 2.4ms
+		<br>High pulse duration: 2.4ms
 		<br>Duty cycle: 2.4ms/20ms = 12%
 		<br><br>Datasheet high pulse duration reference: 1.7ms or 8.5% duty cycle</td>
 	<td>Full speed counterclockwise image
-		<br>Measured high pulse duration: 0.52ms
+		<br>High pulse duration: 0.52ms
 		<br>Duty cycle: 0.52ms/20ms = 2.6%
 		<br><br>Datasheet high pulse duration reference: 1.3ms or 6.5% duty cycle</td>
 	<td>No rotation image
-		<br>Measured high pulse duration: 1.48ms
+		<br>High pulse duration: 1.48ms
 		<br>Duty cycle: 1.48ms/20ms = 7.4%
 		<br><br>Datasheet high pulse duration reference: 1.5ms or 7.5% duty cycle)</td>
 </table>

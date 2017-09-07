@@ -16,7 +16,14 @@
   <a href="contact.html" class="current">Contact</a>
 </div>
 
-/play secret
+# Questions? Suggestions? Hate mail?
+<form>
+Who are you?<br>
+<input type="text" name="yourname"><br>
 
-# We Are Top Secret
-No contact info for now
+How can we contact you?<br>
+<input type="text" name="contactinfo"><br>
+
+What did you want to tell us?<br>
+<input type="text" name="message">
+</form>

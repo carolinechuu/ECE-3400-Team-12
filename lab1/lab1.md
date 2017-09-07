@@ -72,9 +72,16 @@ void loop() {
 
 # 3. Reading Value of Potentiometer via Serial Port
 In the third mini project, we built a voltage divider and measured the voltage across the potentiometer using analog pin 0. The Arduino has a 10 bit ADC, so its resolution is 2^10 = 1024. When using analog read from Pin 0, it returns a value from 0 to 1023. To convert the input value into voltage, voltage drop across potentiometer = reading value*5/1024. The circuit setup can be viewed below.
-
-![Wiring Setup for Reading Value of Pot](setup_pot_serial_display.png)
-![Reading Value of Pot via Serial Port](code_pot_serial_display.jpg)
+<table>
+<tr>
+	<th>Wiring Setup</th>
+	<th>Code Output</th>
+</tr>
+<tr>
+	<td><img src="setup_pot_serial_display.png" alt="Wiring Setup - Read Pot Value"></td>
+	<td><img src="code_pot_serial_display.jpg" alt="Code - Read Pot Value"</td>
+</tr>
+</table>
 
 # 4. Map the Value of the Potentiometer to the LED
 In this part we used the setup from the previous project to read the voltage drop across a potentiometer, and mapped that analog input to a pulse-width modulator (PWM) that will drive a separate external LED. The point is to have the brightness of the LED be proportional to the voltage drop across the potentiometer, which is itself proportional to the value of the potentiometer itself.
@@ -121,18 +128,28 @@ void loop() {
 	delay(100); //optional, updates servo value 10 times a second
 }
 ```
-Full speed clockwise image, Measured high pulse duration: 2.4ms, Duty cycle: 2.4ms/20ms = 12%
-<br>Datasheet high pulse duration reference: 1.7ms or 8.5% duty cycle
-![Reading from oscilloscope](oscilloscope1.png) 
+<table>
+<tr>
+	<td><img src="oscilloscope1.png" alt="Reading from oscilloscope"></td>
+	<td><img src="oscilloscope2.png" alt="Reading from oscilloscope"></td>
+	<td><img src="oscilloscope3.png" alt="Reading from oscilloscope"></td>
+</tr>
+<tr>
+	<td>Full speed clockwise image
+		<br>Measured high pulse duration: 2.4ms
+		<br>Duty cycle: 2.4ms/20ms = 12%
+		<br><br>Datasheet high pulse duration reference: 1.7ms or 8.5% duty cycle</td>
+	<td>Full speed counterclockwise image
+		<br>Measured high pulse duration: 0.52ms
+		<br>Duty cycle: 0.52ms/20ms = 2.6%
+		<br><br>Datasheet high pulse duration reference: 1.3ms or 6.5% duty cycle</td>
+	<td>No rotation image
+		<br>Measured high pulse duration: 1.48ms
+		<br>Duty cycle: 1.48ms/20ms = 7.4%
+		<br><br>Datasheet high pulse duration reference: 1.5ms or 7.5% duty cycle)</td>
+</table>
 
-Full speed counterclockwise image, Measured high pulse duration: 0.52ms, Duty cycle: 0.52ms/20ms = 2.6%
-<br>Datasheet high pulse duration reference: 1.3ms or 6.5% duty cycle
-![Reading from oscilloscope](oscilloscope2.png) 
-
-No rotation image, Measured high pulse duration: 1.48ms, Duty cycle: 1.48ms/20ms = 7.4%
-<br>Datasheet high pulse duration reference: 1.5ms or 7.5% duty cycle)
-![Reading from oscilloscope](oscilloscope3.png) 
-<br>We can observe that the maximum duty cycle occurs when the servo is going full speed clockwise, which is 12%. And the minium duty cycle occurs when the servo is going full speed counterclockwise, which is 2.6%. From the datasheet, we learn that for this servo, we only need duty cycle ranges from 6.5% to 8.5%. Guess the Arduino is overkilling it so it works for different kinds of servo :D
+We can observe that the maximum duty cycle occurs when the servo is going full speed clockwise, which is 12%. And the minium duty cycle occurs when the servo is going full speed counterclockwise, which is 2.6%. From the datasheet, we learn that for this servo, we only need duty cycle ranges from 6.5% to 8.5%. Guess the Arduino is overkilling it so it works for different kinds of servo :D
 
 # 6. Assemble Our Robot
 After completing the first five projects, we began assembling our robot. Using the mounts provided for us, we attached two servos and the Arduino Uno to a small chassis, and placed a small breadboard temporarily underneath the Arduino to facilitate wiring. We wired the power and ground pins of the servos through the breadboard and to an external power supply providing 5V output, and connected the data lines of the two servos to pins 3 and 5 of the Arduino (for left and right servos, respectively). Additionally, we mounted two QRE1113 line sensors to the front of the robot and wired their data lines to the Arduino’s A1 and A2 analog inputs. We provided power to the line sensors by wiring them through the breadboard to the Arduino’s 5V and GND pins.
@@ -214,7 +231,7 @@ void loop() {
    Serial.println("\t");  
 }
 ```
-It works out beautifully and check out our video demostrations:
+Check this out in our video!
 
 # Extra FUN
 ### F is for friends who do stuff together, U is for you and me, N is for anywhere and anytime at all, down here in Phillips 427.

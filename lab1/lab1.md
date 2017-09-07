@@ -30,7 +30,7 @@ src="https://www.youtube.com/embed/0iEf0Ci3siY">
 * Arduino Uno
 * LED
 * 3306F-103 Potentiometer
-* 330 Ohm Resistors
+* 330Ω Resistors
 * [Line sensor QRE1113](http://www.robotshop.com/media/files/pdf/qre1113-datasheet-rob-09454.pdf)
 
 # 1. Blinking An Internal LED
@@ -135,15 +135,15 @@ void loop() {
 	<td width="33%"><img src="oscilloscope3.png" alt="Reading from oscilloscope"></td>
 </tr>
 <tr>
-	<td>Full speed clockwise image
+	<td>Full speed CW
 		<br>High pulse duration: 2.4ms
 		<br>Duty cycle: 2.4ms/20ms = 12%
 		<br><br>Datasheet high pulse duration reference: 1.7ms or 8.5% duty cycle</td>
-	<td>Full speed counterclockwise image
+	<td>Full speed CCW
 		<br>High pulse duration: 0.52ms
 		<br>Duty cycle: 0.52ms/20ms = 2.6%
 		<br><br>Datasheet high pulse duration reference: 1.3ms or 6.5% duty cycle</td>
-	<td>No rotation image
+	<td>No rotation
 		<br>High pulse duration: 1.48ms
 		<br>Duty cycle: 1.48ms/20ms = 7.4%
 		<br><br>Datasheet high pulse duration reference: 1.5ms or 7.5% duty cycle)</td>
@@ -157,7 +157,9 @@ After completing the first five projects, we began assembling our robot. Using t
 ![Preliminary Robot](robot2.jpg)
 
 # 7. Driving Our Robot Autonomously
-To drive the robot, we have to set up two servos, which are connected to Pin 3 and Pin 5, respectively. We used these two pins, because they are the first two pins that can do PWM. We created a new tab called "robot.h" that contains functions to drive the robot: walkForward(), walkLeft(), walkRight(), turnLeft() and turnRight().
+Code is explained and provided below, but check out our video for demos!
+
+To drive the robot, we have to set up two servos, which are connected to Pin 3 and Pin 5, respectively. We used these two pins, because they are the first two pins that can do PWM. We created a new tab called "Robot.h" that contains functions to drive the robot: walkForward(), walkLeft(), walkRight(), turnLeft() and turnRight().
 
 To drive the robot forward, two servos need to move in the same directions. Because the two servos are mirrored of each other, the values we are writing to them are opposite of each other. We tested it out and fighured out that writing 180 drive left servo forward and and writing 0 drive the right servo forward. To drive the robot to the left, we stop the left servo and drive the right servo forward. Similarly, to drive the robot to the right, we stop the right servo and drive the left servo forward. To make a fast turn to the left, we drive the left servo backward and drive the right servo forward. Similarly, to make a fast turn to the right, we drive the left servo forward and drive the right servo backward.
 ```Arduino
@@ -231,7 +233,6 @@ void loop() {
    Serial.println("\t");  
 }
 ```
-Check this out in our video!
 
 # Extra FUN
 ### F is for friends who do stuff together, U is for you and me, N is for anywhere and anytime at all, down here in Phillips 427.
@@ -255,8 +256,16 @@ void loop() {
 ```
 
 *Soldering*: soldered pins to the line sensor QRE1113
-![Soldered pins on line sensor](line_sensor_solder.jpg)
-<br>Caroline Soldering
-![CarolineSoldering](Caroline_Soldering.png)
-<br>Ian Soldering
-![IanSoldering](Ian_Soldering.png)
+<table>
+<tr>
+	<td colspan="2"><img src="line_sensor_solder.jpg" alt="Pins soldered on line sensor">
+</tr>
+<tr>
+	<td><img src="Caroline_Soldering.png" alt="Caroline Soldering"></td>
+	<td><img src="Ian_Soldering.png" alt="Ian Soldering"></td>
+</tr>
+<tr>
+	<td>Caroline Soldering</td>
+	<td>Ian Soldering</td>
+</tr>
+</table>

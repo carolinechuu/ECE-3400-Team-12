@@ -18,7 +18,7 @@
 
 # Have a sneak peek...
 <iframe width="420" height="315"
-src="https://www.youtube.com/watch?v=0iEf0Ci3siY&feature=youtu.be">
+src="https://www.youtube.com/embed/0iEf0Ci3siY">
 </iframe>
 
 # Purpose

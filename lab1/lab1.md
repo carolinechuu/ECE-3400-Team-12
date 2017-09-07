@@ -35,7 +35,7 @@ src="https://www.youtube.com/embed/0iEf0Ci3siY">
 
 # 1. Blinking An Internal LED
 The first mini project is to blink the Internal LED on the Arduino board every second. A built-in LED is already connected to the Arduino board and it is wired to Pin 13. The following code, one of the Arduino IDE example programs, sets up Pin 13 as digital output in the setup() function, and it then repeatedly turns Pin 13 HIGH, waits for one second, turns Pin 13 LOW, waits for one second, creating the blinking effect.
-```
+```C
 // the setup function runs once when you press reset or power the board
 void setup() {
   // initialize digital pin 13, the onboard LED, as an output.
@@ -53,7 +53,7 @@ void loop() {
 
 # 2. Blinking an External LED
 The second mini project is to blink an external LED, which is wired to the digital output Pin 3. There is 330 ohms resistor connected in series with the LED to limit current flow, otherwises, the LED would burn out. The code explanation is the same as the previous mini project except pin 3 is used instead of pin 13.
-```
+```C
 int ledPin;
 
 void setup() {
@@ -80,7 +80,7 @@ In the third mini project, we built a voltage divider and measured the voltage a
 In this part we used the setup from the previous project to read the voltage drop across a potentiometer, and mapped that analog input to a pulse-width modulator (PWM) that will drive a separate external LED. The point is to have the brightness of the LED be proportional to the voltage drop across the potentiometer, which is itself proportional to the value of the potentiometer itself.
 
 The voltage divider is set up so that a 330Ohm resistor is placed between 5V and the pin A0, and the potentiometer is connecting A0 to ground. We use the analogRead() function on the A0 pin to get the value of the voltage across the potentiometer, called ‘val’. We connect an LED and a resistor to a digital pin with PWM capability, and drive it using the analogWrite() function. The analogRead() function has 1024 possible output values, but the analogWrite() function can only take inputs between 0 and 255, so we divide the value of ‘val’ by 4 and write that to analogWrite().  This means the duty cycle of the digital pin driving the LED is equal to (‘val’/4)/255 = (‘val’/1020), where ‘val’ varies between 0 and 1020.
-```
+```C
 int potInput;
 int ledPin;
 
@@ -98,7 +98,6 @@ void loop() {
 }
 ```
 ![Wiring LED to Pot](pot_to_led.jpg)
-<!-- ![LED Reading From Pot](pot_to_led.mp4) -->
 
 # 5. Map the Value of the Potentiometer to the Servo
 Acquiring a reading from the potentiometer for this task was the same as the previous task, as can be seen from the code. This portion, however, also requires that we drive a servo. To drive the servo, we used the Arduino Servo library. Using this library, we created a Servo object called myservo and used the attach() function to send the output to pin 3 on the Arduino in our setup.
@@ -106,7 +105,7 @@ Acquiring a reading from the potentiometer for this task was the same as the pre
 In the loop, we wrote a value to myservo using the Servo write() function which takes values between 0 and 180 as input and outputs a PWM signal to control the servo. For our continuous rotation servos 0 to 89 rotates the servo counter-clockwise, 90 stops the servo, and 91 to 180 rotates the servo clockwise. We mapped the potentiometer reading (0 to 1023) to the servo (0 to 180) by dividing the potentiometer reading by 5.7 (approximately 1023/180). 
 
 Below are oscilloscope readings for the PWM outputs of the Arduino. PWM (Pulse Width Modulation) is a protocol used to control motors through, as the name states, modulating the width of pulses (square waves). For our servos, the pulses are typically between 1ms and 2ms in width and 5V in amplitude. The Arduino Servo library creates these pulses by mapping the function input of 0-180 to a pulse width from 1ms to 2ms. From the oscillascope, we learn that the frequency of the servo PWM is about 50Hz and period is about 20ms.
-```
+```C
 int potInput;
 Servo myservo;
 
@@ -144,7 +143,7 @@ After completing the first five projects, we began assembling our robot. Using t
 To drive the robot, we have to set up two servos, which are connected to Pin 3 and Pin 5, respectively. We used these two pins, because they are the first two pins that can do PWM. We created a new tab called "robot.h" that contains functions to drive the robot: walkForward(), walkLeft(), walkRight(), turnLeft() and turnRight().
 
 To drive the robot forward, two servos need to move in the same directions. Because the two servos are mirrored of each other, the values we are writing to them are opposite of each other. We tested it out and fighured out that writing 180 drive left servo forward and and writing 0 drive the right servo forward. To drive the robot to the left, we stop the left servo and drive the right servo forward. Similarly, to drive the robot to the right, we stop the right servo and drive the left servo forward. To make a fast turn to the left, we drive the left servo backward and drive the right servo forward. Similarly, to make a fast turn to the right, we drive the left servo forward and drive the right servo backward.
-```
+```C
 Servo leftWheel, rightWheel;
 //Functions for robot to walk and turn
 void walkForward(){ //Moving forward full speed
@@ -175,7 +174,7 @@ void turnRight(){ //Fast turn: turn right on both wheels
 We went a step further and soldered two line sensors, which are connected to analog Pin 1 and 2, and their values readings are stored into variables lineMidLeft and lineMidRight. The line sensors keep the robot moving along the line. Their values are ranged from 0 to 1023. If it is above 850, it means it is on top of the black line. If it is below 850, it means it is on top of white space. We attached two line sensors to the front of our robot: lineMidLeft is the left one and lineMidRight is the right one. 
 
 We wrote a sample main code so that the robot follows a black line square. If both sensors detect white space, we make it turn right. If the robot is on top of the black line and the difference between the two line sensors value is less than a tolerance value, say 100, it means the robot is on top of the black line and we just move forward. (We note that sensor value readings tend to fluctuate during sensor testing, therefore, we created a tolerance to address the fluctuations.) Next, if the left sensor has higher value than the right sensor, it means the robot is tilted to the right white space and we have to turn left, so we do the walkLeft() function. Similarly, if the right sensor has higher value than the left sensor, it means the robot is tilted to the left white space and we have to turn right, so we do the walkRight() function.
-```
+```C
 #include <Servo.h>
 #include "Robot.h"
 int lineMidLeft, lineMidRight; //Line Sensor Values Variables
@@ -220,7 +219,7 @@ It works out beautifully and check out our video demostrations:
 # Extra FUN
 ### F is for friends who do stuff together, U is for you and me, N is for anywhere and anytime at all, down here in Phillips 427.
 *Testing the servo*: the servo turns clockwise when set to 180, stops turning when set to 90, and turns clockwise when set to 0
-```
+```C
 Servo myservo;
 
 void setup() {

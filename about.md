@@ -37,7 +37,7 @@ If that doesn't work, check [here](https://docs.google.com/a/cornell.edu/spreads
 
 ### Christina Chang :stuck_out_tongue_closed_eyes:
 
-### Caroline Chu :relaxed:
+### Caroline Chu :lollipop:
 
 ### Felipe Fortuna :grin:
 

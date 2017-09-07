@@ -79,7 +79,7 @@ In the third mini project, we built a voltage divider and measured the voltage a
 </tr>
 <tr>
 	<td><img src="setup_pot_serial_display.png" alt="Wiring Setup - Read Pot Value"></td>
-	<td><img src="code_pot_serial_display.jpg" alt="Code - Read Pot Value"</td>
+	<td><img src="code_pot_serial_display.jpg" alt="Code - Read Pot Value"></td>
 </tr>
 </table>
 

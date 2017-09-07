@@ -16,6 +16,11 @@
   <a href="../contact.html">Contact</a>
 </div>
 
+# Have a sneak peek...
+<iframe width="420" height="315"
+src="https://www.youtube.com/watch?v=0iEf0Ci3siY&feature=youtu.be">
+</iframe>
+
 # Purpose
 * Get familiar with the Arduino Uno and IDE
 * Take initial steps in building and controlling our robot

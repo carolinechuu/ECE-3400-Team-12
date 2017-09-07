@@ -20,10 +20,10 @@
 <form>
 Who are you?<br>
 <input type="text" name="yourname"><br>
-
+<br>
 How can we contact you?<br>
 <input type="text" name="contactinfo"><br>
-
+<br>
 What did you want to tell us?<br>
 <input type="text" name="message">
 </form>

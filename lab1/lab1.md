@@ -147,6 +147,7 @@ void loop() {
 		<br>High pulse duration: 1.48ms
 		<br>Duty cycle: 1.48ms/20ms = 7.4%
 		<br><br>Datasheet high pulse duration reference: 1.5ms or 7.5% duty cycle)</td>
+</tr>
 </table>
 
 We can observe that the maximum duty cycle occurs when the servo is going full speed clockwise, which is 12%. And the minium duty cycle occurs when the servo is going full speed counterclockwise, which is 2.6%. From the datasheet, we learn that for this servo, we only need duty cycle ranges from 6.5% to 8.5%. Guess the Arduino is overkilling it so it works for different kinds of servo :D

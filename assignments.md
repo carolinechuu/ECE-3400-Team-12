@@ -18,14 +18,14 @@
 
 # Labs
 [Lab 1](lab1/lab1.md)
-[Lab 2](lab2/lab2.md)
-[Lab 3](lab3/lab3.md)
-[Lab 4](lab4/lab4.md)
+[Lab 2](does_not_exist.md)
+[Lab 3](does_not_exist.md)
+[Lab 4](does_not_exist.md)
 
 ***
 
 # Milestones
-[Milestone 1](milestone1/milestone1.md)
-[Milestone 2](milestone2/milestone2.md)
-[Milestone 3](milestone3/milestone3.md)
-[Milestone 4](milestone4/milestone4.md)
+[Milestone 1](does_not_exist.md)
+[Milestone 2](does_not_exist.md)
+[Milestone 3](does_not_exist.md)
+[Milestone 4](does_not_exist.md)

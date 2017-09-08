@@ -16,5 +16,5 @@
   <a href="contact.html">Contact</a>
 </div>
 
-# Whoops!
-This page hasn't been created yet. Check back soon!
+# Do not worry!
+We're working on this! Please check back soon.

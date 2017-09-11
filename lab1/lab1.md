@@ -237,7 +237,7 @@ void loop() {
 
 # Extra FUN
 ### F is for friends who do stuff together, U is for you and me, N is for anywhere and anytime at all, down here in Phillips 427.
-*Testing the servo*: the servo turns clockwise when set to 180, stops turning when set to 90, and turns clockwise when set to 0
+*Testing the servo:* the servo turns clockwise when set to 180, stops turning when set to 90, and turns clockwise when set to 0
 ```Arduino
 Servo myservo;
 
@@ -256,7 +256,7 @@ void loop() {
 }
 ```
 
-*Soldering*: soldered pins to the line sensor QRE1113
+*Soldering:* soldered pins to the line sensor QRE1113
 <table>
 <tr>
 	<th colspan="2">Pins Soldered on Line Sensor</th>

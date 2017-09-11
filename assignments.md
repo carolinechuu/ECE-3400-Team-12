@@ -18,14 +18,20 @@
 
 # Labs
 [Lab 1](lab1/lab1.md)
+<br>
 [Lab 2](does_not_exist.md)
+<br>
 [Lab 3](does_not_exist.md)
+<br>
 [Lab 4](does_not_exist.md)
 
 ***
 
 # Milestones
 [Milestone 1](does_not_exist.md)
+<br>
 [Milestone 2](does_not_exist.md)
+<br>
 [Milestone 3](does_not_exist.md)
+<br>
 [Milestone 4](does_not_exist.md)

@@ -19,7 +19,7 @@
 # Labs
 [Lab 1](lab1/lab1.md)
 <br>
-[Lab 2](does_not_exist.md)
+[Lab 2](lab2/lab2.md)
 <br>
 [Lab 3](does_not_exist.md)
 <br>

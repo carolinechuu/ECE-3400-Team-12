@@ -16,12 +16,12 @@
   <a href="../contact.html">Contact</a>
 </div>
 
-# Arduino ADC (Analog-to-Digital Converter)
+# Arduino Analog-to-Digital Converter (ADC)
 [Library function analogRead()](https://www.arduino.cc/en/Reference/AnalogRead)
 Function analogRead() converts an analog voltage value (0-5V) to a 10-bit digital value (0-1023).
 
-# Fourier Transforms and Fast Fourier Transforms (FFT)
-**Fourier Transforms**
+# All The Fourier Stuff
+**Fourier Transforms**<br>
 Here is a great PhET simulation for the basic concepts for FFT. The idea is that we take a time-dependent wave and express it as a sum of sinusoids. We only need to specify each sinusoid's coefficient and phase to express our data.
 <div style="position: relative; width: 300px; height: 197px;"><a href="https://phet.colorado.edu/sims/fourier/fourier_en.jnlp" style="text-decoration: none;"><img src="https://phet.colorado.edu/sims/fourier/fourier-600.png" alt="Fourier: Making Waves" style="border: none;" width="300" height="197"/><div style="position: absolute; width: 200px; height: 80px; left: 50px; top: 58px; background-color: #FFF; opacity: 0.6; filter: alpha(opacity = 60);"></div><table style="position: absolute; width: 200px; height: 80px; left: 50px; top: 58px;"><tr><td style="text-align: center; color: #000; font-size: 24px; font-family: Arial,sans-serif;">Click to Run</td></tr></table></a></div>
 

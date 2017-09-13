@@ -22,8 +22,3 @@ Welcome to our website, professors, TAs, students, and/or robot enthusiasts! You
 <audio src="audio/firework.mp3" loop="loop" controls autoplay controlsList="nodownload">
 <p>Oh no! You can't hear our music.</p>
 </audio>
-
-***
-
-# Pardon our dust!
-Our website is still under construction.

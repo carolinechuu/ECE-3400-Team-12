@@ -38,3 +38,8 @@ Here is a great PhET simulation for the basic concepts for FFT. The idea is that
 Fourier transforms are given by the following equation:
 
 Unfortunately, direct computation of this equation is an O(N^2) algorithm, meaning the time increases exponentially as we have more data. The FFT (Fast Fourier Transform) is an O(NlogN) algorithm, which is must faster compared to the regular computation for large data. The [Open Music Labs Arduino library](http://wiki.openmusiclabs.com/wiki/ArduinoFFT) takes care of the FFT algorithm for us.
+
+#Lab
+
+###Acoustic Team: Assemble Microphone Circuit
+####Team Members: Felipe Fortuna, Pei-Yi Lin, Xitang Zhao

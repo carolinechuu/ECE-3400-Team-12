@@ -28,7 +28,7 @@
 ***
 
 # Milestones
-[Milestone 1](does_not_exist.md)
+[Milestone 1](milestone1/milestone1.md)
 <br>
 [Milestone 2](does_not_exist.md)
 <br>

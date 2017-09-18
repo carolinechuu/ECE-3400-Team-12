@@ -46,7 +46,7 @@ Unfortunately, direct computation of this equation is an O(N^2) algorithm, meani
 
 The electret microphone given in lab is attached on a breakout board that has an adjustable gain amplifier, with gain range from 25x to 125x. To take advantage of the on board amplifier, we max out its gain. Also for best performance of the microphone, we used the "quieter" 3.3V instead of the 5V on the Arduino to power the microphone and added a 0.1 uF decoupling capacitor between 3.3V to GND.
 
-(Figure_1.jpg)
+!(Figure_1.jpg)
 
 
 ### Optical Team: Assemble IR Circuit

@@ -26,7 +26,7 @@
 .current {
   background-color: #ff7e5f;
   color: white;
-}
+}2EE
 
 h1:hover, h1:focus {
     -webkit-transition: all 2s;
@@ -42,5 +42,9 @@ h1:hover, h1:focus {
 
 .page-header {
     background-image: url("fireworkBackground.gif");
+}
+
+.h4-color {
+   color: #EE82EE	
 }
 

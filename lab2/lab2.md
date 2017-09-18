@@ -58,6 +58,17 @@ The electret microphone given in lab is attached on a breakout board that has an
 </tr>
 </table>
 
+<table>
+<tr>
+	<td><img src="Figure_3.png"></td>
+	<td><img src="Figure_4.png" ></td>
+</tr>
+<tr>
+	<th>Figure 3: 660Hz FFT Output Before Amplification</th>
+	<th>Figure 4: 660Hz FFT Output After Amplification</th>
+</tr>
+</table>
+
 
 ### Optical Team: Assemble IR Circuit
 #### Team Members: Christina Chang, Caroline Chu, Ian Kranz

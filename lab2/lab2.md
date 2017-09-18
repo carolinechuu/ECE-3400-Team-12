@@ -39,7 +39,15 @@ Fourier transforms are given by the following equation:
 
 Unfortunately, direct computation of this equation is an O(N^2) algorithm, meaning the time increases exponentially as we have more data. The FFT (Fast Fourier Transform) is an O(NlogN) algorithm, which is must faster compared to the regular computation for large data. The [Open Music Labs Arduino library](http://wiki.openmusiclabs.com/wiki/ArduinoFFT) takes care of the FFT algorithm for us.
 
-#Lab
+# Lab
 
-###Acoustic Team: Assemble Microphone Circuit
-####Team Members: Felipe Fortuna, Pei-Yi Lin, Xitang Zhao
+### Acoustic Team: Assemble Microphone Circuit
+#### Team Members: Felipe Fortuna, Pei-Yi Lin, Xitang Zhao
+
+The electret microphone given in lab is attached on a breakout board that has an adjustable gain amplifier, with gain range from 25x to 125x. To take advantage of the on board amplifier, we max out its gain. Also for best performance of the microphone, we used the "quieter" 3.3V instead of the 5V on the Arduino to power the microphone and added a 0.1 uF decoupling capacitor between 3.3V to GND.
+
+(Figure_1.jpg)
+
+
+### Optical Team: Assemble IR Circuit
+#### Team Members: Christina Chang, Caroline Chu, Ian Kranz

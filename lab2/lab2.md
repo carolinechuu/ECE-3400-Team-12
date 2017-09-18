@@ -45,11 +45,9 @@ Unfortunately, direct computation of this equation is an O(N^2) algorithm, meani
 #### Team Members: Felipe Fortuna, Pei-Yi Lin, Xitang Zhao
 
 The electret microphone given in lab is attached on a breakout board that has an adjustable gain amplifier, with gain range from 25x to 125x. To take advantage of the on board amplifier, we max out its gain. Also for best performance of the microphone, we used the "quieter" 3.3V instead of the 5V on the Arduino to power the microphone and added a 0.1 uF decoupling capacitor between 3.3V to GND.
-
 <table>
-
 <tr>
-	<td><img src="Figure_1.png"> </td>
+	<td><img src="Figure_1.png"></td>
 	<!--alt="Wiring Setup - Read Pot Value">-->
 	<!--alt="Code - Read Pot Value"-->
 	<td><img src="Figure_2.png" ></td>

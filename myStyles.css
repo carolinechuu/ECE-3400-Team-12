@@ -28,22 +28,26 @@
   color: white;
 }
 
-.drop-button {
-	position: relative;
+.dropdown {
+	position:relative;
 	display: inline-block;
 }
 
-.drop-menu {
-  display: none;
-  background-color: #facdb9;
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
 }
 
-.drop-menu a:hover {
-  background-color: #e57b7b;
-}
-
-.drop-button:hover .drop-menu {
-	display: block;
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
 }
 
 h1:hover, h1:focus {

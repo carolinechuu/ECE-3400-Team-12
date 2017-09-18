@@ -49,7 +49,7 @@ The electret microphone given in lab is attached on a breakout board that has an
 <table>
 
 <tr>
-	<td><img src="Figure_1.png" </td>
+	<td><img src="Figure_1.png"> </td>
 	<!--alt="Wiring Setup - Read Pot Value">-->
 	<!--alt="Code - Read Pot Value"-->
 	<td><img src="Figure_2.png" ></td>

@@ -1,6 +1,6 @@
 .top-navbar {
   overflow: hidden;
-  background-color: #ff7178;
+  background-color: #feb47b;
 }
 
 .top-navbar a {
@@ -14,17 +14,17 @@
 }
 
 .top-navbar a:hover {
-  background-color: #facdb9;
-  color: black;
+  background-color: #351c4d;
+  color: white;
 }
 
 .topnav a:active {
-  background-color: #4CAF50;
+  background-color: #765285;
   color: white;
 }
 
 .current {
-  background-color: #ec1b5b;
+  background-color: #ff7e5f;
   color: white;
 }
 

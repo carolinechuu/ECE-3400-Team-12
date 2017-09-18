@@ -28,11 +28,23 @@
   color: white;
 }
 
+/*Style the dropdown button*/
+.dropbtn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+/*div container positions dropdown content*/
 .dropdown {
 	position:relative;
 	display: inline-block;
 }
 
+/*dropdown content (hidden by default)*/
 .dropdown-content {
     display: none;
     position: absolute;

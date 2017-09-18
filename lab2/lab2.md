@@ -61,7 +61,7 @@ The electret microphone given in lab is attached on a breakout board that has an
 
 #### With Amplification
 ##### Amplifier Circuit
-<img src="Figure_3.png">
+<img src="image4.png">
 <table>
 <tr>
 	<td><img src="Figure_3.png"></td>

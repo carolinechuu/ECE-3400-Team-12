@@ -4,15 +4,7 @@
 
 <div class="top-navbar">
   <a href="index.html" class="current">Home</a>
-  <div class="dropdown">
-  <a href="about.html" class="dropbtn">About</a>
-    <div class="dropdown-content">
-      <a href="about.html">Logistics</a>
-      <a href="about.html">Team Contract</a>
-      <a href="about.html">Meeting Minutes</a>
-      <a href="about.html">Members</a>
-    </div>
-  </div>
+  <a href="about.html">About</a>
   <a href="assignments.html">Assignments</a>
   <a href="tutorials.html">Tutorials</a>
   <a href="contact.html">Contact</a>

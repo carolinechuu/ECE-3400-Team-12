@@ -77,4 +77,4 @@ The electret microphone given in lab is attached on a breakout board that has an
 
 ### Optical Team: Assemble IR Circuit
 #### Team Members: Christina Chang, Caroline Chu, Ian Kranz
-
+<img src="IR.jpg">

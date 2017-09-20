@@ -66,11 +66,14 @@ The electret microphone given in lab is attached on a breakout board that has an
 
 </tr>
 </table>
-When no tone is played (Figure 1), other than the DC, there is no noticeable peak throughout the frequency spectrum. The breakout microphone has very good built in nosie rejection circuits and nosie only ranges from 0 to 20dB. Once the 660Hz tone starts playing (Figure 2), an striking 50dB peak can be observed at 660 Hz along with a 18dB harmonic at 1320Hz. 
+When no tone is playing (Figure 1), other than the DC, there is no noticeable peak throughout the frequency spectrum. The breakout microphone has very good built in noise rejection circuits and nosie only ranges from 0 to 20dB. Once the 660Hz tone starts playing (Figure 2), an striking 50dB peak can be observed at 660 Hz along with a 18dB harmonic at 1320Hz. 
 
 # Amplifier Circuit
-The microphone can pick up the frequency tone very well, but we still like to set up an amplifier circuit that further amplifies and bandpass filters the signal for more stable performance. We used the LM158 Op Amp and set up our amplifier circuit using a 10K and a 100K resister, and this delivers gains of 11 (11 = 1+100k/10k). To create a bandpass filter, a high pass filter of 600 Hz is added between Vout of microphone to + (Pin 3) of LM158 and a low pass filter of 700Hz is added in parallel to the 100k resister.
+The microphone can pick up the frequency tone very well, but we still like to set up an amplifier circuit that further amplifies and bandpass filters the signal for more stable performance. We used the LM158 Op Amp and set up our amplifier circuit using a 10K and a 100K resister, and this delivers gains of 11 (11 = 1+100k/10k). To create a bandpass filter, a high pass filter of 600 Hz is added between Vout of microphone to + (Pin 3) of LM158 and a low pass filter of 700Hz is added in parallel to the 100k resister. In actual implementation, we couldn’t make an exactly 600Hz high pass filter because there is no capacitor 13nF capacitor available. Instead, we use the 10nF. This shifted the high pass filter cutoff frequency higher, but the amplification result comes out fine. The complete amplification circuit is shown below: 
+
 <img src="image4.png">
+
+After amplification, when no tone is playing (Figure 3), noise is noticeably higher on average than noise before amplification. It ranges from 0 to 27dB compared to 0 to 20dB range before amplification. Once the 660Hz tone starts playing (Figure 4), an striking 57dB peak can be observed at 660 Hz along with a steady slowly decreasing chain of harmonics: 48dB harmonic at 1320Hz, 42dB at 1940Hz, 38dB at 2640Hz...
 
 <table>
 <tr>

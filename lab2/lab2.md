@@ -1,5 +1,6 @@
 <head>
 <link rel="stylesheet" href="../myStyles.css">
+<script type="text/javascript" src="http://latex.codecogs.com/latexit.js"></script>
 </head>
 
 <div class="top-navbar">
@@ -39,9 +40,7 @@ Here is a great PhET simulation for the basic concepts for FFT. The idea is that
 
 As in the simulation above, there must be a way to calculate all those coefficients and *transform* (hint hint) the time domain to the frequency domain, and vice versa. This is the idea behind the Fourier transform. The inverse Fourier transform turns the frequency domain into the time domain, but our code doesn't need it, so we won't concern ourselves with it here.
 The discrete time to frequency Fourier transform is given by:
-<script type="text/javascript" src="http://latex.codecogs.com/latexit.js">
 <div lang="latex">F_{n}=\sum_{k=0}^{N-1} f_{k} e^{2\pi i n k / N}</div>
-</script>
 Unfortunately, direct computation of this equation is an O(N^2) algorithm, meaning the time increases exponentially as we have more data. This is because, for every coefficient in the frequency domain, we need to add N terms. In essence, we are adding N terms, N times. The FFT (Fast Fourier Transform) is an O(NlogN) algorithm, which is must faster compared to the regular computation, especially when we have lots of data (eg. large N). The Cooley-Tukey algorithm is the most popular implementation of the FFT. The details are a bit too complicated to explain, but in general, it uses a recursive algorithm to break down data into pieces, resulting in an O(logN) depth for computations. The [Open Music Labs Arduino library](http://wiki.openmusiclabs.com/wiki/ArduinoFFT) takes care of the FFT algorithm for us.
 
 ---

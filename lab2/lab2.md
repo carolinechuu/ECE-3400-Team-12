@@ -51,7 +51,7 @@ Unfortunately, direct computation of this equation is an O(N^2) algorithm, meani
 ### Acoustic Team: Assemble Microphone Circuit
 <!--<h4 class="h4-color">-->
 #### Team Members: Felipe Fortuna, Pei-Yi Lin, Xitang Zhao
-##### FFT Analysis
+### FFT Analysis
 The electret microphone given in lab is attached on a breakout board that has an adjustable gain amplifier, with gain range from 25x to 125x. To take advantage of the on board amplifier, its gain is nearly maxed out. Also for best performance of the microphone, the "quieter" 3.3V instead of the 5V on the Arduino is used to power the microphone and a 0.1 uF decoupling capacitor is added between 3.3V to GND to minimize disturbance. Vout is connected to the oscilloscope and the followings FFT diagrams are observed:
 <table>
 <tr>
@@ -66,6 +66,13 @@ The electret microphone given in lab is attached on a breakout board that has an
 
 </tr>
 </table>
+When no tone is played (Figure 1), other than the DC, there is no noticeable peak throughout the frequency spectrum. The breakout microphone has very good built in nosie rejection circuits and nosie only ranges from 0 to 20dB. Once the 660Hz tone starts playing (Figure 2), an striking 50dB peak can be observed at 660 Hz along with a 18dB harmonic at 1320Hz. 
+
+##### Amplifier Circuit
+The microphone can pick up the frequency tone very well, but we still like to set up a amplifier circuit that further amplifies and bandpass filters the signal. We set up our amplifier circuit using a 10K and a 100K resister, and this gives us a gain of 11 (1+100k/10k). 
+<img src="image4.png">
+
+
 <table>
 <tr>
 	<td align="center"><img src="Figure_2.png"></td>
@@ -77,10 +84,6 @@ The electret microphone given in lab is attached on a breakout board that has an
 </tr>
 </table>
 
-##### Amplifier Circuit
-
-We set up an amplifier circuit using 
-<img src="image4.png">
 
 
 

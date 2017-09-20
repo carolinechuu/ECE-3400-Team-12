@@ -12,7 +12,7 @@
 </div>
 
 # Purpose
-The goal of this lab is to add two sensors to our robot. The first is a microphone, which detects a 660Hz tone amidst background noise, and the second is an IR sensor with which detects infrared lights blinking at 7kHz, 12kHz, and 17kHz. To process the analog data received by the two sensors, we make use of the Arduino's on-chip Analog-to-Digital converters and [Open Music Labs Arduino FFT library](http://wiki.openmusiclabs.com/wiki/ArduinoFFT).
+The goal of this lab is to add two sensors to our robot. The first is a microphone, which detects a 660Hz tone amidst background noise, and the second is an IR sensor, which detects infrared lights blinking at 7kHz, 12kHz, and 17kHz. To process the analog data received by the two sensors, we make use of the Arduino's on-chip Analog-to-Digital converters and [Open Music Labs Arduino FFT library](http://wiki.openmusiclabs.com/wiki/ArduinoFFT).
 
 # Important Components
 * [Electret microphone](https://www.adafruit.com/product/1063)
@@ -51,33 +51,37 @@ Unfortunately, direct computation of this equation is an O(N^2) algorithm, meani
 ### Acoustic Team: Assemble Microphone Circuit
 <!--<h4 class="h4-color">-->
 #### Team Members: Felipe Fortuna, Pei-Yi Lin, Xitang Zhao
-
-The electret microphone given in lab is attached on a breakout board that has an adjustable gain amplifier, with gain range from 25x to 125x. To take advantage of the on board amplifier, we max out its gain. Also for best performance of the microphone, we used the "quieter" 3.3V instead of the 5V on the Arduino to power the microphone and added a 0.1 uF decoupling capacitor between 3.3V to GND.
+##### FFT Analysis
+The electret microphone given in lab is attached on a breakout board that has an adjustable gain amplifier, with gain range from 25x to 125x. To take advantage of the on board amplifier, its gain is nearly maxed out. Also for best performance of the microphone, the "quieter" 3.3V instead of the 5V on the Arduino is used to power the microphone and a 0.1 uF decoupling capacitor is added between 3.3V to GND to minimize disturbance. Vout is connected to the oscilloscope and the followings FFT diagrams are observed:
 <table>
 <tr>
 	<td align="center"><img src="Figure_1.png"></td>
 	<!--alt="Wiring Setup - Read Pot Value">-->
 	<!--alt="Code - Read Pot Value"-->
-	<td align="center"><img src="Figure_2.png" ></td>
+	<td align="center"><img src="Figure_3.png" ></td>
 </tr>
 <tr>
 	<th>Figure 1: No Tone FFT Output Before Amplification</th>
-	<th>Figure 2: No Tone FFT Output after Amplification</th>
+	<th>Figure 2: 660Hz FFT Output Before Amplification</th>
+
+</tr>
+</table>
+<table>
+<tr>
+	<td align="center"><img src="Figure_2.png"></td>
+	<td align="center"><img src="Figure_4.png" ></td>
+</tr>
+<tr>
+	<th>Figure 3: No Tone FFT Output after Amplification</th>
+	<th>Figure 4: 660Hz FFT Output After Amplification</th>
 </tr>
 </table>
 
 ##### Amplifier Circuit
+
+We set up an amplifier circuit using 
 <img src="image4.png">
-<table>
-<tr>
-	<td align="center"><img src="Figure_3.png"></td>
-	<td align="center"><img src="Figure_4.png" ></td>
-</tr>
-<tr>
-	<th>Figure 3: 660Hz FFT Output Before Amplification</th>
-	<th>Figure 4: 660Hz FFT Output After Amplification</th>
-</tr>
-</table>
+
 
 
 ### Optical Team: Assemble IR Circuit

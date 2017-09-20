@@ -18,6 +18,8 @@ The goal of this lab is to add two sensors to our robot. The first is a micropho
 *[IR receiver](https://www.digikey.com/product-detail/en/lite-on-inc/LTR-301/160-1065-ND/153270)
 *Treasures (provided by TAs)
 
+---
+
 # Prelab
 ### ADC and Sampling
 The ATmega328 has an internal ADC with 10 bits of resolution, driven by an ADC clock we can control through a prescaler. The ADC takes 12 clock cycles to initialize and is capable of completing a single conversion in 13 ADC clock cycles. In a normal conversion, the system does a sample-and-hold at 1.5 ADC clock cycles into the conversion, holding the analog value found at that time. When conversion is complete, the result is written to the ADC Data Registers (ADCL and ADCH), and the ADC Interrupt Flag is set.
@@ -35,24 +37,28 @@ In order to improve the quality of the input signals, we could try to make use o
 Here is a great PhET simulation for the basic concepts for FFT. The idea is that we take a time-dependent wave and express it as a sum of sinusoids. We only need to specify each sinusoid's coefficient and phase to express our data.
 <div style="position: relative; width: 300px; height: 197px;"><a href="https://phet.colorado.edu/sims/fourier/fourier_en.jnlp" style="text-decoration: none;"><img src="https://phet.colorado.edu/sims/fourier/fourier-600.png" alt="Fourier: Making Waves" style="border: none;" width="300" height="197"/><div style="position: absolute; width: 200px; height: 80px; left: 50px; top: 58px; background-color: #FFF; opacity: 0.6; filter: alpha(opacity = 60);"></div><table style="position: absolute; width: 200px; height: 80px; left: 50px; top: 58px;"><tr><td style="text-align: center; color: #000; font-size: 24px; font-family: Arial,sans-serif;">Click to Run</td></tr></table></a></div>
 
-Fourier transforms are given by the following equation:
+As in the simulation above, there must be a way to calculate all those coefficients and *transform* (hint hint) the time domain to the frequency domain, and vice versa. This is the idea behind the Fourier transform. The inverse Fourier transform turns the frequency domain into the time domain, but our code doesn't need it, so we won't concern ourselves with it here.
+The discrete time to frequency Fourier transform is given by:
+<script type="text/javascript" src="http://latex.codecogs.com/latexit.js">
+<div lang="latex">F_{n}=\sum_{k=0}^{N-1} f_{k} e^{2\pi i n k / N}</div>
+</script>
+Unfortunately, direct computation of this equation is an O(N^2) algorithm, meaning the time increases exponentially as we have more data. This is because, for every coefficient in the frequency domain, we need to add N terms. In essence, we are adding N terms, N times. The FFT (Fast Fourier Transform) is an O(NlogN) algorithm, which is must faster compared to the regular computation, especially when we have lots of data (eg. large N). The Cooley-Tukey algorithm is the most popular implementation of the FFT. The details are a bit too complicated to explain, but in general, it uses a recursive algorithm to break down data into pieces, resulting in an O(logN) depth for computations. The [Open Music Labs Arduino library](http://wiki.openmusiclabs.com/wiki/ArduinoFFT) takes care of the FFT algorithm for us.
 
-Unfortunately, direct computation of this equation is an O(N^2) algorithm, meaning the time increases exponentially as we have more data. The FFT (Fast Fourier Transform) is an O(NlogN) algorithm, which is must faster compared to the regular computation for large data. The [Open Music Labs Arduino library](http://wiki.openmusiclabs.com/wiki/ArduinoFFT) takes care of the FFT algorithm for us.
+---
 
 # Lab
 
 ### Acoustic Team: Assemble Microphone Circuit
 <!--<h4 class="h4-color">-->
-#### Team Members: Felipe Fortuna, Pei-Yi Lin, Xitang Zhao</h4>
+#### Team Members: Felipe Fortuna, Pei-Yi Lin, Xitang Zhao
 
 The electret microphone given in lab is attached on a breakout board that has an adjustable gain amplifier, with gain range from 25x to 125x. To take advantage of the on board amplifier, we max out its gain. Also for best performance of the microphone, we used the "quieter" 3.3V instead of the 5V on the Arduino to power the microphone and added a 0.1 uF decoupling capacitor between 3.3V to GND.
-#### Without Amplification
 <table>
 <tr>
-	<td><img src="Figure_1.png"></td>
+	<td align="center"><img src="Figure_1.png"></td>
 	<!--alt="Wiring Setup - Read Pot Value">-->
 	<!--alt="Code - Read Pot Value"-->
-	<td><img src="Figure_2.png" ></td>
+	<td align="center"><img src="Figure_2.png" ></td>
 </tr>
 <tr>
 	<th>Figure 1: No Tone FFT Output Before Amplification</th>
@@ -60,13 +66,12 @@ The electret microphone given in lab is attached on a breakout board that has an
 </tr>
 </table>
 
-#### With Amplification
 ##### Amplifier Circuit
 <img src="image4.png">
 <table>
 <tr>
-	<td><img src="Figure_3.png"></td>
-	<td><img src="Figure_4.png" ></td>
+	<td align="center"><img src="Figure_3.png"></td>
+	<td align="center"><img src="Figure_4.png" ></td>
 </tr>
 <tr>
 	<th>Figure 3: 660Hz FFT Output Before Amplification</th>

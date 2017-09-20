@@ -22,13 +22,14 @@ The goal of this lab is to add two sensors to our robot. The first is a micropho
 ---
 
 # Prelab
-### ADC and Sampling
+### Analog-To-Digital Conversion (ADC)
 The ATmega328 has an internal ADC with 10 bits of resolution, driven by an ADC clock we can control through a prescaler. The ADC takes 12 clock cycles to initialize and is capable of completing a single conversion in 13 ADC clock cycles. In a normal conversion, the system does a sample-and-hold at 1.5 ADC clock cycles into the conversion, holding the analog value found at that time. When conversion is complete, the result is written to the ADC Data Registers (ADCL and ADCH), and the ADC Interrupt Flag is set.
 
 The ADC can operate in one of two modes: single conversion or Free Running mode. In Free Running mode, the ADC auto-triggers, meaning it starts a new conversion as soon as the ongoing one is finished. The ADC is constantly sampling and updating the ADC Data Register, and although the ADC Interrupt Flag is set each time, the conversions continue regardless of whether it is getting cleared. Each conversion still takes 13 clock cycles, but an extra half cycle is needed between conversions to reset the prescaler, requiring 13.5 cycles per conversion. 
 
 Successive approximation requires an input clock frequency of 50kHz to 200kHz for maximum resolution, which means data is being sampled at somewhere between around 4kHz to 15kHz in Free Running mode. In other words, each conversion takes between 70us and 270us. We can increase the clock frequency if we need fewer than 10 bits of resolution, but that probably won't be the case. The Arduino's "analogRead()" function is said to read at 100us per conversion, so the ADC clock frequency must be greater than 135kHz to be sampling faster.
 
+### Sampling
 Whether referring to the acoustic data from the microphone or IR light data from the detector, it is important that we sample at a rate at least twice as fast as the highest frequency we're detecting in order to correctly identify all frequencies. The microphone is being used to detect a frequency of 660Hz, and any background noise, most likely caused by people speaking, would be mostly less than 4kHz, meaning a sampling frequency of 8kHz would suffice, so either analogRead() function would sample quickly enough. The IR treasure, however, blinks at a maximum of 17kHz, meaning our ADC should preferably be sampling at least at 34kHz. This is is well above the sampling frequency that analogRead() reaches.
 
 ### Amplifying and Filtering Signals
@@ -39,8 +40,8 @@ Here is a great PhET simulation for the basic concepts for FFT. The idea is that
 <div style="position: relative; width: 300px; height: 197px;"><a href="https://phet.colorado.edu/sims/fourier/fourier_en.jnlp" style="text-decoration: none;"><img src="https://phet.colorado.edu/sims/fourier/fourier-600.png" alt="Fourier: Making Waves" style="border: none;" width="300" height="197"/><div style="position: absolute; width: 200px; height: 80px; left: 50px; top: 58px; background-color: #FFF; opacity: 0.6; filter: alpha(opacity = 60);"></div><table style="position: absolute; width: 200px; height: 80px; left: 50px; top: 58px;"><tr><td style="text-align: center; color: #000; font-size: 24px; font-family: Arial,sans-serif;">Click to Run</td></tr></table></a></div>
 
 As in the simulation above, there must be a way to calculate all those coefficients and *transform* (hint hint) the time domain to the frequency domain, and vice versa. This is the idea behind the Fourier transform. The inverse Fourier transform turns the frequency domain into the time domain, but our code doesn't need it, so we won't concern ourselves with it here.
-The discrete time to frequency Fourier transform is given by:
-<a href="https://www.codecogs.com/eqnedit.php?latex=F_{n}=\sum_{k=0}^{N-1}&space;f_{k}&space;e^{2\pi&space;i&space;n&space;k&space;/&space;N}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?F_{n}=\sum_{k=0}^{N-1}&space;f_{k}&space;e^{2\pi&space;i&space;n&space;k&space;/&space;N}" title="F_{n}=\sum_{k=0}^{N-1} f_{k} e^{2\pi i n k / N}" /></a>
+The discrete time to frequency Fourier transform is given by:<br>
+<a href="https://www.codecogs.com/eqnedit.php?latex=F_{n}=\sum_{k=0}^{N-1}&space;f_{k}&space;e^{2\pi&space;i&space;n&space;k&space;/&space;N}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?F_{n}=\sum_{k=0}^{N-1}&space;f_{k}&space;e^{2\pi&space;i&space;n&space;k&space;/&space;N}" title="F_{n}=\sum_{k=0}^{N-1} f_{k} e^{2\pi i n k / N}" /></a><br>
 Unfortunately, direct computation of this equation is an O(N^2) algorithm, meaning the time increases exponentially as we have more data. This is because, for every coefficient in the frequency domain, we need to add N terms. In essence, we are adding N terms, N times. The FFT (Fast Fourier Transform) is an O(NlogN) algorithm, which is must faster compared to the regular computation, especially when we have lots of data (eg. large N). The Cooley-Tukey algorithm is the most popular implementation of the FFT. The details are a bit too complicated to explain, but in general, it uses a recursive algorithm to break down data into pieces, resulting in an O(logN) depth for computations. The [Open Music Labs Arduino library](http://wiki.openmusiclabs.com/wiki/ArduinoFFT) takes care of the FFT algorithm for us.
 
 ---

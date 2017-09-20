@@ -1,6 +1,5 @@
 <head>
 <link rel="stylesheet" href="../myStyles.css">
-<script type="text/javascript" src="http://latex.codecogs.com/latexit.js"></script>
 </head>
 
 <div class="top-navbar">
@@ -42,7 +41,7 @@ Here is a great PhET simulation for the basic concepts for FFT. The idea is that
 
 As in the simulation above, there must be a way to calculate all those coefficients and *transform* (hint hint) the time domain to the frequency domain, and vice versa. This is the idea behind the Fourier transform. The inverse Fourier transform turns the frequency domain into the time domain, but our code doesn't need it, so we won't concern ourselves with it here.
 The discrete time to frequency Fourier transform is given by:<br>
-<a href="https://www.codecogs.com/eqnedit.php?latex=F_{n}=\sum_{k=0}^{N-1}&space;f_{k}&space;e^{2\pi&space;i&space;n&space;k&space;/&space;N}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?F_{n}=\sum_{k=0}^{N-1}&space;f_{k}&space;e^{2\pi&space;i&space;n&space;k&space;/&space;N}" title="F_{n}=\sum_{k=0}^{N-1} f_{k} e^{2\pi i n k / N}" /></a><br>
+<a href="https://www.codecogs.com/eqnedit.php?latex=F_{n}=\sum_{k=0}^{N-1}&space;f_{k}&space;e^{2\pi&space;i&space;n&space;k&space;/&space;N}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?F_{n}=\sum_{k=0}^{N-1}&space;f_{k}&space;e^{2\pi&space;i&space;n&space;k&space;/&space;N}" /></a><br>
 Unfortunately, direct computation of this equation is an O(N^2) algorithm, meaning the time increases exponentially as we have more data. This is because, for every coefficient in the frequency domain, we need to add N terms. In essence, we are adding N terms, N times. The FFT (Fast Fourier Transform) is an O(NlogN) algorithm, which is must faster compared to the regular computation, especially when we have lots of data (eg. large N). The Cooley-Tukey algorithm is the most popular implementation of the FFT. The details are a bit too complicated to explain, but in general, it uses a recursive algorithm to break down data into pieces, resulting in an O(logN) depth for computations. The [Open Music Labs Arduino library](http://wiki.openmusiclabs.com/wiki/ArduinoFFT) takes care of the FFT algorithm for us.
 
 ---
@@ -85,9 +84,18 @@ The microphone can pick up the frequency tone very well, but we still like to se
 </table>
 
 # Distinguish a 660Hz tone (from tones at 585Hz and 735Hz)
+After building our microphone, which successfully amplified the sound input, we set out to distinguish a 660Hz tone from close frequencies (namely 585Hz and 735Hz) and background noise. We hooked it up to the Arduino and looked at the serial monitor output of the FFT, and found the following:
+<table>
+<tr>
+	<td><img src="acoustic_fft.png"></td>
+	<td><img src="acoustic_talking.png"></td>
+</tr>
+<tr>
+	<th>Frequency distinguishment</th>
+	<th>Tone with background noise</th>
+</tr>
+</table>
+As we can see, the 660Hz tone is distinguished pretty well from the tones closest to it. We see that the different frequencies appear in different FFT bins. This is because the bins have a resolution of 37.5 Hz. The 660Hz tone is also quite distinct against white noise and Xitang talking near the microphone. The Arduino code can easily set a threshold that distinguishes when the 660Hz tone can be played.
 
-
-
-### Optical Team: Assemble IR Circuit
-#### Team Members: Christina Chang, Caroline Chu, Ian Kranz
+### Optical Team: Christina, Caroline, Ian
 <img src="IR.jpg">

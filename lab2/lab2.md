@@ -12,11 +12,13 @@
 </div>
 
 # Purpose
-The goal of this lab is to add two sensors to our robot. The first is a microphone which must be able to detect a 660Hz tone amidst background noise, and the second is an IR sensor with which we must be able to detect infrared lights blinking at 7kHz, 12kHz, and 17kHz. To process the analog data received by the two sensors, we must make use of our on-chip Analog-to-Digital converters.
+The goal of this lab is to add two sensors to our robot. The first is a microphone, which detects a 660Hz tone amidst background noise, and the second is an IR sensor with which detects infrared lights blinking at 7kHz, 12kHz, and 17kHz. To process the analog data received by the two sensors, we make use of the Arduino's on-chip Analog-to-Digital converters and [Open Music Labs Arduino FFT library](http://wiki.openmusiclabs.com/wiki/ArduinoFFT).
 
 # Important Components
 *[Electret microphone](https://www.adafruit.com/product/1063)
+
 *[IR receiver](https://www.digikey.com/product-detail/en/lite-on-inc/LTR-301/160-1065-ND/153270)
+
 *Treasures (provided by TAs)
 
 ---

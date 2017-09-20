@@ -12,12 +12,13 @@
 </div>
 
 # Purpose
-The goal of this lab is to add two sensors to our robot. The first is a microphone which must be able to detect a 660Hz tone amidst background noise, and the second is an IR sensor with which we must be able to detect infrared lights blinking at 7kHz, 12kHz, and 17kHz. To process the analog data received by the two sensors, we must make use of our on-chip Analog-to-Digital converters.
+The goal of this lab is to add two sensors to our robot. The first is a microphone, which detects a 660Hz tone amidst background noise, and the second is an IR sensor, which detects infrared lights blinking at 7kHz, 12kHz, and 17kHz. To process the analog data received by the two sensors, we make use of the Arduino's on-chip Analog-to-Digital converters and [Open Music Labs Arduino FFT library](http://wiki.openmusiclabs.com/wiki/ArduinoFFT).
 
 # Important Components
-*[Electret microphone](https://www.adafruit.com/product/1063)
-*[IR receiver](https://www.digikey.com/product-detail/en/lite-on-inc/LTR-301/160-1065-ND/153270)
-*Treasures (provided by TAs)
+* [Electret microphone](https://www.adafruit.com/product/1063)
+* [LM158 Op Amp](http://www.ti.com/lit/ds/symlink/lm158-n.pdf)
+* [IR receiver](https://www.digikey.com/product-detail/en/lite-on-inc/LTR-301/160-1065-ND/153270)
+* Treasures (provided by TAs)
 
 ---
 
@@ -51,33 +52,40 @@ Unfortunately, direct computation of this equation is an O(N^2) algorithm, meani
 ### Acoustic Team: Assemble Microphone Circuit
 <!--<h4 class="h4-color">-->
 #### Team Members: Felipe Fortuna, Pei-Yi Lin, Xitang Zhao
-
-The electret microphone given in lab is attached on a breakout board that has an adjustable gain amplifier, with gain range from 25x to 125x. To take advantage of the on board amplifier, we max out its gain. Also for best performance of the microphone, we used the "quieter" 3.3V instead of the 5V on the Arduino to power the microphone and added a 0.1 uF decoupling capacitor between 3.3V to GND.
+# FFT Analysis
+The electret microphone given in lab is attached on a breakout board that has an adjustable gain amplifier, with gain range from 25x to 125x. To take advantage of the on board amplifier, we adjusted the breakout hoard to nearly max out the microphone's gain. Also for best performance of the microphone, the "quieter" 3.3V instead of the 5V on the Arduino is used to power the microphone and a 0.1 uF decoupling capacitor is added between 3.3V to GND to minimize disturbance. Vout is connected to the oscilloscope and the followings FFT diagrams are observed:
 <table>
 <tr>
 	<td align="center"><img src="Figure_1.png"></td>
 	<!--alt="Wiring Setup - Read Pot Value">-->
 	<!--alt="Code - Read Pot Value"-->
-	<td align="center"><img src="Figure_2.png" ></td>
+	<td align="center"><img src="Figure_3.png" ></td>
 </tr>
 <tr>
 	<th>Figure 1: No Tone FFT Output Before Amplification</th>
-	<th>Figure 2: No Tone FFT Output after Amplification</th>
+	<th>Figure 2: 660Hz FFT Output Before Amplification</th>
+
 </tr>
 </table>
+When no tone is played (Figure 1), other than the DC, there is no noticeable peak throughout the frequency spectrum. The breakout microphone has very good built in nosie rejection circuits and nosie only ranges from 0 to 20dB. Once the 660Hz tone starts playing (Figure 2), an striking 50dB peak can be observed at 660 Hz along with a 18dB harmonic at 1320Hz. 
 
-##### Amplifier Circuit
+# Amplifier Circuit
+The microphone can pick up the frequency tone very well, but we still like to set up an amplifier circuit that further amplifies and bandpass filters the signal for more stable performance. We used the LM158 Op Amp and set up our amplifier circuit using a 10K and a 100K resister, and this delivers gains of 11 (11 = 1+100k/10k). To create a bandpass filter, a high pass filter of 600 Hz is added between Vout of microphone to + (Pin 3) of LM158 and a low pass filter of 700Hz is added in parallel to the 100k resister.
 <img src="image4.png">
+
 <table>
 <tr>
-	<td align="center"><img src="Figure_3.png"></td>
+	<td align="center"><img src="Figure_2.png"></td>
 	<td align="center"><img src="Figure_4.png" ></td>
 </tr>
 <tr>
-	<th>Figure 3: 660Hz FFT Output Before Amplification</th>
+	<th>Figure 3: No Tone FFT Output after Amplification</th>
 	<th>Figure 4: 660Hz FFT Output After Amplification</th>
 </tr>
 </table>
+
+# Distinguish a 660Hz tone (from tones at 585Hz and 735Hz)
+
 
 
 ### Optical Team: Assemble IR Circuit

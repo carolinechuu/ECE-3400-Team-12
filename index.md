@@ -21,7 +21,7 @@ Meanwhile, if you're trying to procrastinate on something, check out some of the
 <p data-height="265" data-theme-id="0" data-slug-hash="Auzch" data-default-tab="js,result" data-user="whqet" data-embed-version="2" data-pen-title="HTML5 canvas and javascript fireworks tutorial" class="codepen">See the Pen <a href="https://codepen.io/whqet/pen/Auzch/">HTML5 canvas and javascript fireworks tutorial</a> by haiqing wang (<a href="https://codepen.io/whqet">@whqet</a>) on <a href="https://codepen.io">CodePen</a>.</p>
 <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
 
-<body>
+<body style="margin: 0;">
 <canvas id="canvas" style="cursor: crosshair;display: block;">Canvas is not supported in your browser.</canvas>
 </body>
 
@@ -33,7 +33,7 @@ Meanwhile, if you're trying to procrastinate on something, check out some of the
 
 
 
-
+//Fireworks animation scripts
 <script>
 // when animating on canvas, it is best to use requestAnimationFrame instead of setTimeout or setInterval
 // not supported in all browsers though and sometimes needs a prefix, so we need a shim
@@ -47,7 +47,7 @@ window.requestAnimFrame = ( function() {
 })();
 
 // now we will setup our basic variables for the demo
-var canvas = document.getElementsByClassName( "main-content" ),
+var canvas = document.getElementById( "canvas" ),
 		ctx = canvas.getContext( '2d' ),
 		// full screen dimensions
 		cw = window.innerWidth,

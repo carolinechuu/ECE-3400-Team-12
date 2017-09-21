@@ -33,7 +33,7 @@ Meanwhile, if you're trying to procrastinate on something, check out some of the
 
 
 
-//Fireworks animation scripts
+<!--Fireworks animation scripts-->
 <script>
 // when animating on canvas, it is best to use requestAnimationFrame instead of setTimeout or setInterval
 // not supported in all browsers though and sometimes needs a prefix, so we need a shim

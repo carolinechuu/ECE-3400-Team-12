@@ -9,7 +9,7 @@
   <a href="../tutorials.html">Tutorials</a>
   <a href="../contact.html">Contact</a>
 </div>
-
+<iframe width="560" height="315" src="https://www.youtube.com/embed/vRfD_tyxUS8" frameborder="0" allowfullscreen></iframe>
 ## Purpose
 The goal of this lab is to add two sensors to our robot. The first is a microphone, which detects a 660Hz tone amidst background noise, and the second is an IR sensor, which detects infrared lights blinking at 7kHz, 12kHz, and 17kHz. To process the analog data received by the two sensors, we make use of the Arduino's on-chip Analog-to-Digital converters and [Open Music Labs Arduino FFT library](http://wiki.openmusiclabs.com/wiki/ArduinoFFT).
 
@@ -159,7 +159,7 @@ When infrared light is present, the phototransistor will pass a set current prop
 </tr>
 </table>
 This waveform is periodic at frequency of 6.849kHz, which is approximately our expected frequency, 7kHz. The measured amplitude of Vout depends much on the distance at which the treasure is held. We tried different resistor values to achieve a larger voltage drop (Vout) and settled on 5kΩ because it produced reasonable amplitudes.
-###Sampling and FFT Analysis
+### Sampling and FFT Analysis
 
 To read the signal into the Arduino, we used the on-board ADC in free sampling mode. By default, the Arduino analog reading function samples at about 9.6kHz. Our treasures blink at much higher frequencies than this. The highest frequency treasure blinks at 17kHz, so, by Nyquist’s sampling theorem, our sampling rate should be at least 34kHz.
 

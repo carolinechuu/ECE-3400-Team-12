@@ -152,5 +152,8 @@ To detect the light, we can build a simple circuit using a phototransistor which
 	<td align="center"><img src="Optics2.png"></td>
 </tr>
 </table>
+When infrared light is present, the phototransistor will pass a set current proportional to the intensity of the IR light. This current will create a voltage drop across the resistor, which will be measured as Vout. Thus, high voltages correspond to high intensities of IR light. Holding a treasure up to our phototransistor and measuring the output on our scope resulted in this waveform:
+<img src="Optics3.png">
+
 
 

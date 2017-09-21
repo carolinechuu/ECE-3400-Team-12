@@ -9,7 +9,8 @@
   <a href="../tutorials.html">Tutorials</a>
   <a href="../contact.html">Contact</a>
 </div>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/vRfD_tyxUS8" frameborder="0" allowfullscreen></iframe>
+<br>
+<iframe align="center" width="560" height="315" src="https://www.youtube.com/embed/vRfD_tyxUS8" frameborder="0" allowfullscreen></iframe>
 ## Purpose
 The goal of this lab is to add two sensors to our robot. The first is a microphone, which detects a 660Hz tone amidst background noise, and the second is an IR sensor, which detects infrared lights blinking at 7kHz, 12kHz, and 17kHz. To process the analog data received by the two sensors, we make use of the Arduino's on-chip Analog-to-Digital converters and [Open Music Labs Arduino FFT library](http://wiki.openmusiclabs.com/wiki/ArduinoFFT).
 

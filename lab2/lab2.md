@@ -143,4 +143,14 @@ As we can see, the 660Hz tone is distinguished pretty well from the tones closes
 
 
 ### Optical Team: Christina, Caroline, Ian
-<img src="IR.jpg">
+The objective of the lab session for the optics team was to build a circuit that produced a signal which could be read into the arduino to recognize “treasures” which our robot will encounter when navigating the maze. The treasures are blinking infrared LED circuits that blink at 7kHz, 12kHz, and 17kHz. In order to find and map the locations of these treasures in the maze, we need a method for detecting infrared light and also a method for determining the frequency at which the light is blinking.
+
+# Infrared Circuit
+To detect the light, we can build a simple circuit using a phototransistor which operates at the wavelength of infrared light. The circuit is as follows:
+<table>
+<tr>
+	<td align="center"><img src="Optics2.png"></td>
+</tr>
+</table>
+
+

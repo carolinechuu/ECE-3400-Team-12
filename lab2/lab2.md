@@ -66,14 +66,14 @@ The electret microphone given in lab is attached on a breakout board that has an
 
 </tr>
 </table>
-When no tone is playing (Figure 1), other than the DC, there is no noticeable peak throughout the frequency spectrum. The breakout microphone has very good built in noise rejection circuits and nosie only ranges from 0 to 20dB. Once the 660Hz tone starts playing (Figure 2), an striking 50dB peak can be observed at 660 Hz along with a 18dB harmonic at 1320Hz. 
+When no tone is playing (Figure 1), other than the DC, there is no noticeable peak throughout the frequency spectrum. The breakout microphone has very good built in noise rejection circuits and nosie only ranges from 0 to 20dB. Once the 660Hz tone starts playing (Figure 2), a striking 50dB peak can be observed at 660 Hz along with a 18dB harmonic at 1320Hz. 
 
 # Amplifier Circuit
 The microphone can pick up the frequency tone very well, but we still like to set up an amplifier circuit that further amplifies and bandpass filters the signal for more stable performance. We used the LM158 Op Amp and set up our amplifier circuit using a 10K and a 100K resister, and this delivers gains of 11 (11 = 1+100k/10k). To create a bandpass filter, a high pass filter of 600 Hz is added between Vout of microphone to + (Pin 3) of LM158 and a low pass filter of 700Hz is added in parallel to the 100k resister. In actual implementation, we couldn’t make an exactly 600Hz high pass filter because there is no capacitor 13nF capacitor available. Instead, we use the 10nF. This shifted the high pass filter cutoff frequency higher, but the amplification result comes out fine. The complete amplification circuit is shown below: 
 
 <img src="image4.png">
 
-After amplification, when no tone is playing (Figure 3), noise is noticeably higher on average than noise before amplification. It ranges from 0 to 27dB compared to 0 to 20dB range before amplification. Once the 660Hz tone starts playing (Figure 4), an striking 57dB peak can be observed at 660 Hz along with a steady slowly decreasing chain of harmonics: 48dB harmonic at 1320Hz, 42dB at 1940Hz, 38dB at 2640Hz...
+After amplification, when no tone is playing (Figure 3), noise is noticeably higher on average, which ranges from 0 to 27dB after amplification compared to 0 to 20dB range before amplification. Once the 660Hz tone starts playing (Figure 4), a striking 57dB peak can be observed at 660 Hz along with a steady slowly decreasing chain of harmonic peaks: 48dB at 1320Hz, 42dB at 1940Hz, 38dB at 2640Hz...  The amplification is a success. The peak at 660Hz goes up by 7dB and a lot of harmonics show up. 
 
 <table>
 <tr>
@@ -87,7 +87,48 @@ After amplification, when no tone is playing (Figure 3), noise is noticeably hig
 </table>
 
 # Distinguish a 660Hz tone (from tones at 585Hz and 735Hz)
-After building our microphone, which successfully amplified the sound input, we set out to distinguish a 660Hz tone from close frequencies (namely 585Hz and 735Hz) and background noise. We hooked it up to the Arduino and looked at the serial monitor output of the FFT, and found the following:
+After building our microphone, which successfully amplified the sound input, we set out to distinguish a 660Hz tone from close frequencies (namely 585Hz and 735Hz) and background noise. We hooked up the amplification output to the analog pin A0 of the Arduino and ran the below code where Pei-Yi extracted from the Open Music Labs Arduino FFT library.
+
+```Arduino
+//Uses default ADC sampling frequency = 9600 Hz
+
+#define LOG_OUT 1 // use the log output function
+#define FFT_N 256 // set to 256 point fft
+
+#include <FFT.h> // include the library
+
+void setup() {
+  Serial.begin(115200); // use the serial port
+}
+
+void loop() {
+  while (1) { // reduces jitter
+    return_freq();
+  }
+}
+
+byte return_freq() {
+  cli();  // UDRE interrupt slows this way down on arduino1.0
+  for (int i = 0 ; i < 512 ; i += 2) { // save 256 samples
+    fft_input[i] = analogRead(A0); // put analog input (pin A0) into even bins
+    fft_input[i + 1] = 0; // set odd bins to 0
+  }
+  fft_window(); // window the data for better frequency response
+  fft_reorder(); // reorder the data before doing the fft
+  fft_run(); // process the data in the fft
+  fft_mag_log(); // take the output of the fft
+  sei();
+
+  Serial.println("start");
+  for (byte i = 0 ; i < FFT_N / 2 ; i++) {
+    Serial.println(fft_log_out[i]); // send out the data
+  }
+  while (1); //run once, press reset to run again
+}
+```
+
+We plotted the FFT data we received from the Arduino serial monitor and found the following:
+
 <table>
 <tr>
 	<td><img src="acoustic_fft.png"></td>

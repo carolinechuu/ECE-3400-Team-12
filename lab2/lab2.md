@@ -72,6 +72,7 @@ When no tone is playing (Figure 1), other than the DC, there is no noticeable pe
 The microphone can pick up the frequency tone very well, but we still like to set up an amplifier circuit that further amplifies and bandpass filters the signal for more stable performance. We used the LM158 Op Amp and set up our amplifier circuit using a 10K and a 100K resister, and this delivers gains of 11 (11 = 1+100k/10k). To create a bandpass filter, a high pass filter of 600 Hz is added between Vout of microphone to + (Pin 3) of LM158 and a low pass filter of 700Hz is added in parallel to the 100k resister. In actual implementation, we couldn’t make an exactly 600Hz high pass filter because there is no capacitor 13nF capacitor available. Instead, we use the 10nF. This shifted the high pass filter cutoff frequency higher, but the amplification result comes out fine. The complete amplification circuit is shown below: 
 
 <img src="image4.png">
+<img src="acousticscircuit.jpg">
 
 After amplification, when no tone is playing (Figure 3), noise is noticeably higher on average, which ranges from 0 to 27dB after amplification compared to 0 to 20dB range before amplification. Once the 660Hz tone starts playing (Figure 4), a striking 57dB peak can be observed at 660 Hz along with a steady slowly decreasing chain of harmonic peaks: 48dB at 1320Hz, 42dB at 1940Hz, 38dB at 2640Hz...  The amplification is a success. The peak at 660Hz goes up by 7dB. A lot of harmonics show up and the second harmonics jumps from 18dB to 48dB after amplification.
 

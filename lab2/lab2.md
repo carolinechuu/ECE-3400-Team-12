@@ -127,18 +127,23 @@ byte return_freq() {
 }
 ```
 
-We plotted the FFT data we received from the Arduino serial monitor and found the following:
+We ran the code serveral times with different inputs (660Hz, 585Hz, 735Hz, white noise, talking noise) and pasted each run of FFT data received from the Arduino serial monitor to an excel spreadsheet and then averaged the FFT data before we plotted them out.
 
 <table>
 <tr>
 	<td><img src="acoustic_fft.png"></td>
-	<td><img src="acoustic_talking.png"></td>
+	<td>
+		<table>
+			  <tr><th>Bin Number</th><th>660Hz</th><th>585Hz</th><th>730Hz</th><th>No Tone</th></tr>
+			  <tr><th>19</th><th>79.4</th><th>70.3</th><th>19.0</th><th>29.7</th></tr>
+		</table>
+	</td>
 </tr>
 <tr>
 	<th>Frequency distinguishment</th>
-	<th>Tone with background noise</th>
 </tr>
 </table>
+<img src="acoustic_talking.png">
 As we can see, the 660Hz tone is distinguished pretty well from the tones closest to it. We see that the different frequencies appear in different FFT bins. This is because the bins have a resolution of 37.5 Hz. The 660Hz tone is also quite distinct against white noise and Xitang talking near the microphone. The Arduino code can easily set a threshold that distinguishes when the 660Hz tone can be played.
 
 ### Optical Team: Christina, Caroline, Ian

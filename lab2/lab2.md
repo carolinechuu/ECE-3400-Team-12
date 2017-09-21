@@ -48,11 +48,11 @@ Unfortunately, direct computation of this equation is an O(N^2) algorithm, meani
 
 # Lab
 
-### Acoustic Team: Felipe, Pei-Yi, Xitang Zhao
+### Acoustic Team: Felipe, Pei-Yi, Xitang
 <!--<h4 class="h4-color">-->
 
 # FFT Analysis
-The electret microphone given in lab is attached on a breakout board that has an adjustable gain amplifier, with gain range from 25x to 125x. To take advantage of the on board amplifier, we adjusted the breakout hoard to nearly max out the microphone's gain. Also for best performance of the microphone, the "quieter" 3.3V instead of the 5V on the Arduino is used to power the microphone and a 0.1 uF decoupling capacitor is added between 3.3V to GND to minimize disturbance. Vout is connected to the oscilloscope and the followings FFT diagrams are observed:
+The electret microphone given in lab is attached on a breakout board that has an adjustable gain amplifier, with gain range from 25x to 125x. To take advantage of the on board amplifier, we adjusted the breakout board to nearly max out the microphone's gain. Also for best performance of the microphone, the "quieter" 3.3V instead of the 5V on the Arduino is used to power the microphone and a 0.1 uF decoupling capacitor is added between 3.3V to GND to minimize disturbance. Vout is connected to the oscilloscope and the followings FFT diagrams are observed:
 <table>
 <tr>
 	<td align="center"><img src="Figure_1.png"></td>
@@ -73,7 +73,7 @@ The microphone can pick up the frequency tone very well, but we still like to se
 
 <img src="image4.png">
 
-After amplification, when no tone is playing (Figure 3), noise is noticeably higher on average, which ranges from 0 to 27dB after amplification compared to 0 to 20dB range before amplification. Once the 660Hz tone starts playing (Figure 4), a striking 57dB peak can be observed at 660 Hz along with a steady slowly decreasing chain of harmonic peaks: 48dB at 1320Hz, 42dB at 1940Hz, 38dB at 2640Hz...  The amplification is a success. The peak at 660Hz goes up by 7dB and a lot of harmonics show up. 
+After amplification, when no tone is playing (Figure 3), noise is noticeably higher on average, which ranges from 0 to 27dB after amplification compared to 0 to 20dB range before amplification. Once the 660Hz tone starts playing (Figure 4), a striking 57dB peak can be observed at 660 Hz along with a steady slowly decreasing chain of harmonic peaks: 48dB at 1320Hz, 42dB at 1940Hz, 38dB at 2640Hz...  The amplification is a success. The peak at 660Hz goes up by 7dB. A lot of harmonics show up and the second harmonics jumps from 18dB to 48dB after amplification.
 
 <table>
 <tr>
@@ -134,9 +134,12 @@ We ran the code serveral times with different inputs (660Hz, 585Hz, 735Hz, white
 	<tr><th>19</th><th>79.4</th><th>70.3</th><th>19.0</th><th>29.7</th><th>18.5</th><th>42.5</th></tr>
 	<tr><th>20</th><th>92.2</th><th>25.0</th><th>27.0</th><th>21.7</th><th>28.0</th><th>45.5</th></tr>
 </table>
+
+As we can see, the 660Hz tone is distinguished pretty well from the tones closest to it. We see that the different frequencies appear in different FFT bins. This is because the bins have a resolution of 37.5 Hz. The 660Hz tone is also quite distinct against white noise and Xitang talking near the microphone. At bin 19 and 20, 660Hz has high value of 79.4 and 92.2, which are far higher than the rest of the other inputs. We can easily set a threshold on both of these bins in our Arudino code to distinguishes when the 660Hz tone is played.
+
 <img src="acoustic_fft.png">
 <img src="acoustic_talking.png">
-As we can see, the 660Hz tone is distinguished pretty well from the tones closest to it. We see that the different frequencies appear in different FFT bins. This is because the bins have a resolution of 37.5 Hz. The 660Hz tone is also quite distinct against white noise and Xitang talking near the microphone. At bin 19 and 20, 660Hz has high value of 79.4 and 92.2, which are far higher than the rest of the inputs. We can easily set a threshold on both of these bins in our Arudino code to distinguishes when the 660Hz tone is played.
+
 
 ### Optical Team: Christina, Caroline, Ian
 <img src="IR.jpg">

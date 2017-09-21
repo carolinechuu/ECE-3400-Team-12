@@ -173,11 +173,20 @@ With the samples stored in memory, we then used an FFT algorithm to produce the 
 </table>
 # Bandpass Filter
 We determined that our FFT peaks were not definitive because of other sources of infrared rays in our environment at other frequencies and their harmonics such as the lights above. To solve this problem, we made a bandpass filter with the specifications of allowing signals with frequencies between 6kHz and 18kHz and a gain of 5. The results of feeding the output through the filter first before inputting to the Arduino are shown below. It is clear that the filter had attenuated the undesired frequencies while providing a small gain to the desired frequencies. The peaks for the 7 kHz and 12 kHz are definitive and consistent now.
+	<td align="center"><img src="Optics6.png"></td>
+
 <table>
 <tr>
-	<td align="center"><img src="Optics6.png"></td>
+	<td align="center"><img src="Optics1.png"></td>
+	<td align="center"><img src="Optics4.png" ></td>
+</tr>
+<tr>
+	<th>7kHz Treasure</th>
+	<th>12kHz Treasure</th>
 </tr>
 </table>
+# Calculation of Bin Number
+As mentioned in earlier sections, we used a sampling rate of 38.5kHz. We took 256 samples, which means that each bin is approximately 150.39 Hz wide. Since the signal is symmetrical across the “negative” and positive frequencies, we can truncate the result of the fft in half i.e. 128 data points and plot it. 7kHz/150.39 = 46.5. Since bin 1 is actually DC (0 frequency), 7kHz should appear at bin 47.5. So we expected there to be a peak around bin 46 to 48, which was the case as shown above. For the 12 kHz treasure, the bin number should be 1+ 12kHz/150.39 = 80.79, or around bin 79 to 81. Since this is all imprecise math, we had the conditionals to check for one or more of these bins to exceed a certain threshold that was obtained through observation of the data.
 
 
 

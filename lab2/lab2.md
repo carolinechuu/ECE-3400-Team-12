@@ -153,7 +153,32 @@ To detect the light, we can build a simple circuit using a phototransistor which
 </tr>
 </table>
 When infrared light is present, the phototransistor will pass a set current proportional to the intensity of the IR light. This current will create a voltage drop across the resistor, which will be measured as Vout. Thus, high voltages correspond to high intensities of IR light. Holding a treasure up to our phototransistor and measuring the output on our scope resulted in this waveform:
-<img src="Optics3.png">
+<table>
+<tr>
+	<td align="center"><img src="Optics3.png"></td>
+</tr>
+</table>
+This waveform is periodic at frequency of 6.849kHz, which is approximately our expected frequency, 7kHz. The measured amplitude of Vout depends much on the distance at which the treasure is held. We tried different resistor values to achieve a larger voltage drop (Vout) and settled on 5kΩ because it produced reasonable amplitudes.
+#Sampling and FFT Analysis
+
+To read the signal into the Arduino, we used the on-board ADC in free sampling mode. By default, the Arduino analog reading function samples at about 9.6kHz. Our treasures blink at much higher frequencies than this. The highest frequency treasure blinks at 17kHz, so, by Nyquist’s sampling theorem, our sampling rate should be at least 34kHz.
+
+To achieve this frequency, we changed the prescaler value for the ADC clock from 128 to 32 so that it can take samples as fast as 38.5kHz. The ADC was also put in free-running mode so that we do not need to call a read function. Instead, the ADC throws an interrupt when a sample has been taken. In the Interrupt Service Routine, we take the samples and store them in memory. Much of the code for changing these registers on the Arduino was adapted from an Arduino Blog.
+
+With the samples stored in memory, we then used an FFT algorithm to produce the spectrum of our measured waveform. The FFT algorithm used is from Open Music Labs, and pieces of their example code was also utilized. We ran the FFT on samples collected from our circuit with the treasure held near. Our initial results, which we output to the serial monitor and plotted in MATLAB, displayed poorly as the peaks were not very definitive:
+<table>
+<tr>
+	<td align="center"><img src="Optics5.png"></td>
+</tr>
+</table>
+# Bandpass Filter
+We determined that our FFT peaks were not definitive because of other sources of infrared rays in our environment at other frequencies and their harmonics such as the lights above. To solve this problem, we made a bandpass filter with the specifications of allowing signals with frequencies between 6kHz and 18kHz and a gain of 5. The results of feeding the output through the filter first before inputting to the Arduino are shown below. It is clear that the filter had attenuated the undesired frequencies while providing a small gain to the desired frequencies. The peaks for the 7 kHz and 12 kHz are definitive and consistent now.
+<table>
+<tr>
+	<td align="center"><img src="Optics6.png"></td>
+</tr>
+</table>
+
 
 
 

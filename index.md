@@ -47,7 +47,7 @@ window.requestAnimFrame = ( function() {
 })();
 
 // now we will setup our basic variables for the demo
-var canvas = document.getElementsByClassName( 'main-content' ),
+var canvas = document.getElementByClassName( "main-content" ),
 		ctx = canvas.getContext( '2d' ),
 		// full screen dimensions
 		cw = window.innerWidth,

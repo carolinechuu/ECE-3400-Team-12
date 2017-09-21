@@ -173,7 +173,7 @@ With the samples stored in memory, we then used an FFT algorithm to produce the 
 </table>
 # Bandpass Filter
 We determined that our FFT peaks were not definitive because of other sources of infrared rays in our environment at other frequencies and their harmonics such as the lights above. To solve this problem, we made a bandpass filter with the specifications of allowing signals with frequencies between 6kHz and 18kHz and a gain of 5. The results of feeding the output through the filter first before inputting to the Arduino are shown below. It is clear that the filter had attenuated the undesired frequencies while providing a small gain to the desired frequencies. The peaks for the 7 kHz and 12 kHz are definitive and consistent now.
-	<td align="center"><img src="Optics6.png"></td>
+	<td><img src="Optics6.png"></td>
 
 <table>
 <tr>

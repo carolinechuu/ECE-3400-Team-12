@@ -21,10 +21,9 @@ Meanwhile, if you're trying to procrastinate on something, check out some of the
 <p data-height="265" data-theme-id="0" data-slug-hash="Auzch" data-default-tab="js,result" data-user="whqet" data-embed-version="2" data-pen-title="HTML5 canvas and javascript fireworks tutorial" class="codepen">See the Pen <a href="https://codepen.io/whqet/pen/Auzch/">HTML5 canvas and javascript fireworks tutorial</a> by haiqing wang (<a href="https://codepen.io/whqet">@whqet</a>) on <a href="https://codepen.io">CodePen</a>.</p>
 <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
 
-<div style="background: #000; margin: 0;">
+<body>
 <canvas id="canvas" style="cursor: crosshair;display: block;">Canvas is not supported in your browser.</canvas>
-</div>
-
+</body>
 
 
 

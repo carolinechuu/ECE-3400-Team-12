@@ -48,9 +48,9 @@ Unfortunately, direct computation of this equation is an O(N^2) algorithm, meani
 
 # Lab
 
-### Acoustic Team: Assemble Microphone Circuit
+### Acoustic Team: Felipe, Pei-Yi, Xitang Zhao
 <!--<h4 class="h4-color">-->
-#### Team Members: Felipe Fortuna, Pei-Yi Lin, Xitang Zhao
+
 # FFT Analysis
 The electret microphone given in lab is attached on a breakout board that has an adjustable gain amplifier, with gain range from 25x to 125x. To take advantage of the on board amplifier, we adjusted the breakout hoard to nearly max out the microphone's gain. Also for best performance of the microphone, the "quieter" 3.3V instead of the 5V on the Arduino is used to power the microphone and a 0.1 uF decoupling capacitor is added between 3.3V to GND to minimize disturbance. Vout is connected to the oscilloscope and the followings FFT diagrams are observed:
 <table>
@@ -130,21 +130,13 @@ byte return_freq() {
 We ran the code serveral times with different inputs (660Hz, 585Hz, 735Hz, white noise, talking noise) and pasted each run of FFT data received from the Arduino serial monitor to an excel spreadsheet and then averaged the FFT data before we plotted them out.
 
 <table>
-<tr>
-	<td><img src="acoustic_fft.png"></td>
-	<td>
-		<table>
-			  <tr><th>Bin Number</th><th>660Hz</th><th>585Hz</th><th>730Hz</th><th>No Tone</th></tr>
-			  <tr><th>19</th><th>79.4</th><th>70.3</th><th>19.0</th><th>29.7</th></tr>
-		</table>
-	</td>
-</tr>
-<tr>
-	<th>Frequency distinguishment</th>
-</tr>
+	<tr><th>Bin Number</th><th>660Hz</th><th>585Hz</th><th>730Hz</th><th>No Tone</th><th>White Noise</th><th>Xitang Talking</th></tr>
+	<tr><th>19</th><th>79.4</th><th>70.3</th><th>19.0</th><th>29.7</th><th>18.5</th><th>42.5</th></tr>
+	<tr><th>20</th><th>92.2</th><th>25.0</th><th>27.0</th><th>21.7</th><th>28.0</th><th>45.5</th></tr>
 </table>
+<img src="acoustic_fft.png">
 <img src="acoustic_talking.png">
-As we can see, the 660Hz tone is distinguished pretty well from the tones closest to it. We see that the different frequencies appear in different FFT bins. This is because the bins have a resolution of 37.5 Hz. The 660Hz tone is also quite distinct against white noise and Xitang talking near the microphone. The Arduino code can easily set a threshold that distinguishes when the 660Hz tone can be played.
+As we can see, the 660Hz tone is distinguished pretty well from the tones closest to it. We see that the different frequencies appear in different FFT bins. This is because the bins have a resolution of 37.5 Hz. The 660Hz tone is also quite distinct against white noise and Xitang talking near the microphone. At bin 19 and 20, 660Hz has high value of 79.4 and 92.2, which are far higher than the rest of the inputs. We can easily set a threshold on both of these bins in our Arudino code to distinguishes when the 660Hz tone is played.
 
 ### Optical Team: Christina, Caroline, Ian
 <img src="IR.jpg">

@@ -11,4 +11,5 @@
 </div>
 
 # Line Following
-Please go to our [lab 1 page](./lab1/lab1.md) to see info on line-following!
+Please go to our [lab 1 page](../lab1/lab1.md) to see info on line-following!
+

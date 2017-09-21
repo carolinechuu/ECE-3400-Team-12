@@ -10,10 +10,10 @@
   <a href="../contact.html">Contact</a>
 </div>
 
-# Purpose
+## Purpose
 The goal of this lab is to add two sensors to our robot. The first is a microphone, which detects a 660Hz tone amidst background noise, and the second is an IR sensor, which detects infrared lights blinking at 7kHz, 12kHz, and 17kHz. To process the analog data received by the two sensors, we make use of the Arduino's on-chip Analog-to-Digital converters and [Open Music Labs Arduino FFT library](http://wiki.openmusiclabs.com/wiki/ArduinoFFT).
 
-# Important Components
+## Important Components
 * [Electret microphone](https://www.adafruit.com/product/1063)
 * [LM158 Op Amp](http://www.ti.com/lit/ds/symlink/lm158-n.pdf)
 * [IR receiver](https://www.digikey.com/product-detail/en/lite-on-inc/LTR-301/160-1065-ND/153270)
@@ -48,10 +48,10 @@ Unfortunately, direct computation of this equation is an O(N^2) algorithm, meani
 
 # Lab
 
-### Acoustic Team: Felipe, Pei-Yi, Xitang
+## Acoustic Team: Felipe, Pei-Yi, Xitang
 <!--<h4 class="h4-color">-->
 
-# FFT Analysis
+### FFT Analysis
 The electret microphone given in lab is attached on a breakout board that has an adjustable gain amplifier, with gain range from 25x to 125x. To take advantage of the on board amplifier, we adjusted the breakout board to nearly max out the microphone's gain. Also for best performance of the microphone, the "quieter" 3.3V instead of the 5V on the Arduino is used to power the microphone and a 0.1 uF decoupling capacitor is added between 3.3V to GND to minimize disturbance. Vout is connected to the oscilloscope and the followings FFT diagrams are observed:
 <table>
 <tr>
@@ -68,7 +68,7 @@ The electret microphone given in lab is attached on a breakout board that has an
 </table>
 When no tone is playing (Figure 1), other than the DC, there is no noticeable peak throughout the frequency spectrum. The breakout microphone has very good built in noise rejection circuits and nosie only ranges from 0 to 20dB. Once the 660Hz tone starts playing (Figure 2), a striking 50dB peak can be observed at 660 Hz along with a 18dB harmonic at 1320Hz. 
 
-# Amplifier Circuit
+### Amplifier Circuit
 The microphone can pick up the frequency tone very well, but we still like to set up an amplifier circuit that further amplifies and bandpass filters the signal for more stable performance. We used the LM158 Op Amp and set up our amplifier circuit using a 10K and a 100K resister, and this delivers gains of 11 (11 = 1+100k/10k). To create a bandpass filter, a high pass filter of 600 Hz is added between Vout of microphone to + (Pin 3) of LM158 and a low pass filter of 700Hz is added in parallel to the 100k resister. In actual implementation, we couldn’t make an exactly 600Hz high pass filter because there is no capacitor 13nF capacitor available. Instead, we use the 10nF. This shifted the high pass filter cutoff frequency higher, but the amplification result comes out fine. The complete amplification circuit is shown below: 
 
 <img src="image4.png">
@@ -87,7 +87,7 @@ After amplification, when no tone is playing (Figure 3), noise is noticeably hig
 </tr>
 </table>
 
-# Distinguish a 660Hz tone (from tones at 585Hz and 735Hz)
+### Distinguish a 660Hz tone (from tones at 585Hz and 735Hz)
 After building our microphone, which successfully amplified the sound input, we set out to distinguish a 660Hz tone from close frequencies (namely 585Hz and 735Hz) and background noise. We hooked up the amplification output to the analog pin A0 of the Arduino and ran the below code where Pei-Yi extracted from the Open Music Labs Arduino FFT library.
 
 ```Arduino
@@ -142,10 +142,10 @@ As we can see, the 660Hz tone is distinguished pretty well from the tones closes
 <img src="acoustic_talking.png">
 
 
-### Optical Team: Christina, Caroline, Ian
+## Optical Team: Christina, Caroline, Ian
 The objective of the lab session for the optics team was to build a circuit that produced a signal which could be read into the arduino to recognize “treasures” which our robot will encounter when navigating the maze. The treasures are blinking infrared LED circuits that blink at 7kHz, 12kHz, and 17kHz. In order to find and map the locations of these treasures in the maze, we need a method for detecting infrared light and also a method for determining the frequency at which the light is blinking.
 
-# Infrared Circuit
+### Infrared Circuit
 To detect the light, we can build a simple circuit using a phototransistor which operates at the wavelength of infrared light. The circuit is as follows:
 <table>
 <tr>
@@ -159,7 +159,7 @@ When infrared light is present, the phototransistor will pass a set current prop
 </tr>
 </table>
 This waveform is periodic at frequency of 6.849kHz, which is approximately our expected frequency, 7kHz. The measured amplitude of Vout depends much on the distance at which the treasure is held. We tried different resistor values to achieve a larger voltage drop (Vout) and settled on 5kΩ because it produced reasonable amplitudes.
-#Sampling and FFT Analysis
+###Sampling and FFT Analysis
 
 To read the signal into the Arduino, we used the on-board ADC in free sampling mode. By default, the Arduino analog reading function samples at about 9.6kHz. Our treasures blink at much higher frequencies than this. The highest frequency treasure blinks at 17kHz, so, by Nyquist’s sampling theorem, our sampling rate should be at least 34kHz.
 
@@ -171,7 +171,7 @@ With the samples stored in memory, we then used an FFT algorithm to produce the 
 	<td align="center"><img src="Optics5.png"></td>
 </tr>
 </table>
-# Bandpass Filter
+### Bandpass Filter
 We determined that our FFT peaks were not definitive because of other sources of infrared rays in our environment at other frequencies and their harmonics such as the lights above. To solve this problem, we made a bandpass filter with the specifications of allowing signals with frequencies between 6kHz and 18kHz and a gain of 5. The results of feeding the output through the filter first before inputting to the Arduino are shown below. It is clear that the filter had attenuated the undesired frequencies while providing a small gain to the desired frequencies. The peaks for the 7 kHz and 12 kHz are definitive and consistent now.
 	<td><img src="Optics6.png"></td>
 
@@ -185,7 +185,7 @@ We determined that our FFT peaks were not definitive because of other sources of
 	<th>12kHz Treasure</th>
 </tr>
 </table>
-# Calculation of Bin Number
+### Calculation of Bin Number
 As mentioned in earlier sections, we used a sampling rate of 38.5kHz. We took 256 samples, which means that each bin is approximately 150.39 Hz wide. Since the signal is symmetrical across the “negative” and positive frequencies, we can truncate the result of the fft in half i.e. 128 data points and plot it. 7kHz/150.39 = 46.5. Since bin 1 is actually DC (0 frequency), 7kHz should appear at bin 47.5. So we expected there to be a peak around bin 46 to 48, which was the case as shown above. For the 12 kHz treasure, the bin number should be 1+ 12kHz/150.39 = 80.79, or around bin 79 to 81. Since this is all imprecise math, we had the conditionals to check for one or more of these bins to exceed a certain threshold that was obtained through observation of the data.
 
 

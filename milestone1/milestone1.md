@@ -1,5 +1,5 @@
 <head>
-<link rel="stylesheet" href="myStyles.css">
+<link rel="stylesheet" href="../myStyles.css">
 </head>
 
 <div class="top-navbar">
@@ -13,3 +13,4 @@
 # Line Following
 Please go to our [lab 1 page](../lab1/lab1.md) to see info on line-following!
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/0TLTOz4JqIw" frameborder="0" allowfullscreen></iframe>

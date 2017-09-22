@@ -45,7 +45,7 @@ window.requestAnimFrame = ( function() {
 var canvas = document.getElementById( "canvas" ),
 		ctx = canvas.getContext( '2d' ),
 		// full screen dimensions
-		cw = window.innerWidth,
+		cw = window.innerWidth*0.5,
 		//ch = window.innerHeight,
 		ch = 300,
 		// firework collection

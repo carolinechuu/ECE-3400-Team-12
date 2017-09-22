@@ -10,6 +10,12 @@
   <a href="contact.html">Contact</a>
 </div>
 
+<img class="mySlides" src="slideshow/team_week1.jpg">
+<img class="mySlides" src="slideshow/guys_working.jpg">
+
+<button class="slideshow-left" onclick="plusDivs(-1)">&#10094;</button>
+<button class="slideshow-right" onclick="plusDivs(+1)">&#10095;</button>
+
 # **♩ ♪ ♫ 'Cause baby, we're a firework!' ♬ ♮ ♯**
 Welcome to our website, professors, TAs, students, and/or robot enthusiasts! You have reached Team Firework :fireworks:. Members in our amazing team are Christina ♩, Caroline ♪, Felipe ♫ , Pei-Yi ♬, Ian ♮ and Xitang ♯. This website is used to document Team 12's Thursday Lab progess in ECE 3400.
 
@@ -311,3 +317,23 @@ canvas.addEventListener( 'mouseup', function( e ) {
 // once the window loads, we are ready for some fireworks!
 window.onload = loop;
 </script>
+
+
+<!--Slideshow animation script-->
+var slideIndex = 1;
+showDivs(slideIndex);
+
+function plusDivs(n) {
+	showDivs(slideIndex += n);
+}
+
+function showDivs(n) {
+	var i;
+	var x = document.getElementsByClassName("mySlides");
+	if(n > x.length) {slideIndex = 1}
+	if(n < 1) {slideIndex = x.length};
+	for (i = 0; i < x.length; i++) {
+		x[i].style.display = "none";
+	}
+	x[slideIndex-1].style.display = "block";
+}

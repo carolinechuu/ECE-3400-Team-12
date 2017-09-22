@@ -11,10 +11,10 @@
   <a href="contact.html">Contact</a>
 </div>
 
-<img class="mySlides w3-animate-fading" src="slideshow/team_week1.jpg">
-<img class="mySlides w3-animate-fading" src="slideshow/robot_milestone1.jpg">
-<img class="mySlides w3-animate-fading" src="slideshow/caroline_hiding.jpg">
-<img class="mySlides w3-animate-fading" src="slideshow/christina_working.jpg">
+<img class="mySlides w3-animate-right" src="slideshow/team_week1.jpg">
+<img class="mySlides w3-animate-right" src="slideshow/robot_milestone1.jpg">
+<img class="mySlides w3-animate-right" src="slideshow/caroline_hiding.jpg">
+<img class="mySlides w3-animate-right" src="slideshow/christina_working.jpg">
 
 # **♩ ♪ ♫ 'Cause baby, we're a firework!' ♬ ♮ ♯**
 Welcome to our website, professors, TAs, students, and/or robot enthusiasts! You have reached Team Firework :fireworks:. Members in our amazing team are Christina ♩, Caroline ♪, Felipe ♫ , Pei-Yi ♬, Ian ♮ and Xitang ♯. This website is used to document Team 12's Thursday Lab progess in ECE 3400.

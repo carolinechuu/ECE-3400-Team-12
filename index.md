@@ -12,6 +12,8 @@
 
 <img class="mySlides" src="slideshow/team_week1.jpg">
 <img class="mySlides" src="slideshow/guys_working.jpg">
+<img class="mySlides" src="slideshow/caroline_hiding.jpg">
+<img class="mySlides" src="slideshow/christina_working.jpg">
 
 <button class="slideshow-left" onclick="plusDivs(-1)">&#10094;</button>
 <button class="slideshow-right" onclick="plusDivs(+1)">&#10095;</button>
@@ -316,7 +318,7 @@ canvas.addEventListener( 'mouseup', function( e ) {
 
 // once the window loads, we are ready for some fireworks!
 window.onload = loop;
-</script>
+
 
 
 <!--Slideshow animation script-->
@@ -337,3 +339,4 @@ function showDivs(n) {
 	}
 	x[slideIndex-1].style.display = "block";
 }
+</script>

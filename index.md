@@ -46,7 +46,8 @@ var canvas = document.getElementById( "canvas" ),
 		ctx = canvas.getContext( '2d' ),
 		// full screen dimensions
 		cw = window.innerWidth,
-		ch = window.innerHeight,
+		//ch = window.innerHeight,
+		ch = 300,
 		// firework collection
 		fireworks = [],
 		// particle collection

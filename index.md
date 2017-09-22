@@ -30,15 +30,8 @@ Meanwhile, if you're trying to procrastinate on something, check out some of the
 //-->
 
 <body style="margin: 0;">
-<canvas id="canvas" style="cursor: crosshair;display: block;background: #000;">Canvas is not supported in your browser.</canvas>
+<canvas id="canvas" style="cursor: crosshair;display: block;background: #000;width:"100%";">Canvas is not supported in your browser.</canvas>
 </body>
-
-
-
-
-
-
-
 
 
 <!--Fireworks animation scripts-->

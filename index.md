@@ -23,14 +23,8 @@ Welcome to our website, professors, TAs, students, and/or robot enthusiasts! You
 <p>Oh no! You can't hear our music.</p>
 </audio>
 
-<!--
-Meanwhile, if you're trying to procrastinate on something, check out some of these cool things we found.
-<p data-height="265" data-theme-id="0" data-slug-hash="Auzch" data-default-tab="js,result" data-user="whqet" data-embed-version="2" data-pen-title="HTML5 canvas and javascript fireworks tutorial" class="codepen">See the Pen <a href="https://codepen.io/whqet/pen/Auzch/">HTML5 canvas and javascript fireworks tutorial</a> by haiqing wang (<a href="https://codepen.io/whqet">@whqet</a>) on <a href="https://codepen.io">CodePen</a>.</p>
-<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
-//-->
-
 <body style="margin: 0;">
-<canvas id="canvas" style="cursor: crosshair;display: block;background: #000;width:"100%";">Canvas is not supported in your browser.</canvas>
+<canvas id="canvas" width="100%" style="cursor: crosshair;display: block;background: #000;">Canvas is not supported in your browser.</canvas>
 </body>
 
 

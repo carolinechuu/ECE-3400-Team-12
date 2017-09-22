@@ -19,12 +19,15 @@
 # **♩ ♪ ♫ 'Cause baby, we're a firework!' ♬ ♮ ♯**
 Welcome to our website, professors, TAs, students, and/or robot enthusiasts! You have reached Team Firework :fireworks:. Members in our amazing team are Christina ♩, Caroline ♪, Felipe ♫ , Pei-Yi ♬, Ian ♮ and Xitang ♯. This website is used to document Team 12's Thursday Lab progess in ECE 3400.
 
-<audio src="audio/firework.mp3" loop="loop" controls controlsList="nodownload">
+<audio align="center" src="audio/firework.mp3" loop="loop" controls controlsList="nodownload">
 <p>Oh no! You can't hear our music.</p>
 </audio>
 
+<br>
+If you're procrastinating on something, entertain yourself with these...
+<br>
 <body style="margin: 0;">
-<canvas id="canvas" width="50%" height="400px" style="cursor: crosshair;display: block;background: #000;">Canvas is not supported in your browser.</canvas>
+<canvas align="center" id="canvas" width="50%" height="400px" style="cursor: crosshair;display: block;background: #000;">Canvas is not supported in your browser.</canvas>
 </body>
 
 

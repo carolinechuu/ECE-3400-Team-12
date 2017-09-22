@@ -1,5 +1,6 @@
 <head>
 <link rel="stylesheet" href="myStyles.css">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
 
 <div class="top-navbar">
@@ -11,12 +12,12 @@
 </div>
 
 <img class="mySlides" src="slideshow/team_week1.jpg">
-<img class="mySlides" src="slideshow/guys_working.jpg">
+<img class="mySlides" src="slideshow/robot_milestone1.jpg">
 <img class="mySlides" src="slideshow/caroline_hiding.jpg">
 <img class="mySlides" src="slideshow/christina_working.jpg">
 
-<button class="slideshow-left" onclick="plusDivs(-1)">&#10094;</button>
-<button class="slideshow-right" onclick="plusDivs(+1)">&#10095;</button>
+<button class="w3-button w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
+<button class="w3-button w3-display-right" onclick="plusDivs(+1)">&#10095;</button>
 
 # **♩ ♪ ♫ 'Cause baby, we're a firework!' ♬ ♮ ♯**
 Welcome to our website, professors, TAs, students, and/or robot enthusiasts! You have reached Team Firework :fireworks:. Members in our amazing team are Christina ♩, Caroline ♪, Felipe ♫ , Pei-Yi ♬, Ian ♮ and Xitang ♯. This website is used to document Team 12's Thursday Lab progess in ECE 3400.

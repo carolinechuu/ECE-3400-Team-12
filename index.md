@@ -24,7 +24,7 @@ Welcome to our website, professors, TAs, students, and/or robot enthusiasts! You
 </audio>
 
 <body style="margin: 0;">
-<canvas id="canvas" width="100%" style="cursor: crosshair;display: block;background: #000;">Canvas is not supported in your browser.</canvas>
+<canvas id="canvas" width="50%" height="400px" style="cursor: crosshair;display: block;background: #000;">Canvas is not supported in your browser.</canvas>
 </body>
 
 

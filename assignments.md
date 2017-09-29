@@ -24,7 +24,7 @@
 # Milestones
 [Milestone 1](milestone1/milestone1.md)
 <br>
-[Milestone 2](does_not_exist.md)
+[Milestone 2](milestone2/milestone2.md)
 <br>
 [Milestone 3](does_not_exist.md)
 <br>

@@ -32,5 +32,16 @@ Triangular and sawtooth waves are a little more involved that square waves. For 
 <br>
 The sawtooth wave is a little more involved. We do something very similar to the triangular wave, but we need to increment and decrement the output, depending on where we are on the wave. A register keeps track of whether we are ascending/descending, and the counter is back to twice the frequency that we want to play, once to make our output descend, and once to make it ascend.
 
+<table>
+	<tr>
+		<td>Sawtooth Wave</td>
+		<td>Triangular Wave</td>
+	</tr>
+	<tr>
+		<td><img src="sawtooth.jpg"></td>
+		<td><img src="triangle.jpg"</td>
+	</tr>
+</table>
+
 ## Sine Wave Generation
 Sine waves can't be generated using the methods described above because there is no "nice behavior" where we can simply increment a register and output that register's value. Therefore, we must use a sine table. This involves saving the values of a sine wave in ROM, which provides a lookup for the value we should be outputting based on where we are in the wave. We save 256 points in our ROM table, so one period contains 256 points. In this case, our counter must keep track of how many clock cycles pass between each of the 256 points.

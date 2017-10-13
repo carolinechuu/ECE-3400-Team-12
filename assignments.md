@@ -15,7 +15,7 @@
 <br>
 [Lab 2](lab2/lab2.md)
 <br>
-[Lab 3](does_not_exist.md)
+[Lab 3](lab3/lab3.md)
 <br>
 [Lab 4](does_not_exist.md)
 

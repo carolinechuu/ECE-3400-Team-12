@@ -39,11 +39,12 @@ The triangular wave is a little more involved. We do something very similar to t
 	</tr>
 	<tr>
 		<td><img src="sawtooth.jpg"></td>
-		<td><img src="triangle.jpg"</td>
+		<td><img src="triangle.jpg"></td>
 	</tr>
 </table>
 
-Please note that, in the diagrams, our waves have extremely high frequencies that aren't audible. We did change these frequencies by changing our counter variable, so that the waves can be heard when played on the speaker.
+Please note that, in the diagrams, our waves have extremely high frequencies that aren't audible. We did change these frequencies by increasing our counter variable, so that the waves can be heard when played on the speaker.
 
 ## Sine Wave Generation
 Sine waves can't be generated using the methods described above because there is no "nice behavior" where we can simply increment a register and output that register's value. Therefore, we must use a sine table. This involves saving the values of a sine wave in ROM, which provides a lookup for the value we should be outputting based on where we are in the wave. We save 256 points in our ROM table, so one period contains 256 points. In this case, our counter must keep track of how many clock cycles pass between each of the 256 points.
+<img align="center" src="sine.jpg">

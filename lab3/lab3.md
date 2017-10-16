@@ -48,3 +48,34 @@ Please note that, in the diagrams, our waves have extremely high frequencies tha
 ## Sine Wave Generation
 Sine waves can't be generated using the methods described above because there is no "nice behavior" where we can simply increment a register and output that register's value. Therefore, we must use a sine table. This involves saving the values of a sine wave in ROM, which provides a lookup for the value we should be outputting based on where we are in the wave. We save 256 points in our ROM table, so one period contains 256 points. In this case, our counter must keep track of how many clock cycles pass between each of the 256 points.
 <img align="center" src="sine.jpg">
+
+## 3 Note Tune
+ To generate a 3 note tune, we needed to implement a finite state machine to switch between notes every second. We created parameters corresponding to the number of clock cycles before switching to the next value in the ROM table such that we achieve our desired frequency (this is the maximum value of counter). The note register encodes the current note being played while the note_length register keeps track of the number of clock cycles to play the current note.
+	In the state machine, we hold one note for one second. After the one second counter expires, we increment note by one to move to the next note. Within the sine generation logic, we implement a multiplexer to set the period of the generated sine wave and thus the note being played through the speakers. The result is as desired; the FPGA outputs a periodic tone of three frequencies to the 8-bit DAC which plays through the speakers. The tune is: Pause, A, C#, E each for one second on a loop.
+localparam CLKDIVIDERA = ONE_SEC/(256*440);
+localparam CLKDIVIDERCsh = ONE_SEC/(256*554);
+localparam CLKDIVIDERE = ONE_SEC/(256*660);
+
+```
+
+reg [15:0] counter;
+reg [25:0] note_length;
+reg [1:0] note;
+
+...
+
+if(note_length == 0) begin
+	note_length <= ONE_SEC;
+	note <= note + 1;
+end
+
+...
+
+case(note)
+	2'b00: counter    <= ONE_SEC;
+	2'b01: counter    <= CLKDIVIDERA - 1;
+	2'b10: counter    <= CLKDIVIDERCsh - 1;
+	2'b11: counter    <= CLKDIVIDERE - 1;	
+endcase
+
+```

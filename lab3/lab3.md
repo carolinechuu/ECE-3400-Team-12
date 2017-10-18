@@ -21,6 +21,29 @@
 
 # Graphics Team: Caroline, Xitang, Felipe
 
+## Reading External Inputs to FPGA
+We used the DE0-Nano FPGA to display graphics on the VGA monitor. On the FPGA board, there are 4 DIP switches. These switches are in the high level logic state when they are in the down position and low level logic state when are in the up position. In our code, we assign each switch value to each one bit in a 4-bit array. When the FPGA is at state 1, it will check to see which grid coordinate it is currently at. By checking these conditions, we assign each switch to a specific grid coordinate.
+
+## Correctly Updating a 4-bit Array and Mapping External Inputs to Each Quadrant
+
+
+(input video)
+
+
+There are two basic structures required to create and update the 4-bit array. We used a simple 2-state FSM to update the state of the array. In the first state, the FSM cycles between the four quadrants of the array, and in the second state it updates the color to drawn on that quadrant, from two possible options. This FSM switches states at a frequency of 25MHz, and it takes 8 cycles to update all four quadrants, so the four quadrants are updated at a frequency of 3.125MHz. We then use a combinational logic block to update the screen. Using the variable grid_width, we create four different quadrants occupying spaces x = [0, grid_width] and x = [grid_width, 2 * grid_width], with y = [0, grid_width] and y = [grid_width, 2 * grid_width], and assign all pixels in each grid to the same value, given by the FSM. 
+
+This structure allows for some flexibility on how the bit array is updated, by simply changing the variables (on the second state of the FSM) that decide what color is to be drawn on what quadrant. Our first implementation mapped the four switches on the FPGA to each of the four quadrants, allowing us to update each quadrant independently by flipping a switch (this was discussed in the previous section, “Reading external inputs to FPGA”). Then, we used outputs from the Arduino as inputs to the FPGA, and used those inputs to decide which colors to draw. We implemented a simple timer on the Arduino that would update its outputs every second, which is what is shown in the video above. The FPGA behaved almost identically, except that inputs were taken from GPIO pins instead of from the switches. 
+
+## DAC on the Provided VGA and Choosen Resistor Values
+The FPGA is setup to send 8-bit RGB color signals (3 bits for red, 3 bits for green, 2 bits for blue) to the VGA driver module. The VGA receiving cable connecting to the monitor are three analog cables: one for red, one for green, and one for blue. Because these analog cables only take values from 0 to 1 V, a Digital-to-Analog-Converter (DAC) was used to convert the 8 given color bits (with a 3.3V digital output from the FPGA) to the desired three color 1V analog signals. Given that the VGA display has an internal resistance of 50 Ohms, eight resistors are specifically chosen to output 8 different intensities or voltages for Red, 8 different intensities for Green and 4 different intensities for Blue. For example, to generate the red signal, three resistors are specifically chosen to create 8 different intensities level from the three red pins. A good configuration range of their voltages is to be 0V, 1/7V, 2/7V … to 1V.
+
+
+
+
+
+We have to pick the three resistors value so that the voltage is outputting in the correct range. We can actually solve the three unknown resistors values by setting up three equations based on the circuits. 
+
+
 # Acoustic Team: Christina, Ian, Pei-Yi
 
 ## Square Wave Generation

@@ -84,10 +84,33 @@ assign LED[3] = grid_array[1][1];
 
 ```
 
-Then, we used outputs from the Arduino as inputs to the FPGA, and used those inputs to decide which colors to draw. We implemented a simple timer on the Arduino that would update its outputs every second, which is what is shown in the video above. The FPGA behaved almost identically, except that inputs were taken from GPIO pins instead of from the switches. 
+Next, we used 4 GPIO outputs from the Arduino as inputs to the FPGA. We set up the circuit as shown by the picture below. Note the voltage divider is necessary because Arduino GPIOs output 5V but the FPGA GPIOs operate at 3.3V. 
+
+<img align="center" src="VGACircuit.png">
+
+We wrote a simple Arudino code that turn on a different pin every two seconds. The FPGA code is identical, except that inputs were parallelly taken from GPIO pins instead of from the switches. This creates the effect shown on our videos. :D
 
 ```
-//Map GPIOs to grid_array state
+---Arduino Code---
+void loop() {
+  if (counter%4 == 0){ //Turn Pin 2 on, others off
+    digitalWrite(2,HIGH);digitalWrite(3,LOW);digitalWrite(4,LOW);digitalWrite(5,LOW);
+  }
+  else if (counter%4 == 1){ //Turn Pin 3 On, others off
+    digitalWrite(2,LOW);digitalWrite(3,HIGH);digitalWrite(4,LOW);digitalWrite(5,LOW);
+  }
+  else if (counter%4 == 2){ //Turn Pin 4 On, others off
+    digitalWrite(2,LOW);digitalWrite(3,LOW);digitalWrite(4,HIGH);digitalWrite(5,LOW);
+  }
+  else if (counter%4 == 3){ //Turn Pin 5 On, others off
+    digitalWrite(2,LOW);digitalWrite(3,LOW);digitalWrite(4,LOW);digitalWrite(5,HIGH);
+  }
+  counter++;   //Increase counter to loop to the next pin
+  delay(2000); //Wait 2 sec
+}
+
+---FPGA Code---
+//Map Arduino GPIOs to grid_array state
 always @ (posedge CLOCK_25) 
 begin
 	if (grid_coord_x == 0 && grid_coord_y == 0) 

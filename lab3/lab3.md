@@ -15,7 +15,7 @@
 <iframe width="560" height="315" src="https://www.youtube.com/embed/YPeUFlNFCgE" frameborder="0" allowfullscreen></iframe>
 
 # Purpose
-In this lab, we aim to set up the FPGA so it can (1) take inputs from switches and display a grid through a VGA screen, which will represent our maze grid and (2) set up the FPGA to generate a sine wave at 3 different frequencies.
+In this lab, the purpose is to set up the FPGA so it can (1) take inputs from its switches and the Arduino GPIOs to display a 2x2 grid through a VGA screen, which will represent our maze grid and (2) set up the FPGA to generate a sine wave at 3 different frequencies.
 
 # Important Components
 * [DE0-Nano FPGA board](http://www.terasic.com.tw/cgi-bin/page/archive.pl?Language=English&CategoryNo=165&No=593&PartNo=4)
@@ -37,13 +37,15 @@ There are two basic structures required to create and update the 4-bit array. We
 This structure allows for some flexibility on how the bit array is updated, by simply changing the variables (on the second state of the FSM) that decide what color is to be drawn on what quadrant. Our first implementation mapped the four switches on the FPGA to each of the four quadrants, allowing us to update each quadrant independently by flipping a switch (this was discussed in the previous section, “Reading external inputs to FPGA”). Then, we used outputs from the Arduino as inputs to the FPGA, and used those inputs to decide which colors to draw. We implemented a simple timer on the Arduino that would update its outputs every second, which is what is shown in the video above. The FPGA behaved almost identically, except that inputs were taken from GPIO pins instead of from the switches. 
 
 ## DAC on the Provided VGA and Chosen Resistor Values
-The FPGA is setup to send 8-bit RGB color signals (3 bits for red, 3 bits for green, 2 bits for blue) to the VGA driver module. The VGA receiving cable connecting to the monitor are three analog cables: one for red, one for green, and one for blue. Because these analog cables only take values from 0 to 1 V, a Digital-to-Analog-Converter (DAC) was used to convert the 8 given color bits (with a 3.3V digital output from the FPGA) to the desired three color 1V analog signals. Given that the VGA display has an internal resistance of 50 Ohms, eight resistors are specifically chosen to output 8 different intensities or voltages for Red, 8 different intensities for Green and 4 different intensities for Blue. For example, to generate the red signal, three resistors are specifically chosen to create 8 different intensities level from the three red pins. A good configuration range of their voltages is to be 0V, 1/7V, 2/7V … to 1V.
+The FPGA is setup to send 8-bit RGB color signals (3 bits for red, 3 bits for green, 2 bits for blue) to the VGA driver module. The VGA receiving cable connecting to the monitor are three analog cables: one for red, one for green, and one for blue. Because these analog cables only take values from 0 to 1 V, we have to create a resistor DAC circuitry that converts the eight 3.3V digital outputs (8 color bits) from the FPGA to the desired three 1V analog input signals (3 color cables). Three digital output pins can output eight different combinations and two digital output pins can output four different combinations. To optimize the use of digital pins, eight resistors are specifically chosen for the resistor DAC circuitry to output 8 different intensities or voltages for Red and Green, and 4 for Blue. Let's use the three red signal pins as an example. A good configuration range of its 8 different voltages is 0V, 1/7V, 2/7V … to 1V, which is an even step up of 1/7V.
 
 <img align="center" src="image1.png">
 
-We have to pick the three resistors value so that the voltage is outputting in the correct range. We can actually solve the three unknown resistors values by setting up three equations based on the circuits. 
+We have to pick the three resistors value so that the voltage is outputting in the correct desired voltage. We can actually solve the three unknown resistors values by setting up three equations based on the circuits. Three circuits are drawn below that refer to cases 2, 3 and 5 of the previous table. Note that the VGA display has an internal resistance of 50 Ohms and R0 is the resister value for Red Pin 0 and so on.
 
 <img align="center" src="image2.png">
+
+
 
 # Acoustic Team: Christina, Ian, Pei-Yi
 

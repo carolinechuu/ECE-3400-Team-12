@@ -32,7 +32,7 @@ There are two basic structures required to create and update the 4-bit array. We
 
 This structure allows for some flexibility on how the bit array is updated, by simply changing the variables (on the second state of the FSM) that decide what color is to be drawn on what quadrant. Our first implementation mapped the four switches on the FPGA to each of the four quadrants, allowing us to update each quadrant independently by flipping a switch (this was discussed in the previous section, “Reading external inputs to FPGA”). Then, we used outputs from the Arduino as inputs to the FPGA, and used those inputs to decide which colors to draw. We implemented a simple timer on the Arduino that would update its outputs every second, which is what is shown in the video above. The FPGA behaved almost identically, except that inputs were taken from GPIO pins instead of from the switches. 
 
-## DAC on the Provided VGA and Choosen Resistor Values
+## DAC on the Provided VGA and Chosen Resistor Values
 The FPGA is setup to send 8-bit RGB color signals (3 bits for red, 3 bits for green, 2 bits for blue) to the VGA driver module. The VGA receiving cable connecting to the monitor are three analog cables: one for red, one for green, and one for blue. Because these analog cables only take values from 0 to 1 V, a Digital-to-Analog-Converter (DAC) was used to convert the 8 given color bits (with a 3.3V digital output from the FPGA) to the desired three color 1V analog signals. Given that the VGA display has an internal resistance of 50 Ohms, eight resistors are specifically chosen to output 8 different intensities or voltages for Red, 8 different intensities for Green and 4 different intensities for Blue. For example, to generate the red signal, three resistors are specifically chosen to create 8 different intensities level from the three red pins. A good configuration range of their voltages is to be 0V, 1/7V, 2/7V … to 1V.
 
 <img align="center" src="image1.png">
@@ -45,7 +45,7 @@ We have to pick the three resistors value so that the voltage is outputting in t
 
 ## Square Wave Generation
 The simplest wave that can be generated with the FPGA is the square wave. On the FPGA, this involves keeping a counter that will reset whenever we toggle the output. Toggling takes place at a rate of twice the frequency we want to play. If we want to play a 440Hz tone, for example, we would have to toggle our output at a rate of 880Hz, once for the rising edge and once for the falling edge. The counter keeps track of how many clock cycles must pass before we toggle.
-<!--Insert code snippet and image of generated wave-->
+<img align="center" src="square.jpg">
 
 ## Triangular and Sawtooth Wave Generation
 Triangular and sawtooth waves are a little more involved that square waves. For a sawtooth wave, our counter keeps track of how many clock cycles in just one period. While the counter is still "ticking", we increment the value outputted through the DAC. When the counter reaches 0, we reset the counter and also reset the value outputted through the DAC to 0, which begins the next period.
@@ -77,13 +77,13 @@ localparam CLKDIVIDERA = ONE_SEC/(256*440);
 localparam CLKDIVIDERCsh = ONE_SEC/(256*554);
 localparam CLKDIVIDERE = ONE_SEC/(256*660);
 
-...
+... // Input and output declarations here
 
 reg [15:0] counter;
 reg [25:0] note_length;
 reg [1:0] note;
 
-...
+... // Some variable declarations and setup here
 
 if(note_length == 0) begin
 	note_length <= ONE_SEC;

@@ -15,7 +15,7 @@
 <iframe width="560" height="315" src="https://www.youtube.com/embed/YPeUFlNFCgE" frameborder="0" allowfullscreen></iframe>
 
 # Purpose
-In this lab, we aim to set up the FPGA so it can (1) take inputs from FPGA switches and display a grid through a VGA screen, which will represent our maze grid and (2) set up the FPGA to generate a sine wave at 3 different frequencies.
+In this lab, we aim to set up the FPGA so it can (1) take inputs from switches and display a grid through a VGA screen, which will represent our maze grid and (2) set up the FPGA to generate a sine wave at 3 different frequencies.
 
 # Important Components
 * [DE0-Nano FPGA board](http://www.terasic.com.tw/cgi-bin/page/archive.pl?Language=English&CategoryNo=165&No=593&PartNo=4)
@@ -108,3 +108,7 @@ case(note)
 endcase
 
 ```
+
+# Before You Go, TAs...
+Take a moment to appreciate our awesome laser-cut wheels :) They're wood right now, but will be cut in acrylic later on.
+<img align="center" src="wheels.jpg">

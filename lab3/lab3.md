@@ -26,7 +26,7 @@ We used the DE0-Nano FPGA to display graphics on the VGA monitor. On the FPGA bo
 
 ## Correctly Updating a 4-bit Array and Mapping External Inputs to Each Quadrant
 
-<br>
+
 <iframe width="640" height="360" src="https://www.youtube.com/embed/ji3oeDLhtlM" frameborder="0" allowfullscreen></iframe>
 
 

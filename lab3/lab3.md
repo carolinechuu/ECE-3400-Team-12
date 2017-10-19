@@ -37,12 +37,11 @@ This structure allows for some flexibility on how the bit array is updated, by s
 ## DAC on the Provided VGA and Choosen Resistor Values
 The FPGA is setup to send 8-bit RGB color signals (3 bits for red, 3 bits for green, 2 bits for blue) to the VGA driver module. The VGA receiving cable connecting to the monitor are three analog cables: one for red, one for green, and one for blue. Because these analog cables only take values from 0 to 1 V, a Digital-to-Analog-Converter (DAC) was used to convert the 8 given color bits (with a 3.3V digital output from the FPGA) to the desired three color 1V analog signals. Given that the VGA display has an internal resistance of 50 Ohms, eight resistors are specifically chosen to output 8 different intensities or voltages for Red, 8 different intensities for Green and 4 different intensities for Blue. For example, to generate the red signal, three resistors are specifically chosen to create 8 different intensities level from the three red pins. A good configuration range of their voltages is to be 0V, 1/7V, 2/7V … to 1V.
 
-
-
-
+<img align="center" src="image1.png">
 
 We have to pick the three resistors value so that the voltage is outputting in the correct range. We can actually solve the three unknown resistors values by setting up three equations based on the circuits. 
 
+<img align="center" src="image2.png">
 
 # Acoustic Team: Christina, Ian, Pei-Yi
 

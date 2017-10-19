@@ -41,10 +41,13 @@ The FPGA is setup to send 8-bit RGB color signals (3 bits for red, 3 bits for gr
 
 <img align="center" src="image1.png">
 
-We have to pick the three resistors value so that the voltage is outputting in the correct desired voltage. We can actually solve the three unknown resistors values by setting up three equations based on the circuits. Three circuits are drawn below that refer to cases 2, 3 and 5 of the previous table. Note that the VGA display has an internal resistance of 50 Ohms and R0 is the resister value for Red Pin 0 and so on.
+We have to pick the three resistors value so that the voltage is outputting in the correct desired voltage. We can actually solve the three unknown resistors values by setting up three equations based on the circuits. Three circuits are drawn below that refer to cases 2, 3 and 5 of the previous table. Note that the VGA display has an internal resistance of 50 Ohms and R0 is the resister value for Red Pin 0 and so on. We know the DAD Vout we are expecting of the three cases output, so now there are three equations with three unknowns.
 
 <img align="center" src="image2.png">
 
+We wrote a findR function in C that uses brute force to solve for the three resistors values we are looking. And R0 is found to be 774 ohms, R1 is found to be 394 ohms and R2 is found to be 199 ohms. :D The three resistors values of red pins can also be used for the three green pins. The two bue pins have two resistors values and simplier circutry, which are found to be R0 = 240 ohms and R1 = 95 ohms using the same circuit analysis method.
+
+<script src="//onlinegdb.com/embed/js/BkqS8HLpW"></script>
 
 
 # Acoustic Team: Christina, Ian, Pei-Yi

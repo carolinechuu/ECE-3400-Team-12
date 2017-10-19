@@ -11,11 +11,15 @@
 </div>
 <br>
 
+# Loving A Major!
+<iframe width="560" height="315" src="https://www.youtube.com/embed/YPeUFlNFCgE" frameborder="0" allowfullscreen></iframe>
+
 # Purpose
+In this lab, we aim to set up the FPGA so it can (1) take inputs from FPGA switches and display a grid through a VGA screen, which will represent our maze grid and (2) set up the FPGA to generate a sine wave at 3 different frequencies.
 
 # Important Components
 * [DE0-Nano FPGA board](http://www.terasic.com.tw/cgi-bin/page/archive.pl?Language=English&CategoryNo=165&No=593&PartNo=4)
-* 8-bit DAC
+* [8-bit DAC](http://www.bourns.com/docs/Product-Datasheets/R2R.pdf)
 * Speaker and audio socket
 * VGA switch, screen, cable, and connector
 
@@ -42,6 +46,10 @@ We have to pick the three resistors value so that the voltage is outputting in t
 <img align="center" src="image2.png">
 
 # Acoustic Team: Christina, Ian, Pei-Yi
+
+## Hooking Up FPGA, DAC, and Speaker
+The schematic below shows how we wired up the FPGA's pins (specified with GPIO_0_1, GPIO_0_2, etc) to the R2R DAC, and how the output was wired to the speaker.
+<img align="center" src="wiring_acoustics.png">
 
 ## Square Wave Generation
 The simplest wave that can be generated with the FPGA is the square wave. On the FPGA, this involves keeping a counter that will reset whenever we toggle the output. Toggling takes place at a rate of twice the frequency we want to play. If we want to play a 440Hz tone, for example, we would have to toggle our output at a rate of 880Hz, once for the rising edge and once for the falling edge. The counter keeps track of how many clock cycles must pass before we toggle.

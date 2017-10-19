@@ -54,8 +54,8 @@ The triangular wave is a little more involved. We do something very similar to t
 
 <table>
 	<tr>
-		<td>Sawtooth Wave</td>
-		<td>Triangular Wave</td>
+		<td align="center">Sawtooth Wave</td>
+		<td align="center">Triangular Wave</td>
 	</tr>
 	<tr>
 		<td><img src="sawtooth.jpg"></td>

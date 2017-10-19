@@ -26,9 +26,7 @@ We used the DE0-Nano FPGA to display graphics on the VGA monitor. On the FPGA bo
 
 ## Correctly Updating a 4-bit Array and Mapping External Inputs to Each Quadrant
 
-
 <iframe width="640" height="360" src="https://www.youtube.com/embed/ji3oeDLhtlM" frameborder="0" allowfullscreen></iframe>
-
 
 There are two basic structures required to create and update the 4-bit array. We used a simple 2-state FSM to update the state of the array. In the first state, the FSM cycles between the four quadrants of the array, and in the second state it updates the color to drawn on that quadrant, from two possible options. This FSM switches states at a frequency of 25MHz, and it takes 8 cycles to update all four quadrants, so the four quadrants are updated at a frequency of 3.125MHz. We then use a combinational logic block to update the screen. Using the variable grid_width, we create four different quadrants occupying spaces x = [0, grid_width] and x = [grid_width, 2 * grid_width], with y = [0, grid_width] and y = [grid_width, 2 * grid_width], and assign all pixels in each grid to the same value, given by the FSM. 
 

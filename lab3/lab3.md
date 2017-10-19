@@ -34,7 +34,81 @@ We used the DE0-Nano FPGA to display graphics on the VGA monitor. On the FPGA bo
 
 There are two basic structures required to create and update the 4-bit array. We used a simple 2-state FSM to update the state of the array. In the first state, the FSM cycles between the four quadrants of the array, and in the second state it updates the color to drawn on that quadrant, from two possible options. This FSM switches states at a frequency of 25MHz, and it takes 8 cycles to update all four quadrants, so the four quadrants are updated at a frequency of 3.125MHz. We then use a combinational logic block to update the screen. Using the variable grid_width, we create four different quadrants occupying spaces x = [0, grid_width] and x = [grid_width, 2 * grid_width], with y = [0, grid_width] and y = [grid_width, 2 * grid_width], and assign all pixels in each grid to the same value, given by the FSM. 
 
-This structure allows for some flexibility on how the bit array is updated, by simply changing the variables (on the second state of the FSM) that decide what color is to be drawn on what quadrant. Our first implementation mapped the four switches on the FPGA to each of the four quadrants, allowing us to update each quadrant independently by flipping a switch (this was discussed in the previous section, “Reading external inputs to FPGA”). Then, we used outputs from the Arduino as inputs to the FPGA, and used those inputs to decide which colors to draw. We implemented a simple timer on the Arduino that would update its outputs every second, which is what is shown in the video above. The FPGA behaved almost identically, except that inputs were taken from GPIO pins instead of from the switches. 
+This structure allows for some flexibility on how the bit array is updated, by simply changing the variables (on the second state of the FSM) that decide what color is to be drawn on what quadrant. Our first implementation mapped the four switches on the FPGA to each of the four quadrants, allowing us to update each quadrant independently by flipping a switch (this was discussed in the previous section, “Reading external inputs to FPGA”). 
+
+```
+reg grid_array [1:0][1:0];  //Initialize a 2 x 2 grid array
+
+//Map switches state to grid_array state
+always @ (posedge CLOCK_25) 
+begin
+	if (grid_coord_x == 0 && grid_coord_y == 0) 
+	begin 
+		grid_array[0][0] <= SW[0]; //Assign switch 0 to gird 0,0
+	end
+	else if (grid_coord_x == 0 && grid_coord_y == 1) 
+	begin 
+		grid_array[0][1] <= SW[1]; //Assign switch 1 to gird 0,1
+	end
+	else if (grid_coord_x == 1 && grid_coord_y == 0) 
+	begin 
+		grid_array[1][0] <= SW[2]; //Assign switch 2 to gird 1,0
+	end
+	else if (grid_coord_x == 1 && grid_coord_y == 1) 
+	begin 
+		grid_array[1][1] <= SW[3]; //Assign switch 3 to gird 1,1
+	end
+	state <= 0;
+end
+
+//Draw color on the grid based on grid_array[x][y], if 1 = green, 0 = white.
+always @ (*) 
+begin 
+if(PIXEL_COORD_X > 0 && PIXEL_COORD_X <  grid_width && PIXEL_COORD_Y > 0 && PIXEL_COORD_Y < grid_width) begin
+if (grid_array[0][0]) PIXEL_COLOR = green;
+else PIXEL_COLOR = white;
+end
+
+... Skip the other 3 else if statements
+
+else begin
+ PIXEL_COLOR = black;
+end
+end
+
+//Assign grid_array[x][y] to LEDs to help debugging
+assign LED[0] = grid_array[0][0];
+assign LED[1] = grid_array[0][1];
+assign LED[2] = grid_array[1][0];
+assign LED[3] = grid_array[1][1];
+
+```
+
+Then, we used outputs from the Arduino as inputs to the FPGA, and used those inputs to decide which colors to draw. We implemented a simple timer on the Arduino that would update its outputs every second, which is what is shown in the video above. The FPGA behaved almost identically, except that inputs were taken from GPIO pins instead of from the switches. 
+
+```
+//Map GPIOs to grid_array state
+always @ (posedge CLOCK_25) 
+begin
+	if (grid_coord_x == 0 && grid_coord_y == 0) 
+	begin 
+		grid_array[0][0] <= GPIO_0_D[33];; //Assign GPIO_0 Pin 33 to gird 0,0
+	end
+	else if (grid_coord_x == 0 && grid_coord_y == 1) 
+	begin 
+		grid_array[0][1] <= GPIO_0_D[31];; //Assign GPIO_0 Pin 31 to gird 0,1
+	end
+	else if (grid_coord_x == 1 && grid_coord_y == 0) 
+	begin 
+		grid_array[1][0] <= GPIO_0_D[29];; //Assign GPIO_0 Pin 29 to gird 1,0
+	end
+	else if (grid_coord_x == 1 && grid_coord_y == 1) 
+	begin 
+		grid_array[1][1] <= GPIO_0_D[27];; //Assign GPIO_0 Pin 27 to gird 1,1
+	end
+	state <= 0;
+end
+```
 
 ## DAC on the Provided VGA and Chosen Resistor Values
 The FPGA is setup to send 8-bit RGB color signals (3 bits for red, 3 bits for green, 2 bits for blue) to the VGA driver module. The VGA receiving cable connecting to the monitor are three analog cables: one for red, one for green, and one for blue. Because these analog cables only take values from 0 to 1 V, we have to create a resistor DAC circuitry that converts the eight 3.3V digital outputs (8 color bits) from the FPGA to the desired three 1V analog input signals (3 color cables). Three digital output pins can output eight different combinations and two digital output pins can output four different combinations. To optimize the use of digital pins, eight resistors are specifically chosen for the resistor DAC circuitry to output 8 different intensities or voltages for Red and Green, and 4 for Blue. Let's use the three red signal pins as an example. A good configuration range of its 8 different voltages is 0V, 1/7V, 2/7V … to 1V, which is an even step up of 1/7V.
@@ -45,7 +119,7 @@ We have to pick the three resistors value so that the voltage is outputting in t
 
 <img align="center" src="image2.png">
 
-We wrote a findR function in C that uses brute force to solve for the three resistors values we are looking. And R0 is found to be 774 ohms, R1 is found to be 394 ohms and R2 is found to be 199 ohms. :D The three resistors values of red pins can also be used for the three green pins. The two bue pins have two resistors values and simplier circutry, which are found to be R0 = 240 ohms and R1 = 95 ohms using the same circuit analysis method.
+We wrote a findR() function in C that uses brute force to solve for the three resistors values we are looking for. And R0 is found to be 774 ohms, R1 is found to be 394 ohms and R2 is found to be 199 ohms. :D The three resistors values of red pins can also be used for the three green pins. The two bue pins have two resistors values and simplier circutry, which are found to be R0 = 445 ohms and R1 = 197.5 ohms using the same circuit analysis method.
 
 <script src="//onlinegdb.com/embed/js/BkqS8HLpW"></script>
 

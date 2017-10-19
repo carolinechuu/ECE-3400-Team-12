@@ -48,7 +48,7 @@ We have to pick the three resistors value so that the voltage is outputting in t
 # Acoustic Team: Christina, Ian, Pei-Yi
 
 ## Hooking Up FPGA, DAC, and Speaker
-The schematic below shows how we wired up the FPGA's pins (specified with GPIO_0_1, GPIO_0_2, etc) to the R2R DAC, and how the output was wired to the speaker.
+The schematic below shows how we wired up the FPGA's pins (specified with GPIO_00, GPIO_01, etc) to the R2R DAC, and how the output was wired to the speaker.
 <img align="center" src="wiring_acoustics.jpg">
 
 ## Square Wave Generation

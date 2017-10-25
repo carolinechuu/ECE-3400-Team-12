@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">    
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="myStyles.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed|Saira+Extra+Condensed" rel="stylesheet">
+    <title>Home | Team Firework</title>
+  </head>
+
+  <body>
+  	<!-- Page header -->
+  	<div class="page-header">
+  		<div class="container-fluid">
+		<h1 align="center"><span style="color:#fad5a6"><b>Team Firework</b></span></h1>
+		<h3 align="center"><span style="color:#fad5a6">Cause baby, we're a firework!</span></h3>
+		</div>
+		<!--<div class="container" align="center">
+			<audio src="audio/firework.mp3" loop="loop" controls controlsList="nodownload"><p>Oh no! You can't hear our music.</p></audio>
+		</div>-->
+  	</div>
+
+  	<!-- Navigation bar -->
+  	<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <!--<div class="container-fluid">
+      <a href="#"><span class="glyphicon glyphicon-star-empty"></span></a>-->
+  	  </div>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="index.html">Home<span class="sr-only">(current)</span></a></li>
+        <li><a href="team.html">Team</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Assignments <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="lab1/lab1.html">Lab 1</a></li>
+            <li><a href="lab2/lab2.html">Lab 2</a></li>
+            <li><a href="lab3/lab3.html">Lab 3</a></li>
+            <li><a href="lab4/lab4.html">Lab 4</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="milestone1/milestone1.html">Milestone 1</a></li>
+            <li><a href="milestone2/milestone2.html">Milestone 2</a></li>
+            <li><a href="milestone3/milestone3.html">Milestone 3</a></li>
+            <li><a href="milestone4/milestone4.html">Milestone 4</a></li>
+          </ul>
+        </li>
+        <li><a href="tutorials.html">Tutorials</a></li>
+      </ul>
+      <!--A search bar -->
+      <!--<form class="navbar-form navbar-left">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>-->
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+    
+
+    <!-- Image carousel -->
+<!-- Surround everything with a div with the class carousel slide -->
+<div id="theCarousel" class="carousel slide" data-ride="carousel">
+ 
+  <!-- Define how many slides to put in the carousel -->
+  <ol class="carousel-indicators">
+    <li data-target="#theCarousel" data-slide-to="0" class="active"> </li >
+    <li data-target="#theCarousel" data-slide-to="1"> </li>
+    <li data-target ="#theCarousel" data-slide-to="2"> </li>
+  	<li data-target ="#theCarousel" data-slide-to="3"> </li>
+  </ol >
+ 
+  <!-- Define the text to place over the image -->
+  <div class="carousel-inner">
+    <div class="item active" >
+    <div class="slide1"></div>
+    <div class="carousel-caption">
+      <h1>Meet The Team</h1>
+      <p>Our amazing group members!</p>
+    </div>
+  </div>
+  <div class="item">
+  <div class="slide2"></div>
+  <div class="carousel-caption">
+    <h1>Our spunky bot</h1>
+    <p>Is currently still under construction...</p>
+  </div>
+  </div>
+  <div class="item">
+  <div class="slide3"></div>
+  <div class="carousel-caption">
+  	<h1>Caroline</h1>
+  	<p>She is hiding from the camera.</p>
+  </div>
+  </div>
+  <div class="item">
+  <div class="slide4"></div>
+  <div class="carousel-caption">
+  	<h1>Christina</h1>
+  	<p>She is hard at work.</p>
+  </div>
+  </div>
+  </div>
+ 
+  <!-- Set the actions to take when the arrows are clicked -->
+  <a class="left carousel-control" href="#theCarousel" data-slide="prev">
+  <span class="glyphicon glyphicon-chevron-left"> </span>
+  </a>
+  <a class="right carousel-control" href="#theCarousel" data-slide="next">
+  <span class="glyphicon glyphicon-chevron-right"></span>
+  </a>
+  </div>
+    <!--Page content -->
+    <div class="body-content">
+    	<!--<h1>Greetings!</h1>-->
+    	<p>Welcome to our website, professors, TAs, students, and/or robot enthusiasts! You have reached Team Firework. Members in our amazing team are Christina, Caroline, Felipe, Pei-Yi, Ian and Xitang. This website is used to document Team 12's Thursday Lab progess in ECE 3400.</p>
+    </div>
+
+    <!-- Footer -->
+    <div id="footer">
+      <div class="container">
+        <p class="muted credit" align="center">Brought to you by Team Firework. Have an explosive day!</p>
+      </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+
+  </body>
+
+</html>

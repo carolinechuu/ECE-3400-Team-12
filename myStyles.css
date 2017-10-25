@@ -10,7 +10,7 @@
     background-color:#9aabb9;
     color:white;
     font-size:18px;
-    font-family:;
+    font-family:'Saira Extra Condensed', sans-serif;
 }
 
 .jumbotron{
@@ -66,7 +66,7 @@ h3{
 }
 
 .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
-    color: #9aabb9;
+    color:black;
     text-decoration: none;
     background-color: #9aabb9; /*change color of links in drop down here*/
 }
@@ -128,4 +128,9 @@ h3{
 .body-content p {
     font-family:'Roboto Condensed', sans-serif;
     font-size:22px;
+}
+
+img {
+	max-width:100%;
+	max-height:100%;
 }

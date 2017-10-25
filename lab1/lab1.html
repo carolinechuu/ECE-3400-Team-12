@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../myStyles.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed|Saira+Extra+Condensed" rel="stylesheet">
+    <!--<link rel="stylesheet" href="google-code-prettify/prettify.css"-->
     <title>Lab 1 | Team Firework</title>
   </head>
 
@@ -92,6 +93,46 @@
     <li><p>330Ω Resistors</p></li>
     <li><p><a href="http://www.robotshop.com/media/files/pdf/qre1113-datasheet-rob-09454.pdf">Line sensor QRE1113</a></p></li>
   </ul>
+
+  <hr>
+  <h1>Blinking An Internal LED</h1>
+  <p>The first mini project is to blink the Internal LED on the Arduino board every second. A built-in LED is already connected to the Arduino board and it is wired to Pin 13. The following code, one of the Arduino IDE example programs, sets up Pin 13 as digital output in the setup() function, and it then repeatedly turns Pin 13 HIGH, waits for one second, turns Pin 13 LOW, waits for one second, creating the blinking effect.</p>
+  <pre class="prettyprint"> <!--code block-->
+// the setup function runs once when you press reset or power the board
+void setup() {
+  // initialize digital pin 13, the onboard LED, as an output.
+  pinMode(13, OUTPUT);
+}
+
+// the loop function runs over and over again forever
+void loop() {
+  digitalWrite(13, HIGH);   // turn the LED on (HIGH is the voltage level)
+  delay(1000);              // wait for a second
+  digitalWrite(13, LOW);    // turn the LED off by making the voltage LOW
+  delay(1000);              // wait for a second
+}
+  </pre>
+
+  <hr>
+  <h1>Blinking An External LED</h1>
+  <p>The second mini project is to blink an external LED, which is wired to the digital output Pin 3. There is 330Ω resistor connected in series with the LED to limit current flow, otherwises, the LED would burn out. The code explanation is the same as the previous mini project except pin 3 is used instead of pin 13.</p>
+  <pre class="prettyprint">
+int ledPin;
+
+void setup() {
+  ledPin = 3;
+  pinMode(ledPin, OUTPUT);
+}
+
+void loop() {
+  digitalWrite(ledPin, HIGH); // turn the LED on
+  delay(1000);        // wait for a second
+  digitalWrite(ledPin, LOW);  // turn the LED off
+  delay(1000);        // wait for a second
+}
+  </pre>
+  <img src="blink_external_LED.jpg" align="center">
+
 </div>
 
     <!-- Footer -->
@@ -104,8 +145,13 @@
     <!-- Bootstrap core JavaScript -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-
-
+  <!--
+  <script src="google-code-prettify/prettify.js"></script>
+  <script>
+    window.onload = (function(){ prettyPrint(); });
+  </script>
+  -->
+  <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
   </body>
 
 </html>

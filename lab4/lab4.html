@@ -72,13 +72,61 @@
     
   <!--Page content -->
   <div class="body-content">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/hzyTb7968JY" frameborder="0" allowfullscreen></iframe>
+    <h1>Lab Materials</h1>
+    <ul>
+      <li><p>2 <a href="http://roboromania.ro/datasheet/Modul-Arduino-NRF24L01-transceiver-2.4GHz-TX-RX-microcontroler-AVR-328-N24l01-roboromania.pdf">Nordic nRG24L01+ transceivers</a></p></li>
+      <li><p>2 radio breakout boards with headers</p></li>
+      <li><p><a href="http://maniacbug.github.io/RF24/classRF24.html">RF24 library reference</a></p></li>
+      <li><p>VGA cable, screen, connector</p></li>
+      <li><p>2 Arduinos and 1 DE0-nano</p></li>
+    </ul>
+
+    <hr>
     <h1>Radio Team: Caroline, Xitang, Felipe</h1>
+    <h3>Sending information wirelessly between Arduinos</h3>
+    <p>We followed the well documented lab 4 instructions to set up the hardware and software of the RF24. To configure our pipe address, we use the formula 2(3D + N) + X and since we are Thursday and Team 12, we are using 2*(3*3 + 12) + X = 42 and 43 or 2A and 2B in hex.</p>
+    <code class="prettyprint">const uint64_t pipes[2] = { 0x000000002ALL, 0x000000002BLL };</code>
+    <p>The sample code has already set up to constantly transmitting or receiving the milliseconds since boot time of the arduino, so we just flashed it with the new pipe addresses and it worked like charms. The arduino configured to receive was printing the milliseconds since boot time correctly. We compared the packages sent and the packages received. There weren’t any dropped packets and interference we know of. At RF24_PA_MIN power mode, we can receive data in a range of about 10 feet. At RF24_PA_MAX power mode, we can receive data in a range of about 30 feet, from the end of the lab all the way to the elevator outside of the lab :D.</p>
+    <h3>Sending the entire maze wirelessly</h3>
+    <p>Next, we have to configure our code to send a 5 by 5 maze that is in unsigned char data type. Each char data takes one byte so we are sending a total of 25 bytes of data. Since the maximum payload size we can send via the nRF24L01+ transceiver is 32 bytes of data, it is well doable to simply send the 25 bytes of data without any sorts of data compression, which is what we did. We created an unsigned char 5 by 5 array called maze and configured the RF24 arduino library’s write function to send 25 bytes. From the documentation, we learned that the write function takes in two parameters: 1. A pointer to the data buffer to be sent and 2. The number of bytes to be send.</p>
+    <code class="prettyprint">bool RF24::write (const void * buf, uint8_t len)</code>
+    <p>So we pass the address of the maze and the number of bytes we are sending to the write function.</p>
+    <code class="prettyprint">bool ok = radio.write( &maze, 25 * sizeof(unsigned char));</code>
+    <p>This is modified similarly in the receiving end of the Arduino. We created a 5 by 5 array called caroline (we love our team members, we swear!) and pass the address of caroline and the number of bytes we are expecting to the read function to receive the maze.</p>
+    <pre class="prettyprint">
+unsigned char caroline[5][5];
+done = radio.read( &caroline, 25 * sizeof(unsigned char)); 
+printf("Got payload Caroline %dms...",got_time);
+Serial.println("");
+for (int i = 0; i < 5; i++){
+  for (int j = 0; j < 5; j++){
+    Serial.print(caroline[i][j]);
+    Serial.print(", ");
+  }
+  Serial.println("");
+}
+</pre>
+    <h3>Updating the maze array<small>dependent only on the updated robot information</small></h3>
+    <p>In this lab, we are only sending one byte, where the last 5 bits are used for position, second and third bits are used as orientation, and the first bit can be the checked bit.</p>
+
     <hr>
     <h1>FPGA Team: Christina, Ian, Pei-Yi</h1>
-    <h3>4x5 Maze Grid</h3>
-    <h3>Receiving Radio Bits</h3>
-    <h3>Updating Robot Position</h3>
+    <h3>Displaying the grid</h3>
+    <p>From lab 3, we were able to draw four grid squares to the screen. Extending this to draw the entire 4-by-5 grid only required adding more conditions to our drawing machine. We added more conditionals on our FPGA that tested the x and y coordinates of each pixel to see if it lies in any of our grid squares. If it lies within one of the grid squares we may set it to be the desired color for that square. This required 20 conditional statements: one for each block. Though the verilog code is long and unpleasant, we reasoned that this is unimportant as the hardware implementation will be the same whether or not we condense the code.</p>
+
+    <h3>Serial Peripheral Interface (SPI) Implementation</h3>
+    <p>Although the GPIO layout of the FPGA seems suited for parallel communication (with many pins all accessible through one register), we decided to implement serial communication between the Arduino and FPGA because it requires less wiring, has libraries on Arduino, and provides for a better learning experience.</p>
+    <p>Using the existing Arduino SPI library, we  wrote a simple Arduino program that sends a sequence of unit increasing eight bit numbers on a loop every second. Only three pins were required on the Arduino: SPI Clock, Slave Select, and MOSI (no MISO was required because we are only sending data from Arduino to FPGA).</p>
+    <p>The more difficult side of establishing the serial connection was programming the FPGA to read in data. To do this, we needed to make a sequential logic block that runs on the FPGA system clock. The sequential logic samples the SPI Clock input (which works because the FPGA clock is faster) as well as the SS and the MOSI to detect rising and falling edges. To detect edges, we had to store both the previous and current values of our signals so that we could compare them and detect changes.</p>
+    <p>The module for receiving data works as follows. The FPGA waits for SS to have a rising edge (we chose to have an active high SS) whereupon we start listening for clock edges because the transmission has begun. When we detect a rising edge of the clock, we store the value of the MOSI at that time in an 8-bit register at an index kept by another register that is initialized to 7 at the beginning of a transmission and decremented at every clock edge. By the time SS goes low again, we have populated the 8-bit register with the data sent over the MOSI line and successfully completed a transmission.</p>
+    <p>To test that we implemented SPI correctly, we mapped the received values to the LED. The result was as predicted, the LED’s counted up in binary at a rate of one number per second.</p>
+    <h3>Drawing Robot to the Screen</h3>
+    <p>After we read in the position of the robot from the Arduino, the byte of data is saved into an array that contains 20 8-bit registers. Each 8-bit register represents one node or grid square on the maze. From this 8-bit information, we are able to programmatically determine the color each grid should be. The robot's position was arbitrarily determined to be red for this exercise. When the chip select signal has a falling edge, our Arduino has finished receiving all the bits and saves the 8 bits, then turns the corresponding grid data into the encoding for red.</p>
+    <h3>Displaying Visited Locations</h3>
+    <p>Now that we have the grid turning red for each new node the robot has explored, to implement visited locations, we need an extra register that saves the coordinate of the last register. Now, every time the robot receives a new location, it will update the color of that new location to red, while also updating the previous location's color to green. Then it will update the value in this register to the new location.</p>
   </div>
+
     <!-- Footer -->
     <div id="footer">
       <div class="container">

@@ -107,9 +107,16 @@ for (int i = 0; i < 5; i++){
   Serial.println("");
 }
 </pre>
+    <img src="receive.png" align="center">
     <h3>Updating the maze array<small>dependent only on the updated robot information</small></h3>
-    <p>In this lab, we are only sending one byte, where the last 5 bits are used for position, second and third bits are used as orientation, and the first bit can be the checked bit.</p>
-
+    <p>A more efficient way to send data is to only send updated robot information instead of the entire maze. For example, in the final maze, we only sent 
+	    new information when the robot is at intersection. For simplification, in this lab, we are only sending one byte of data, where the bits 0-4 are used for position 
+	    (since there are 4x5 = 20 positions, 2^5 > 20), bits 5-6 are used as orientation(00 means the robot is facing south, 01 means facing right,
+	    10 means north, 11 means left) and bit 7 is used as the checked bit (It is 1 when bit 0-6 has an odd number of 1 and it is 0 
+	    when bit 0-6 has an even number of 1.) For example, sending 10100000 would mean the robot is currently at grid 0 facing right.
+	  </p>
+    
+    
     <hr>
     <h1>FPGA Team: Christina, Ian, Pei-Yi</h1>
     <h3>Displaying the grid</h3>

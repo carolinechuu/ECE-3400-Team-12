@@ -109,10 +109,13 @@ for (int i = 0; i < 5; i++){
 </pre>
     <img src="receive.png" align="center">
     <h3>Updating the maze array<small>dependent only on the updated robot information</small></h3>
-    <p> more efficient way to send data is to only send updated robot information instead of the entire maze.
+    <p>A more efficient way to send data is to only send updated robot information instead of the entire maze.
 	    So we modified our code to only send 3 bytes of data in a variable called packMaze, where position 0 of 
 	    packMaze is the X-position of the maze, position 1 is the Y-position of the maze and position 2 is the data 
-	    in that X,Y position.</p>
+	    in that X,Y position, and modified radio write function to only send 3 bytes of data instead of 25 bytes. In the receiving
+	  end of the code. We initialized the 5x5 maze to 0 and declared a 3 bytes receiving buffer and configured the radio read function
+	  to receive 3 bytes of data. Once we receive the buffer data, we use data in positions 0 and 1 of the buffer as index to the maze 
+	    and store data in position 2 of the buffer to the corresponding location in the maze. Working great :D  </p>
 <pre class="prettyprint">
 //Radio Sending Code--------------------------
 unsigned char packMaze[3];

@@ -168,9 +168,9 @@ In the final maze, we will be using the more efficient way to send data, which o
     <p>Now that we have the grid turning red for each new node the robot has explored, to implement visited locations, we need an extra register that saves the coordinate of the last register. Now, every time the robot receives a new location, it will update the color of that new location to red, while also updating the previous location's color to green. Then it will update the value in this register to the new location.</p>
     <h3>Warm advice for future people working on FPGA</h3>
 	  <p>1. Make sure to voltage divide the 5V GPIOs of the arduino to 3V before connecting to the 3.3V GPIOs FPGA (We connected the 5V 
-		  GPIOs dirctly at one point. We got some weird signals from time to time but it didn't blow the FPGA pins :D</p>
+		  Arduino GPIOs dirctly to the FPGA at one point. We got some weird signals from time to time but it didn't blow the FPGA pins :D)</p>
 	  <p>2. Make sure to initialize reg variables in the verilog code using "intial begin" "end" or compliers would assign something
-	  weird to it</p>
+	  weird to them</p>
 </div>
 
     <!-- Footer -->

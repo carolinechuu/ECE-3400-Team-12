@@ -109,8 +109,39 @@ for (int i = 0; i < 5; i++){
 </pre>
     <img src="receive.png" align="center">
     <h3>Updating the maze array<small>dependent only on the updated robot information</small></h3>
-    <p>A more efficient way to send data is to only send updated robot information instead of the entire maze. For example, in the final maze, we only sent 
-	    new information when the robot is at intersection. For simplification, in this lab, we are only sending one byte of data, where the bits 0-4 are used for position 
+    <p> more efficient way to send data is to only send updated robot information instead of the entire maze.
+	    So we modified our code to only send 3 bytes of data in a variable called packMaze, where position 0 of 
+	    packMaze is the X-position of the maze, position 1 is the Y-position of the maze and position 2 is the data 
+	    in that X,Y position.</p>
+	      <pre class="prettyprint">
+		//Radio Sending Code--------------------------
+		unsigned char packMaze[3];
+		packMaze[0] = 3; //X-position stored in position 0
+		packMaze[1] = 2; //Y-position stored in position 1
+		packMaze[2] = 2; //Data stored in position 2
+		bool ok = radio.write( &packMaze, 3 * sizeof(unsigned char)); //Sending 3 bytes of data
+
+		//Radio Receiving Code------------------------
+		unsigned char caroline[3];  //Cheers to caroline, the best receiving buffer
+		unsigned char maze[5][5] ={0}; //Initialize the 5x5 maze to 0
+		done = radio.read( &caroline, 3 * sizeof(unsigned char)); //Receiving 3 bytes of data
+		printf("Got payload Caroline %dms...",got_time);
+		maze[caroline[0]][caroline[1]] = caroline[2]; //Store data into maze position
+
+		//Print the maze
+		Serial.println("");
+		for (int i = 0; i < 5; i++){
+		  for (int j = 0; j < 5; j++){
+		    Serial.print(maze[i][j]);
+		    Serial.print(", ");
+		  }
+		  Serial.println("");
+		}
+		</pre>
+	  <img src="receive2.png" align="center">
+	  <p>
+In the final maze, we will be using the more efficient way to send data, which only sent new information when the robot is at intersection. 
+		 For simplification, in this lab, we are only sending one byte of data, where the bits 0-4 are used for position 
 	    (since there are 4x5 = 20 positions, 2^5 > 20), bits 5-6 are used as orientation(00 means the robot is facing south, 01 means facing right,
 	    10 means north, 11 means left) and bit 7 is used as the checked bit (It is 1 when bit 0-6 has an odd number of 1 and it is 0 
 	    when bit 0-6 has an even number of 1.) For example, sending 10100000 would mean the robot is currently at grid 0 facing right.

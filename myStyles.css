@@ -13,11 +13,6 @@
     font-family:'Saira Extra Condensed', sans-serif;
 }
 
-.jumbotron{
-    background-color:#193446; /*matches html body below*/
-	color:#fad5a6;
-}
-
 html body {
     background-color:#193446; /*matches jumbotron bg color*/
 }

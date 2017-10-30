@@ -71,7 +71,8 @@
 </nav>
     
   <!--Page content -->
-<iframe align="center" width="560" align="center" height="315" src="https://www.youtube.com/embed/vRfD_tyxUS8" frameborder="0" allowfullscreen></iframe>
+<div align="center" class="container">
+<iframe width="560" align="center" height="315" src="https://www.youtube.com/embed/vRfD_tyxUS8" frameborder="0" allowfullscreen></iframe></div>
 
 <div class="body-content">
 <h1>Purpose</h1>
@@ -145,13 +146,13 @@ The discrete time to frequency Fourier transform is given by:</p>
 
 <h3>Distinguish a 660Hz tone <small class="text-muted">from tones at 585Hz and 735Hz</small></h3>
 <p>After building our microphone, which successfully amplified the sound input, we set out to distinguish a 660Hz tone from close frequencies (namely 585Hz and 735Hz) and background noise. We hooked up the amplification output to the analog pin A0 of the Arduino and ran the below code where Pei-Yi extracted from the Open Music Labs Arduino FFT library.</p>
-<pre>
+<pre class="prettyprint">
 //Uses default ADC sampling frequency = 9600 Hz
 
 #define LOG_OUT 1 // use the log output function
 #define FFT_N 256 // set to 256 point fft
 
-#include <FFT.h> // include the library
+#include &lt;FFT.h&gt; // include the library
 
 void setup() {
   Serial.begin(115200); // use the serial port
@@ -196,6 +197,51 @@ byte return_freq() {
 
 <hr>
 <h1>Optical Team: Christina, Caroline, Ian</h1>
+<p>The objective of the lab session for the optics team was to build a circuit that produced a signal which could be read into the arduino to recognize “treasures” which our robot will encounter when navigating the maze. The treasures are blinking infrared LED circuits that blink at 7kHz, 12kHz, and 17kHz. In order to find and map the locations of these treasures in the maze, we need a method for detecting infrared light and also a method for determining the frequency at which the light is blinking.</p>
+<h3>Infrared Circuit</h3>
+<p>To detect the light, we can build a simple circuit using a phototransistor which operates at the wavelength of infrared light. The circuit is as follows:</p>
+<table>
+<tr>
+  <td align="center"><img src="Optics2.png"></td>
+</tr>
+</table>
+<p>When infrared light is present, the phototransistor will pass a set current proportional to the intensity of the IR light. This current will create a voltage drop across the resistor, which will be measured as Vout. Thus, high voltages correspond to high intensities of IR light. Holding a treasure up to our phototransistor and measuring the output on our scope resulted in this waveform:</p>
+<table>
+<tr>
+  <td align="center"><img src="Optics3.png"></td>
+</tr>
+</table>
+<p>This waveform is periodic at frequency of 6.849kHz, which is approximately our expected frequency, 7kHz. The measured amplitude of Vout depends much on the distance at which the treasure is held. We tried different resistor values to achieve a larger voltage drop (Vout) and settled on 5kΩ because it produced reasonable amplitudes.</p>
+
+<h3>Sampling and FFT Analysis</h3>
+<p>To read the signal into the Arduino, we used the on-board ADC in free sampling mode. By default, the Arduino analog reading function samples at about 9.6kHz. Our treasures blink at much higher frequencies than this. The highest frequency treasure blinks at 17kHz, so, by Nyquist’s sampling theorem, our sampling rate should be at least 34kHz.</p>
+<p>To achieve this frequency, we changed the prescaler value for the ADC clock from 128 to 32 so that it can take samples as fast as 38.5kHz. The ADC was also put in free-running mode so that we do not need to call a read function. Instead, the ADC throws an interrupt when a sample has been taken. In the Interrupt Service Routine, we take the samples and store them in memory. Much of the code for changing these registers on the Arduino was adapted from an Arduino Blog.</p>
+<p>With the samples stored in memory, we then used an FFT algorithm to produce the spectrum of our measured waveform. The FFT algorithm used is from Open Music Labs, and pieces of their example code was also utilized. We ran the FFT on samples collected from our circuit with the treasure held near. Our initial results, which we output to the serial monitor and plotted in MATLAB, displayed poorly as the peaks were not very definitive:</p>
+<table>
+<tr>
+  <td align="center"><img src="Optics5.png"></td>
+</tr>
+</table>
+
+<h3>Bandpass Filter</h3>
+<p>We determined that our FFT peaks were not definitive because of other sources of infrared rays in our environment at other frequencies and their harmonics such as the lights above. To solve this problem, we made a bandpass filter with the specifications of allowing signals with frequencies between 6kHz and 18kHz and a gain of 5. The results of feeding the output through the filter first before inputting to the Arduino are shown below. It is clear that the filter had attenuated the undesired frequencies while providing a small gain to the desired frequencies. The peaks for the 7 kHz and 12 kHz are definitive and consistent now.</p>
+<img src="Optics6.png">
+
+<table>
+<tr>
+  <td align="center"><img src="Optics1.png"></td>
+  <td align="center"><img src="Optics4.png" ></td>
+</tr>
+<tr>
+  <th>7kHz Treasure</th>
+  <th>12kHz Treasure</th>
+</tr>
+</table>
+
+<h3>Calculation of Bin Number</h3>
+<p>As mentioned in earlier sections, we used a sampling rate of 38.5kHz. We took 256 samples, which means that each bin is approximately 150.39 Hz wide. Since the signal is symmetrical across the “negative” and positive frequencies, we can truncate the result of the fft in half i.e. 128 data points and plot it. 7kHz/150.39 = 46.5. Since bin 1 is actually DC (0 frequency), 7kHz should appear at bin 47.5. So we expected there to be a peak around bin 46 to 48, which was the case as shown above. For the 12 kHz treasure, the bin number should be 1+ 12kHz/150.39 = 80.79, or around bin 79 to 81. Since this is all imprecise math, we had the conditionals to check for one or more of these bins to exceed a certain threshold that was obtained through observation of the data.</p>
+</div>
+
 
     <!-- Footer -->
     <div id="footer">

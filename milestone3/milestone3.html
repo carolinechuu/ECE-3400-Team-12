@@ -109,7 +109,7 @@ class Node {
     int neighborCoord(Direction facing, int sensor, int currPos);
 };
 	</pre>
-	<p>Using these classes, in the video above when the robot detects an intersection, we output the robot's current position, current direction, any walls detected, and the next position we travel to.</p>
+	<p>Using these classes, in the video above when the robot detects an intersection, we output the robot's current position, current direction, any walls detected, and the next position we travel to. When the robot reaches the final node, it prints a done text.</p>
 	<p>There are a few difficulties in representing a maze as a tree. The biggest problem is that our maze "tree" isn't necessarily a tree, it could be a graph. This means that if we have 4 grids arranged in a square, there is a possibility that our robot would be stuck in that loop and exploring those nodes over and over without ever moving on to a different node. This was taken care of using a flag bit in <code>wallTreasures</code>. When a Node has been expanded (meaning that we have looked at its walls and neighbors), this flag signals that the node has been fully explored. Next time, if we see this Node, we do not add it to the tree, and we do not explore it again.</p>
 	<hr>
 	<h1>Implementing the DFS</h1>

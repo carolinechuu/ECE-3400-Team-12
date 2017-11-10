@@ -73,7 +73,10 @@
   <!--Page content -->
   <div class="body-content">
 	<h1>Depth First Search</h1>
-	<p>The algorithm we chose to use for our robot is the depth-first search. In depth-first search, we search a tree structure by going down to the lowest leaf node, then it traverses back up the tree to look for the next unexplored node. We chose this algorithm because our nodes, which reperesent grid squares in the maze, are adjacent to each other on the tree, so using a depth-first search would be most efficient in order to prevent doing unnecessary traveling. In addition, depth-first search has lower memory requirements than breadth-first search, making it very ideal for a limited-memory microprocessor like the Arduino.</p>
+	<p>The algorithm we chose to use for our robot is the depth-first search. In depth-first search, we search a tree structure by going down to the lowest leaf node, then it traverses back up the tree to look for the next unexplored node.</p>
+	<img align="center" src="dfs-order.gif">
+	<p><a href="https://www.cp.eng.chula.ac.th/~piak/teaching/ioi2007/olympic2007/searchimp.html">Source</a> of image</p>
+	<p>We chose this algorithm because our nodes, which reperesent grid squares in the maze, are adjacent to each other on the tree, so using a depth-first search would be most efficient in order to prevent doing unnecessary traveling. In addition, depth-first search has lower memory requirements than breadth-first search, making it very ideal for a limited-memory microprocessor like the Arduino.</p>
 	<hr>
 	<h1>Implementing the Tree</h1>
 	<p>To implement our tree structure for the maze, we created the class Node. Node will represent each square of the grid. This structure will keep track of all the coordinate, wall, and treasure info for that particular grid space. It also keeps track of the grid's neighbors, and where the robot has come from to reach that grid space (parent Node). Below our Node header file.</p>
@@ -131,7 +134,7 @@ class Explorer {
 	<h1>Robot Implementation</h1>
 	<p>Now that we've discussed the classes we wrote that implement the tree and searching, we can finally talk about the big idea of how we're implementing our robot. (You're almost there, TAs!) The idea is that as our robot traverses the maze, it builds a tree using our Node class. We initialize all 20 Nodes in <code>setup()</code>, since our maze is a fixed size. As the robot explores, it builds the neighbor/parent connections as we've set up in our tree.</p>
 	<p></p>
-
+	<hr>
 	<h1>Simulation</h1>
 	<iframe width="560" height="315" src="https://www.youtube.com/embed/oiz-XoUyRE8" frameborder="0" allowfullscreen></iframe>
 	<p>Given the task of developing a maze exploration algorithm, it is inconvenient to have to go into lab and set up a maze for our robot any time we want to run tests. In this milestone, we built a simulation in Java to model the maze and the robot as it explores the maze. The user can track the location and direction of the robot as well as explored/unexplored portions of the maze through a graphic display. The simulator will also keep track of the number of visitable nodes still unvisited and print "Done!" to the console upon maze completion. Using the simulation, we can build and test algorithms on randomly generated mazes to determine the fitness of any algorithms we plan to use on our robot. Also, when implementing the algorithms in simulation, we can get a better idea for how much memory will be needed to implement it on Arduino.</p>

@@ -5,9 +5,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">    
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="myStyles.css">
+    <link rel="stylesheet" type="text/css" href="../myStyles.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed|Saira+Extra+Condensed" rel="stylesheet">
-    <title>Competition Update | Team Firework</title>
+    <title>Final Competition | Team Firework</title>
   </head>
 
   <body>
@@ -15,7 +15,7 @@
   	<div class="page-header">
   		<div class="container-fluid">
 		<h1 align="center"><span style="color:#fad5a6"><b>Team Firework</b></span></h1>
-		<h3 align="center"><span style="color:#fad5a6">Competition Integration</span></h3>
+		<h3 align="center"><span style="color:#fad5a6">Final Competition</span></h3>
 		</div>
 		<!--<div class="container" align="center">
 			<audio src="audio/firework.mp3" loop="loop" controls controlsList="nodownload"><p>Oh no! You can't hear our music.</p></audio>
@@ -46,17 +46,17 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Assignments <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="lab1/lab1.html">Lab 1</a></li>
-            <li><a href="lab2/lab2.html">Lab 2</a></li>
-            <li><a href="lab3/lab3.html">Lab 3</a></li>
-            <li><a href="lab4/lab4.html">Lab 4</a></li>
+            <li><a href="../lab1/lab1.html">Lab 1</a></li>
+            <li><a href="../lab2/lab2.html">Lab 2</a></li>
+            <li><a href="../lab3/lab3.html">Lab 3</a></li>
+            <li><a href="../lab4/lab4.html">Lab 4</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="milestone1/milestone1.html">Milestone 1</a></li>
-            <li><a href="milestone2/milestone2.html">Milestone 2</a></li>
-            <li><a href="milestone3/milestone3.html">Milestone 3</a></li>
-            <li><a href="milestone4/milestone4.html">Milestone 4</a></li>
+            <li><a href="../milestone1/milestone1.html">Milestone 1</a></li>
+            <li><a href="../milestone2/milestone2.html">Milestone 2</a></li>
+            <li><a href="../milestone3/milestone3.html">Milestone 3</a></li>
+            <li><a href="../milestone4/milestone4.html">Milestone 4</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="competition.html">Final Competition!</a></li>
+            <li><a href="../competition.html">Final Competition!</a></li>
           </ul>
         </li>
         <li><a href="tutorials.html">Tutorials</a></li>
@@ -85,7 +85,16 @@
       <p><b>Solution 2: Number of correct values</b><br> Our second solution is to take 6 values, and return a wall detected if at least 4 values detect a wall. This prevents averaging of any "spikes" in data.</p>
       <hr>
       <h1>Line Sensors</h1>
-      <p>Occasionally, our line sensors would sense a false intersection and detect. To correct this, we also averaged these values.</p>
+      <p>At first, our line sensors were giving us very high values. There were faulty connection errors on our PCB (as the header pins were too big and our wires slipped easily), and also we had changed the position of the line sensors on the mount to prevent any values from falsely detecting an intersection when the robot tipped. When we finally settled on our final line sensor and mount design, we had to recalibrate the detection value.</p>
+      <hr>
+      <h1>DFS Optimization</h1>
+      <p>After we have thoroughly tested the DFS, we started adding optimizations. The largest optimization is to prevent the last backtrack, where the usual DFS algorithm would return to the root of the tree (the starting node). But we wanted to do this in a method where we don't have to save the already-traversed path. So we used what we call a "root update" condition. Say we have the tree below.</p>
+      <img src="dfs-rootupdate1.jpg" align="center">
+      <p>The blue circles represent traversed nodes. We have gone from node 19 to 18 to 17, then back to 18 and 19. We are going to be moving to node 15 next. However, 15 is the last unexplored neighbor of 19. We don't need 19 to be the root of the tree anymore! So when we are moving to the last unexplored neighbor of the root node, then we can update our tree's root.</p>
+      <img src="dfs-rootupdate2.jpg" align="center">
+      <p>Similarly, in this tree, we have updated our root to 15, traversed to 15, 14, and back to 15 again. 11 is the last unexplored neighbor of the root (15). So when we go to 11, we update the root to 11. Now that 11 is the root and there are no more neighbors, we know we are done. In essence, this prevents the last backtrack in a usual DFS, where the robot would have to traverse from 11, to 15, to 19, then end.</p>
+      <hr>
+      <h1>Treasure Detection</h1>
     </div>
 
     <!-- Footer -->

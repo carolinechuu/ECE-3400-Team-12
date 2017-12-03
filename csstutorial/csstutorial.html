@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../myStyles.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed|Saira+Extra+Condensed" rel="stylesheet">
-    <title>HTML Tutorial | Team Firework</title>
+    <title>CSS Tutorial | Team Firework</title>
   </head>
 
   <body>
@@ -15,7 +15,7 @@
   	<div class="page-header">
   		<div class="container-fluid">
 		<h1 align="center"><span style="color:#fad5a6"><b>Team Firework</b></span></h1>
-		<h3 align="center"><span style="color:#fad5a6">HTML Tutorial</span></h3>
+		<h3 align="center"><span style="color:#fad5a6">CSS Tutorial</span></h3>
 		</div>
 		<!--<div class="container" align="center">
 			<audio src="audio/firework.mp3" loop="loop" controls controlsList="nodownload"><p>Oh no! You can't hear our music.</p></audio>
@@ -42,6 +42,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li><a href="index.html">Home<span class="sr-only">(current)</span></a></li>
+        <li><a href="sparky.html">Sparky</a></li>
         <li><a href="team.html">Team</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Assignments <span class="caret"></span></a>
@@ -75,63 +76,7 @@
     
   <!--Page content -->
   <div class="body-content">
-    <h1>First, let's do an activity...</h1>
-    <p>Go to your favorite webpage and, in your browser, find "Inspect page source" (Ctrl+U in Chrome). This is HTML! The website's server is sending this gobble of text (HTML = HyperText Markup Language) over to your computer every time you load a web page. Then your web browser interprets the text to display your web page. Things could vary between browsers, so some webpages might look different on different browsers.</p>
-    <h3 align="center">Now you know what HTML is! Let's start writing some :)</h3>
-    <hr>
-    <h1>What do I need to code webpages?</h1>
-    <p>You only need the most basic software - your favorite text editor, and your favorite web browser! In this tutorial, I'll be using Sublime Text and Google Chrome. Other than that, you'll also need some patience because there will be lots of gobbles of text everywhere and a very tiresome lecturer typing it all. :P</p>
-    <p>BONUS: If you have 2 screens, or just one large screen, it's easiest to split-screen it. Have your text editor </p>
-    <h1>Pull everything up!</h1>
-    <p>Pull up your text editor and save your file as "myHTML.html" (or any other name you want). Then, pull up that same file in your web browser. You can click and drag, or just use right click -> open with (on Windows). Once you start typing on your text editor, you'll need to save your changes, then press refresh on your web browser to see what you did.</p>
-    <p>W3Schools' HTML tutorial has a <a href="https://www.w3schools.com/html/tryit.asp?filename=tryhtml_basic">side-by-side editor</a> which does the same thing!</p>
-    <hr>
-    <h1>HTML Tags</h1>
-    <p>HTML is simply a text formatter. You type the text you want on your web page, then specify how you want that text formatted. You can put text in a box, format the properties of the box, stick in images into your text, have boxes pop up when you hover over other boxes, etc, etc, etc, a lot of cool stuff.</p>
-    <p>To tell web browsers what is what, we use HTML tags. These are the thingies enclosed in angle brackets <code class="prettyprint">&lt;&gt;</code>. There are a whole lot of different ones. I recommend looking <a href="https://www.w3schools.com/tags/ref_byfunc.asp">here</a> for a nice list.</p>
-    <p>Let's do an example. Here's the HTML.></p>
-    <pre class="prettyprint">
-&lt;html&gt;
-&lt;head&gt;
-	&lt;title&gt;Hello World!&lt;/title&gt;
-&lt;/head&gt;
 
-&lt;body&gt;
-	&lt;h1&gt;This is the largest header.&lt;/h1&gt;
-	&lt;h2&gt;This is the second largest header.&lt;/h2&gt;
-	&lt;h6&gt;There are 6 headers.&lt;/h6&gt;
-	&lt;hr&gt; &lt;!--This is a horizontal line--&gt;
-	&lt;p&gt;This is a paragraph. We can insert &lt;a href="#"&gt;links&lt;/a&gt; into our text. It can make it &lt;b&gt;bold&lt;/b&gt;, &lt;i&gt;italicized&lt;/i&gt;, or &lt;del&gt;striked&lt;/del&gt;.&lt;/p&gt;
-
-	&lt;table border="1"&gt;
-		&lt;tr&gt; &lt;!--This is row 1.--&gt;
-			&lt;td&gt;Here is a table.&lt;/td&gt;
-			&lt;td&gt;It's kind of squished&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;Help!&lt;/td&gt;
-			&lt;td&gt;My text needs space!&lt;/td&gt;
-		&lt;tr&gt;
-	&lt;/table&gt;
-&lt;/body&gt;
-
-&lt;/html&gt;
-    </pre>
-    <p>And here's the page that Chrome interprets from that text.</p>
-    <img src="basics.jpg">
-
-    <hr>
-    <h1>But that's really ugly...</h1>
-    <p>It really is kind of ugly-looking, isn't it? How do you get from something that's so plain to something that has super cool designs, navigation bars, pop ups, colors, etc, etc, etc? I thought you were going to teach me, Team Firework! Let's take another step and look at HTML attributes.</p>
-    <h1>HTML Attributes</h1>
-    <p>In the basic examples, there were some weird things inside the brackets, right? Like instead of just <code>&lt;table&gt;</code>, we had <code>&lt;table border="1"&gt;</code>. That extra bit of HTML is called an attribute. Every single tag has certain attributes you can put in. Think of it as a customization tool. Take a look at all the attributes you can use <a href="https://www.w3schools.com/tags/ref_attributes.asp">here</a>.</p>
-    <p>Here's an example.</p>
-    <p>And here's what that looks like in the web browser.</p>
-
-    <hr>
-    <h1>Getting a little bit closer!</h1>
-    <p>But only a little. To make things look even better, let's look into CSS (Cascading Style Sheets).</p>
-    <h1 align="center">Move to the <a href="csstutorial.html">CSS Tutorial</a></h1>
   </div>
 
     <!-- Footer -->

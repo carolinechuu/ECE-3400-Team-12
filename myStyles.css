@@ -110,6 +110,28 @@ h3{
   background-position: center;
   background-size: cover;
 }
+.slide5{
+  background-image: url('images/carousel5.jpg');
+  height: 500px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+.slide6{
+  background-image: url('images/carousel6.jpg');
+  height: 500px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+.slide7{
+  background-image: url('images/carousel7.jpg');
+  height: 500px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
 
 /******************** Body content */
 .body-content{

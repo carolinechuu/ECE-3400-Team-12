@@ -132,18 +132,61 @@
 			header to the three sensor wires. Now connecting the sensors to the system would simply be an easy snap and 
 			plug and it works like a charm :D. 
 		</p>
-		<table>
+		<table> 
 		  	<tr>
 		    		<td align="center">Eagle PCB Design with Comment</td>
 		    		<td align="center">Fabricated PCB</td>
 		  	</tr>
 		 	<tr>
-		    		<td><img src="../final_robot_design/PCB_Comment"></td>
-		    		<td><img src="../final_robot_design/Board"></td>
+		    		<td><img src="final_robot_design/PCB_Comment.png"></td>
+		    		<td><img src="final_robot_design/PCB.png"></td>
 		  	</tr>
 		</table>
-
-	
+		<table>
+		  	<tr>
+		    		<td align="center">Eagle Schematics</td>
+		    		<td align="center">Arduino Pin Assignment Table</td>
+		  	</tr>
+		 	<tr>
+		    		<td><img src="final_robot_design/Schematics.png"></td>
+		    		<td><img src="final_robot_design/Arduino_Pin_Table.png"></td>
+		  	</tr>
+		</table>
+		<p> Some thoughts for future improvements: 1. The long female pin header went out in the lab when the PCB came in, 
+			so we soldered the short female pin header on the board instead. We learned that the short female pin header 
+			doesn’t have a robust hold of the male pin connector. We should have re-soldered the long female pin header to 
+			the board to make our system more robust. 2. The PCB is very compact and this results in pin connectors blocking 
+			other pin connectors for the microphone circuitry and radio circuitry. We hacked and resolved the issue by stacking 
+			pin headers on top of pin headers to create more room. What we could have done differently in designing is to extend 
+			the PCB to make it bigger and more spread out to create more room. It might also be cool to create some good mounting 
+			structures on the PCB for microphone, treasure circuitries. Lastly, our design is based off Adafruit’s open source 
+			Proto Shield Design <a href="https://www.adafruit.com/product/2077?gclid=EAIaIQobChMInam-5qrz1wIVVbjACh1IMAF9EAQYASABEgL4efD_BwE">[link]</a> and 
+			we reused its already well aligned digital and analog pin vias, so as Sparkfun’s mux aligned pin out. 
+			We would like to thank Adafruit and sparkfun for this and are as well open sourcing our design to contribute back 
+			to the open source community. Here is the <a href="final_robot_design/Fireworks_PCB_1.1.sch">[link] to our Schematics</a> and 
+			here is the <a href="final_robot_design/Fireworks_PCB_1.1.brd">[link] to the PCB</a>.
+		</p>
+		
+		<h3>System Power Analysis</h3>
+		<p> We did a thorough System Power Analysis by going through the data sheet of each component and making sure each 
+			is powered at the correct operating voltage.</p> 
+		<img src="final_robot_design/Power_Analysis.png">
+		<p> We also calculated the total current drawn for each power source and made sure each power source can handle the current load.</p>
+			<ul>
+				<li> <p>For the 5V power bank, five components are drawing roughly 484mA of current, which is less 
+					than the max 1A outputting current of the power bank. The power bank is rated as 5000mAH, 
+					but in practice, it has some internal protection circuitry to prevent the battery from being
+					drawn below 20% of its capacity to avoid permanently damaging the battery inside. This leaves
+					us 4000mAH in practice. 4000mAH/484mA gives us roughly 8 hours of run time.</p> </li>
+				<li> <p>For the 3.3V Arduino power supply, two components are drawing below 1mA from the arduino with
+					temporary surge to ~11mA during radio transmission, which is still less than the max 200mA 
+					outputting current from the 3.3V Arduino power supply. </p> </li>
+				<li> <p>For the 9V battery supply, the Arduino Uno is drawing about 50mA of current, which is less 
+					than the max hundreds mA outputting current of the battery pack. A typical 9V battery pack 
+					has about 400mAH usable capacity, which translates to 400mAH/50mA roughly 8 hours of run time.</p> </li>
+			</ul>
+		
+		<h3>Cost Breakdown</h3>
   </div>
 
     <!-- Footer -->

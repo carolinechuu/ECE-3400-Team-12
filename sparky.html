@@ -138,17 +138,6 @@
 		<p class="first-page">Eagle Schematics</p>
 		<img src="final_robot_design/Arduino_Pin_Table.png" align="center" class="first-page">
 		<p class="first-page">Arduino Pin Assignment Table</p>
-				<td class="first-page" width="56%"><p>Eagle PCB Design with Comment</p></td>
-				<td class="first-page" width="44%"><p>Fabricated PCB</p></td>
-				<td class="first-page" width="56%"><p>Eagle PCB Design with Comment</p></td>
-				<td class="first-page" width="44%"><p>Fabricated PCB</p></td>
-		  	</tr>
-		</table>
-		<img src="final_robot_design/Schematics.png" class="first-page" class="center_picture">
-		<p class="first-page">Eagle Schematics</p>
-		<img src="final_robot_design/Arduino_Pin_Table.png" text-align="center" class="first-page">
-		<p class="first-page">Arduino Pin Assignment Table</p>
-		</p>
 	
 		<br>
 		<p> Some thoughts for future improvements: 1. The long female pin header went out in the lab when the PCB came in, 
@@ -162,12 +151,12 @@
 			Proto Shield Design <a href="https://www.adafruit.com/product/2077?gclid=EAIaIQobChMInam-5qrz1wIVVbjACh1IMAF9EAQYASABEgL4efD_BwE">[link]</a> and 
 			we reused its already well aligned digital and analog pin vias, so as Sparkfun’s mux aligned pin out. 
 			We would like to thank Adafruit and sparkfun for this and are as well open sourcing our design to contribute back 
-			to the open source community. Here is the <a href="final_robot_design/Fireworks_PCB_1.1.sch">[link] to our Schematics</a> and 
-			here is the <a href="final_robot_design/Fireworks_PCB_1.1.brd">[link] to the PCB</a>.
+			to the open source community. Here is the <a href="final_robot_design/Fireworks_PCB_1.1.sch">[link]</a> to our Schematics and 
+			here is the <a href="final_robot_design/Fireworks_PCB_1.1.brd">[link]</a> to the PCB.
 		</p>
 		
 		<hr>
-		<h3>System Power Analysis</h3>
+		<h1>System Power Analysis</h1>
 		<p> We did a thorough System Power Analysis by going through the data sheet of each component and making sure each 
 			is powered at the correct operating voltage.</p> 
 		<img src="final_robot_design/Power_Analysis.png" class="first-page">
@@ -179,7 +168,7 @@
 					but in practice, it has some internal protection circuitry to prevent the battery from being
 					drawn below 20% of its capacity to avoid permanently damaging the battery inside. This leaves
 					us 4000mAH in practice. 4000mAH/484mA gives us roughly 8 hours of run time.</p> </li>
-				<li> <p>For the 3.3V Arduino power supply, two components are drawing below 1mA from the arduino with
+				<li> <p>For the 3.3V Arduino power supply, two components are drawing below 1mA from the Arduino with
 					temporary surge to ~11mA during radio transmission, which is still less than the max 200mA 
 					outputting current from the 3.3V Arduino power supply. </p> </li>
 				<li> <p>For the 9V battery supply, the Arduino Uno is drawing about 50mA of current, which is less 
@@ -188,7 +177,7 @@
 			</ul>
 		
 		<hr>
-		<h3>System Cost Breakdown Table</h3>
+		<h1>System Cost Breakdown Table</h1>
 		<img src="final_robot_design/Robot_Cost.png" class="first-page">
 		
 		<hr>

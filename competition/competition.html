@@ -76,20 +76,20 @@
     
     <!--Page content -->
     <div class="body-content">
-	    <!--
     	<h1>It's All About Integration</h1>
-      <p>Now that we have all the components, it's time to put them together! We assigned our pins, put our sensors on a PCB, soldered together our treasure detection circuit, implemented the DFS and........</p>
-      <h3 align="center">Things Didn't Work :(</h3>
-      -->
+      <p>We did a lot of work since Milestone 4 for the final competition. Click the links below to jump to that part of our page!</p>
+      <ul>
+        <li><p><a href="#wallSensor">Wall/Distance Sensors</a></p></li>
+        <li><p><a href="#lineSensor">Line Sensors</a></p></li>
+        <li><p><a href="#dfsOptimization">DFS Optimization</a></p></li>
+        <li><p><a href="#treasureDetection">Treasure Detection</a></p></li>
+        <li><p><a href="#radio">Radio</a></p></li>
+        <li><p><a href="#unitTesting">Unit Testing</a></p></li>
+      </ul>
 	<hr>
-      	<h1>Wall Distance Sensors</h1>
-      <!--
-      <p>One wall sensor values were super inconsistent! The robot was detecting walls with false positives and false negatives, which throws off the maze mapping and traversal.</p>
-      <p><b>Solution 1: Averaging</b><br> We try to take an average over 5 values, with a slight delay of 25 milliseconds between each reading. (Without the delay, the 5 values were too similar.) This seemed to work for a while, but was heavily affected by shadows and lighting conditions.</p>
-      <p><b>Solution 2: Number of correct values</b><br> Our second solution is to take 6 values, and return a wall detected if at least 4 values detect a wall. This prevents averaging of any "spikes" in data.</p>
-      -->
+      	<h1><a name="wallSensor"></a>Wall/Distance Sensors</h1>
 	<p>One major problem we keep running into is incorrect wall detection, which is caused by the inconsistency of wall distance 
-		sensor value we are reading. The first solution we thought of is averaging. We created a for loop to take five 
+		sensor values. The first solution we thought of is averaging. We created a for loop to take five 
 		measurements instead of only one and used the average result to compare to the threshold. Initially, we were not 
 		aware of the ~20 ms sampling interval of the IR distance sensor and we took five consecutive measurement readings, 
 		which were essentially reading the same value. After consulting the IR distance sensor datasheet, we took into account 
@@ -107,7 +107,7 @@
 		under the wall sensors mount and this elevated the sensors to be higher and further away from the treasures. It 
 		successfully minimized treasures interference by a great deal.</p>
 	<hr>
-      	<h1>Line Sensors</h1>
+      	<h1><a name="lineSensor"></a>Line Sensors</h1>
     <!--
       <p>At first, our line sensors were giving us very high values. There were faulty connection errors on our PCB (as the header pins were too big and our wires slipped easily), and also we had changed the position of the line sensors on the mount to prevent any values from falsely detecting an intersection when the robot tipped. When we finally settled on our final line sensor and mount design, we had to recalibrate the detection value.</p>
     -->
@@ -123,7 +123,7 @@
 	    <img src="Line_Sensor_Mount.png" align="center">
 	    <hr>
 	    
-      <h1>DFS Optimization</h1>
+      <h1><a name="dfsOptimization"></a>DFS Optimization</h1>
       <p>After we have thoroughly tested the DFS, we started adding optimizations. The largest optimization is to prevent the last backtrack, where the usual DFS algorithm would return to the root of the tree (the starting node). But we wanted to do this in a method where we don't have to save the already-traversed path. So we used what we call a "root update" condition. Say we have the tree below.</p>
       <img src="dfs-rootupdate1.jpg" align="center">
       <p>The blue circles represent traversed nodes. We have gone from node 19 to 18 to 17, then back to 18 and 19. We are going to be moving to node 15 next. However, 15 is the last unexplored neighbor of 19. We don't need 19 to be the root of the tree anymore! So when we are moving to the last unexplored neighbor of the root node, then we can update our tree's root.</p>
@@ -131,7 +131,7 @@
       <p>Similarly, in this tree, we have updated our root to 15, traversed to 15, 14, and back to 15 again. 11 is the last unexplored neighbor of the root (15). So when we go to 11, we update the root to 11. Now that 11 is the root and there are no more neighbors, we know we are done. In essence, this prevents the last backtrack in a usual DFS, where the robot would have to traverse from 11, to 15, to 19, then end.</p>
       <hr>
 	    
-      <h1>Treasure Detection</h1>
+      <h1><a name="treasureDetection"></a>Treasure Detection</h1>
       <!--Ian!-->
 	    <p>As the final competition approached, we focused our attention on full completion and mapping of the maze. We had 
 		    our treasure circuitry set and mounted from Milestone 4, but we did not find as much time to test it as we 
@@ -151,8 +151,7 @@
 
       <hr>
 	    
-      <h1>Radio</h1>
-      <!--Felipe!-->
+      <h1><a name="radio"></a>Radio</h1>
 	    <p>The radio and FPGA map drawing were working by milestone 4, so please watch the milestone 4 video to see it in action. 
 		    The robot sends two bytes of data over radio at each intersection, one with the robot's location and orientation, 
 		    and one with the wall and treasure information at that node. Data is sent even if a node has been visited before, 
@@ -212,8 +211,12 @@
 </pre>
 	    <!--Code End-->
     <hr>
+
+    <h1>FPGA Doesn't Like Felipe</h1>
+    <iframe src="https://drive.google.com/file/d/1SOQSDHQnYnjm6C72gwSlSVazZXuo3BD_/preview" width="640" height="480"></iframe>
+    <hr>
 	    
-      	<h1>Unit Testing</h1>
+      	<h1><a name="#unitTesting"></a>Unit Testing</h1>
       <!--Xitang-->
 	    <p>Sensor threshold value often requires calibration depending on the environment and servo motor’s stopping signal 
 		    can sometimes change from 90 to 91 to 92 with frequent use. For ease of sensor calibration and debugging, 

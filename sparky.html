@@ -77,16 +77,16 @@
   <!--Page content -->
   <div class="body-content">
     <h1>Meet Sparky</h1>
-		<p>Team Fireworks is very excited to introduce you with our lovely robot Sparky. Sparky can detect the 660Hz 
-		  starting tone so as all three types of treasures, had one of if not the best System PCB (Kirstin said 
-		  she love it) and won the fifth place in the 2017 ECE3400 Maze Mapping Robot Competition :D
+		<p>Team Fireworks is very excited to introduce you to our lovely robot Sparky. Sparky can detect the 660Hz 
+		  starting tone as well as all three types of treasures, had one of if not the best System PCB (Kirstin said 
+		  she loved it), and won fifth place in the 2017 ECE3400 Maze Mapping Robot Competition :D
 	  	</p>  
     <img src="images/sparky.jpg">
 	
 	<hr>
   	<h1>System Design</h1>
     		<h3>System Electrical Components Breakdown</h3>
-	  	<p>Here are the high level bullet listed view of all the electrical components Sparky used:
+	  	<p>Here is a high level view of Sparky's parts:</p>
 			<ul>
 				<li><p>4 QRE1113 Line Sensors <a href="https://www.sparkfun.com/products/9453">[Sparkfun Link]</a></p></li>
 					<ul>
@@ -115,42 +115,31 @@
 	  				</ul>
 				<li><p>1 Arduino Uno <a href="https://www.sparkfun.com/products/11021">[Sparkfun Link]</a></p></li>
 					<ul>
-						<li><p> Sparky’s brain to be programmed to follow line, avoid wall, listen to tone, detect treasure, communicate through radio and explore the maze using DFS </p></li>
+						<li><p> Sparky’s brain was programmed to follow the line, avoid walls, listen to the starting tone, detect treasure, communicate through radio, and explore the maze using DFS </p></li>
 	  				</ul>
 				<li><p>2 Treasure Detection Circuitry that we built using LF353 Op-amp <a href="http://www.ti.com/lit/ds/symlink/lf353-n.pdf">[Op-amp Datasheet Link]</a></p></li>
 	  		</ul>
-	  	</p>
 	
 		<hr>
-    		<h3>System PCB</h3>
-	  	<p> In this class, anything can go wrong will go wrong. Breadboard wirings are very prone to errors and it will go wrong:
-			a simple loose wire can screw the entire system and it might waste teams tons of time to debug such small wire 
-			loose issue. A System PCB is the way to go for robust system design, so we made a System PCB for Sparky. 
-			It basically condenses most of wirings to the PCB and gets rid of all the crazy nasty breadboard wirings. 
-			It has plugs for every electrical component and plugs are placed based on the actual position of the component
-			in the robot. On the PCB, each plug has three vias, two vias connected to power and ground and the other via 
-			is connected to the corresponding signal pin of the Arduino based on our Final Arduino Pin Assignment Table. 
-			(A 0.1uF decoupling capacitor is also placed directly next to each sensor to minimize noise from power bank 
-			and servo.) We then soldered 3x1 female pin header to the plug position of the PCB and also soldered male pin 
-			header to the three sensor wires. Now connecting the sensors to the system would simply be an easy snap and 
-			plug and it works like a charm :D. 
+    	<h1>System PCB</h1>
+	  	<p>In this class, anything that can go wrong will go wrong. Breadboard wirings are very prone to errors:
+			a simple loose wire can screw the entire system and it might waste teams tons of time to debug such a small connection issue. A System PCB is the way to go for robust system design, so we made a System PCB for Sparky. It condenses most of wirings gets rid of all the crazy nasty breadboard wirings. It has plugs for every electrical component and plugs are placed based on the actual position of the component in the robot. On the PCB, each plug has three vias, two vias connected to power and ground and the other via is connected to the corresponding signal pin of the Arduino based on our Final Arduino Pin Assignment Table. (A 0.1uF decoupling capacitor is also placed directly next to each sensor to minimize noise from power bank and servo.) We then soldered 3x1 female pin header to the plug position of the PCB and also soldered male pin header to the three sensor wires. Now connecting the sensors to the system would simply be an easy snap and 
+			plug and it works like a charm! :D 
 		</p>
-		<p>
 		<table> 
 		 	<tr>
 		    		<td width="56%"><img src="final_robot_design/PCB_Comment.png"></td>
 		    		<td width="44%"><img src="final_robot_design/PCB.png"></td>
 		  	</tr>
 			<tr>
-				<td align="center" width="56%><p>Eagle PCB Design with Comment</p></td>
-				<td align="center" width="44%><p>Fabricated PCB</p></td>
+				<td align="center" width="56%"><p>Eagle PCB Design with Comment</p></td>
+				<td align="center" width="44%"><p>Fabricated PCB</p></td>
 		  	</tr>
 		</table>
 		<img src="final_robot_design/Schematics.png" align="center" class="center_picture">
 		<p align="center">Eagle Schematics</p>
 		<img src="final_robot_design/Arduino_Pin_Table.png" align="center" class="center_picture">
 		<p align="center">Arduino Pin Assignment Table</p>
-		</p>
 	
 		<br>
 		<p> Some thoughts for future improvements: 1. The long female pin header went out in the lab when the PCB came in, 

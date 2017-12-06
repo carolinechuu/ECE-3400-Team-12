@@ -155,3 +155,13 @@ img {
 	max-width:100%;
 	max-height:100%;
 }
+
+//Fix top gap
+.page-header {
+	padding-bottom: 36px;
+	margin: 0px 0 20px;
+}
+.container-fluid {
+	    padding-top: 31px;
+}
+	

@@ -154,7 +154,7 @@
 
 
     <!--Page content -->
-    <div class="body-content" class="first-page">
+    <div class="body-content first-page">
     	<!--<h1>Greetings!</h1>-->
     	<p>🎉Welcome to our website, professors, TAs, students, or robot enthusiasts!🎉 
 		<br>💥You have reached Team Firework 💥
@@ -183,7 +183,8 @@
 	<div style="background: #000; margin: 0;>
  	<canvas id="canvas" style="cursor: crosshair;display: block;">Canvas is not supported in your browser.</canvas>
  	</div>
-	
+
+<script language="javascript">
      	// when animating on canvas, it is best to use requestAnimationFrame instead of setTimeout or setInterval
 // not supported in all browsers though and sometimes needs a prefix, so we need a shim
 window.requestAnimFrame = ( function() {
@@ -459,7 +460,7 @@ canvas.addEventListener( 'mouseup', function( e ) {
 
 // once the window loads, we are ready for some fireworks!
 window.onload = loop;
-
+</script>
 
 								     
 								     

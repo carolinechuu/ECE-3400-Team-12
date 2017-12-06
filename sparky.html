@@ -136,13 +136,13 @@
 			plug and it works like a charm :D. 
 		</p>
 		<table> 
-		  	<tr>
-				<td align="center"><p>Eagle PCB Design with Comment</p></td>
-				<td align="center"><p>Fabricated PCB</p></td>
-		  	</tr>
 		 	<tr>
-		    		<td width="50%"><img src="final_robot_design/PCB_Comment.png"></td>
-		    		<td width="50%"><img src="final_robot_design/PCB.png"></td>
+		    		<td width="56%"><img src="final_robot_design/PCB_Comment.png"></td>
+		    		<td width="44%"><img src="final_robot_design/PCB.png"></td>
+		  	</tr>
+			<tr>
+				<td align="center" width="56%><p>Eagle PCB Design with Comment</p></td>
+				<td align="center" width="44%><p>Fabricated PCB</p></td>
 		  	</tr>
 		</table>
 		<img src="final_robot_design/Schematics.png" align="center" class="center_picture"></td>
@@ -202,6 +202,23 @@
 			treasure. The fix we used for this is to detect the frequency 255 times before registering it as a 
 			treasure. The code example below applies to detecting 7kHz treasures with a print statement for debug.</p>
 		
+		<p> <pre>
+			<font color="#00979c">bool</font> <font color="#000000">treasureFound</font> <font color="#434f54">=</font> <font color="#00979c">false</font><font color="#000000">;</font>
+			<font color="#00979c">uint8_t</font> <font color="#000000">treasure7</font> <font color="#434f54">=</font> <font color="#000000">0</font><font color="#000000">;</font>
+
+			<font color="#5e6d03">if</font> <font color="#000000">(</font><font color="#000000">period</font> <font color="#434f54">&gt;</font> <font color="#000000">130</font> <font color="#434f54">&amp;&amp;</font> <font color="#000000">period</font> <font color="#434f54">&lt;</font> <font color="#000000">150</font> <font color="#434f54">&amp;&amp;</font> <font color="#434f54">!</font><font color="#000000">treasureFound</font> <font color="#434f54">&amp;&amp;</font> <font color="#000000">numTreasures</font> <font color="#434f54">&lt;</font> <font color="#000000">3</font><font color="#000000">)</font> <font color="#000000">{</font>
+			 &nbsp;<font color="#5e6d03">if</font> <font color="#000000">(</font><font color="#000000">treasure7</font> <font color="#434f54">==</font> <font color="#000000">255</font><font color="#000000">)</font> <font color="#000000">{</font>
+			 &nbsp;&nbsp;&nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">println</font><font color="#000000">(</font><font color="#005c5f">&#34;7kHz Treasure&#34;</font><font color="#000000">)</font><font color="#000000">;</font>
+			 &nbsp;&nbsp;&nbsp;<font color="#000000">treasureFound</font> <font color="#434f54">=</font> <font color="#00979c">true</font><font color="#000000">;</font>
+			 &nbsp;&nbsp;&nbsp;<font color="#000000">treasure7</font> <font color="#434f54">=</font> <font color="#000000">0</font><font color="#000000">;</font>
+			 &nbsp;&nbsp;&nbsp;<font color="#000000">numTreasures</font><font color="#434f54">++</font><font color="#000000">;</font>
+			 &nbsp;<font color="#000000">}</font>
+			 &nbsp;<font color="#000000">treasure7</font><font color="#434f54">++</font><font color="#000000">;</font>
+			 &nbsp;<font color="#000000">period</font> <font color="#434f54">=</font> <font color="#000000">0</font><font color="#000000">;</font>
+			<font color="#000000">}</font>
+			</pre>
+		</p>
+
 		<p>We also integrated conditions that only one treasure can be found per intersection and that there will be a maximum of 3 treasures per maze.</p>
 		<p>The circuit diagram shown below consists of four stages. The first stage is the treasure circuit from lab 2 
 			which allows for a signal to be generated from a treasure. The next stage is a high pass filter to remove 

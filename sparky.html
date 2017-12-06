@@ -77,8 +77,64 @@
   <!--Page content -->
   <div class="body-content">
     <h1>Meet Sparky</h1>
+		<p>Team Fireworks is very excited to introduce you with our lovely robot Sparky. Sparky can detect the 660Hz 
+		  starting tone so as all three types of treasures, had one of if not the best System PCB (Kirstin said 
+		  she love it) and won the fifth place in the 2017 ECE3400 Maze Mapping Robot Competition :D
+	  	</p>  
     <img src="images/sparky.jpg">
-    
+  	<h1>System Design</h1>
+    		<h2>Electrical Components Breakdown</h2>
+	  	<p>Here are the high level bullet listed view of all the electrical components Sparky used:
+			<ul>
+				<li>4 QRE1113 Line Sensors <a href="https://www.sparkfun.com/products/9453">[Sparkfun Link]</a></li>
+					<ul>
+						<li> Two sensors in the middle are used for line following </li>
+						<li> Two sensors at the left and right edge are used for turning and intersection detecting </li>
+	  				</ul>
+				<li>3 IR Distance Sensors <a href="https://www.sparkfun.com/products/242">[Sparkfun Link]</a></li>
+					<ul>
+						<li> One sensor for left wall detection, one for front, and one for right </li>
+	  				</ul>
+				<li>2 Servo Motors <a href="https://www.parallax.com/downloads/continuous-rotation-servo-documentation">[Parallelx Link]</a></li>
+					<ul>
+						<li> One motor for left wheel control and one for right wheel control </li>
+	  				</ul>
+				<li>1 MAX4466 Microphone <a href="https://www.adafruit.com/product/1063">[Adafruit Link]</a></li>
+					<ul>
+						<li> Used for starting tone detection </li>
+	  				</ul>
+				<li>1 nRF24L01+ 2.4GHz Wireless Transceiver Radio <a href="http://www.elecfreaks.com/store/24g-wireless-nrf24l01p-rfm04-p-118.html">[ElecFreaks Link]</a></li>
+					<ul>
+						<li> Used to transmit the maze exploration data from Sparky to the Fireworks Base Station </li>
+	  				</ul>
+				<li>1 74HC4051 Multiplexer <a href="https://www.sparkfun.com/products/13906">[Sparkfun Link]</a></li>
+					<ul>
+						<li> The Arduino Uno only had 6 analog input pins, but we need to use 8 pins (4 Line Sensors, 3 Wall Sensors, 1 Microphone). The multiplexer 74HC4051 allows us to use only one analog pin to read 3 wall sensor values by using 2 digital pins as signal select pins. </li>
+	  				</ul>
+				<li>1 Arduino Uno <a href="https://www.sparkfun.com/products/11021">[Sparkfun Link]</a></li>
+					<ul>
+						<li> Sparky’s brain to be programmed to follow line, avoid wall, listen to tone, detect treasure, communicate through radio and explore the maze using DFS </li>
+	  				</ul>
+				<li>2 Treasure Detection Circuitry that we built using LF353 Op-amp <a href="http://www.ti.com/lit/ds/symlink/lf353-n.pdf">[Op-amp Datasheet Link]</a></li>
+	  		</ul>
+	  	</p>
+	
+    		<h2>System Design</h2>
+	  	<p> In this class, anything can go wrong will go wrong. Breadboard wirings are very prone to errors and it will go wrong:
+			a simple loose wire can screw the entire system and it might waste teams tons of time to debug such small wire 
+			loose issue. A System PCB is the way to go for robust system design, so we made a System PCB for Sparky. 
+			It basically condenses most of wirings to the PCB and gets rid of all the crazy nasty breadboard wirings. 
+			It has plugs for every electrical component and plugs are placed based on the actual position of the component
+			in the robot. On the PCB, each plug has three vias, two vias connected to power and ground and the other via 
+			is connected to the corresponding signal pin of the Arduino based on our Final Arduino Pin Assignment Table. 
+			(A 0.1uF decoupling capacitor is also placed directly next to each sensor to minimize noise from power bank 
+			and servo.) We then soldered 3x1 female pin header to the plug position of the PCB and also soldered male pin 
+			header to the three sensor wires. Now connecting the sensors to the system would simply be an easy snap and 
+			plug and it works like a charm :D. 
+		</p>
+	
+
+	
   </div>
 
     <!-- Footer -->

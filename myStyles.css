@@ -16,8 +16,8 @@
 }
 
 html body {
-    background-color:#193446; /*matches jumbotron bg color*/
-    background-color:#EB7070; /*try some vibrant color*/	
+    	background-color:#EB7070; /*try some vibrant color*/
+	background-color:#193446; /*matches jumbotron bg color*/
 }
 
 h1,h2,h3,h4,h5,h6 {

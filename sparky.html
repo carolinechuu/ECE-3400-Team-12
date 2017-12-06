@@ -82,6 +82,8 @@
 		  she love it) and won the fifth place in the 2017 ECE3400 Maze Mapping Robot Competition :D
 	  	</p>  
     <img src="images/sparky.jpg">
+	
+	<br>
   	<h1>System Design</h1>
     		<h3>Electrical Components Breakdown</h3>
 	  	<p>Here are the high level bullet listed view of all the electrical components Sparky used:
@@ -119,6 +121,7 @@
 	  		</ul>
 	  	</p>
 	
+		<br>
     		<h3>System Design</h3>
 	  	<p> In this class, anything can go wrong will go wrong. Breadboard wirings are very prone to errors and it will go wrong:
 			a simple loose wire can screw the entire system and it might waste teams tons of time to debug such small wire 
@@ -134,24 +137,20 @@
 		</p>
 		<table> 
 		  	<tr>
-		    		<td align="center">Eagle PCB Design with Comment</td>
-		    		<td align="center">Fabricated PCB</td>
+				<td align="center"><p>Eagle PCB Design with Comment</p></td>
+				<td align="center"><p>Fabricated PCB</p></td>
 		  	</tr>
 		 	<tr>
-		    		<td><img src="final_robot_design/PCB_Comment.png"></td>
-		    		<td><img src="final_robot_design/PCB.png"></td>
+		    		<td><img src="final_robot_design/PCB_Comment.png" width="50%"></td>
+		    		<td><img src="final_robot_design/PCB.png" width="50%"></td>
 		  	</tr>
 		</table>
-		<table>
-		  	<tr>
-		    		<td align="center">Eagle Schematics</td>
-		    		<td align="center">Arduino Pin Assignment Table</td>
-		  	</tr>
-		 	<tr>
-		    		<td><img src="final_robot_design/Schematics.png"></td>
-		    		<td><img src="final_robot_design/Arduino_Pin_Table.png"></td>
-		  	</tr>
-		</table>
+		<img src="final_robot_design/Schematics.png"></td>
+		<p align="center">Eagle Schematics</p>
+		<img src="final_robot_design/Arduino_Pin_Table.png">
+		<p align="center">Arduino Pin Assignment Table</p>
+		
+		<br>
 		<p> Some thoughts for future improvements: 1. The long female pin header went out in the lab when the PCB came in, 
 			so we soldered the short female pin header on the board instead. We learned that the short female pin header 
 			doesn’t have a robust hold of the male pin connector. We should have re-soldered the long female pin header to 
@@ -167,10 +166,12 @@
 			here is the <a href="final_robot_design/Fireworks_PCB_1.1.brd">[link] to the PCB</a>.
 		</p>
 		
+		<br>
 		<h3>System Power Analysis</h3>
 		<p> We did a thorough System Power Analysis by going through the data sheet of each component and making sure each 
 			is powered at the correct operating voltage.</p> 
 		<img src="final_robot_design/Power_Analysis.png">
+		<br>
 		<p> We also calculated the total current drawn for each power source and made sure each power source can handle the current load.</p>
 			<ul>
 				<li> <p>For the 5V power bank, five components are drawing roughly 484mA of current, which is less 
@@ -186,7 +187,40 @@
 					has about 400mAH usable capacity, which translates to 400mAH/50mA roughly 8 hours of run time.</p> </li>
 			</ul>
 		
+		<br>
 		<h3>Cost Breakdown</h3>
+		<img src="final_robot_design/Robot_Cost.png">
+		
+		<br>
+		<h1>Schmitt Trigger Treasure Circuit In Depth Talk</h1>
+		<p>The treasure circuit was a success and we finally freed ourselves from the cumbersome FFT algorithm. 
+			Our final treasure detection system uses a schmitt trigger and feeds into a digital pin on the 
+			Arduino with interrupts enabled such that we can detect the time between rising edges of the 
+			blinking treasure sensor (the period) and use that to determine if we found a treasure and what 
+			kind. One of the problems we had to consider with this approach is that voltage spikes could trigger 
+			the interrupt and, if by coincidence the spikes occur at the right times, we could falsely detect a 
+			treasure. The fix we used for this is to detect the frequency 255 times before registering it as a 
+			treasure. The code example below applies to detecting 7kHz treasures with a print statement for debug.</p>
+		
+		<p>We also integrated conditions that only one treasure can be found per intersection and that there will be a maximum of 3 treasures per maze.</p>
+		<p>The circuit diagram shown below consists of four stages. The first stage is the treasure circuit from lab 2 
+			which allows for a signal to be generated from a treasure. The next stage is a high pass filter to remove 
+			the DC offset from the signal. We found that the DC offset varies greatly with the amount of sunlight and 
+			fluorescent light incident to the sensor. The third stage is a simple non-inverting amplifier which amplifies 
+			our signal by a factor of 5 so that less precision will be required by our schmitt trigger. The last stage is 
+			the schmitt trigger itself. The threshold was set to be about 640 mV, a value determined by measuring the 
+			output of the amplifier. We ended up having to tune this value quite a bit. Also, we originally had much 
+			lower resistor values until we realized that low resistor values drew too much current and drained our 
+			battery too quickly. The schmitt trigger worked well, but the range was limited by the open-loop performance 
+			of the op amp used at higher frequencies. For 17kHz treasures, our range was much less than for 7kHz due 
+			to the schmitt trigger taking time to resolve to a value relative to the time it takes the treasure to blink 
+			on and off. This issue did not end up being significant, however, once we adjusted our threshold to the optimal
+			point.</p>
+
+		<img src="final_robot_design/Treasure_Circuit.png"></td>
+		<p align="center">Treasure Circuit Schematics</p>
+		<img src="final_robot_design/Treasure_Mount.png">
+		<p align="center">Treasure Mount on Sparky</p>
   </div>
 
     <!-- Footer -->

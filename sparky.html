@@ -42,7 +42,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li><a href="index.html">Home</a></li>
-        <li><a href="sparky.html">Sparky</a></li>
+        <li class="active"><a href="sparky.html">Sparky</a></li>
         <li><a href="team.html">Team</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Assignments <span class="caret"></span></a>
@@ -78,8 +78,7 @@
   <div class="body-content">
     <h1>Meet Sparky</h1>
 		<p>Team Fireworks is very excited to introduce you to our lovely robot Sparky. Sparky can detect the 660Hz 
-		  starting tone as well as all three types of treasures, had one of if not the best System PCB (Kirstin said 
-		  she loved it), and won fifth place in the 2017 ECE3400 Maze Mapping Robot Competition :D
+		  starting tone, can detect all three types of treasures, has the best System PCB (Kirstin-approved), and won 5th place (out of 18 teams) in the Fall 2017 ECE3400 Maze Mapping Robot Competition :D
 	  	</p>  
     <img src="images/sparky.jpg">
 	
@@ -123,8 +122,7 @@
 		<hr>
     	<h1>System PCB</h1>
 	  	<p>In this class, anything that can go wrong will go wrong. Breadboard wirings are very prone to errors:
-			a simple loose wire can screw the entire system and it might waste teams tons of time to debug such a small connection issue. A System PCB is the way to go for robust system design, so we made a System PCB for Sparky. It condenses most of wirings gets rid of all the crazy nasty breadboard wirings. It has plugs for every electrical component and plugs are placed based on the actual position of the component in the robot. On the PCB, each plug has three vias, two vias connected to power and ground and the other via is connected to the corresponding signal pin of the Arduino based on our Final Arduino Pin Assignment Table. (A 0.1uF decoupling capacitor is also placed directly next to each sensor to minimize noise from power bank and servo.) We then soldered 3x1 female pin header to the plug position of the PCB and also soldered male pin header to the three sensor wires. Now connecting the sensors to the system would simply be an easy snap and 
-			plug and it works like a charm! :D 
+			a simple loose wire can screw the entire system and it might waste teams tons of time to debug such a small connection issue. A System PCB is the way to go for robust system design, so we made a System PCB for Sparky. It condenses most of wirings gets rid of all the crazy nasty breadboard wirings. It has plugs for every electrical component and plugs are placed based on the actual position of the component in the robot. On the PCB, each plug has three vias, two vias connected to power and ground and the other via is connected to the corresponding signal pin of the Arduino based on our Final Arduino Pin Assignment Table. (A 0.1uF decoupling capacitor is also placed directly next to each sensor to minimize noise from power bank and servo.) We then soldered 3x1 female pin header to the plug position of the PCB and also soldered male pin header to the three sensor wires. Now connecting the sensors to the system would simply be an easy snap and plug and it works like a charm! :D 
 		</p>
 		<table> 
 		 	<tr>
@@ -140,10 +138,8 @@
 		<p class="first-page">Eagle Schematics</p>
 		<img src="final_robot_design/Arduino_Pin_Table.png" align="center" class="first-page">
 		<p class="first-page">Arduino Pin Assignment Table</p>
-=======
-				<td class="first-page" width="56%><p>Eagle PCB Design with Comment</p></td>
-				<td class="first-page" width="44%><p>Fabricated PCB</p></td>
-=======
+				<td class="first-page" width="56%"><p>Eagle PCB Design with Comment</p></td>
+				<td class="first-page" width="44%"><p>Fabricated PCB</p></td>
 				<td class="first-page" width="56%"><p>Eagle PCB Design with Comment</p></td>
 				<td class="first-page" width="44%"><p>Fabricated PCB</p></td>
 		  	</tr>

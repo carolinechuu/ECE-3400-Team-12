@@ -126,16 +126,48 @@
     <h1>But that's really ugly...</h1>
     <p>It really is kind of ugly-looking, isn't it? How do you get from something that's so plain to something that has super cool designs, navigation bars, pop ups, colors, etc, etc, etc? I thought you were going to teach me, Team Firework! Let's take another step and look at HTML attributes.</p>
     <h1>HTML Attributes</h1>
-    <p>In the basic examples, there were some weird things inside the brackets, right? Like instead of just <code>&lt;table&gt;</code>, we had <code>&lt;table border="1"&gt;</code>. That extra bit of HTML is called an attribute. Every single tag has certain attributes you can put in. Think of it as a customization tool. Take a look at all the attributes you can use <a href="https://www.w3schools.com/tags/ref_attributes.asp">here</a>.</p>
-    <p>Here's an example.</p>
-    <img src="http://via.placeholder.com/350x150">
+    <p>In the basic examples, there were some weird things inside the brackets, right? Like instead of just <code>&lt;table&gt;</code>, we had <code>&lt;table border="1"&gt;</code>. That extra bit of HTML is called an attribute. Every HTML tag has certain attributes you can put in. Think of it as a customization tool. Take a look at all the attributes you can use <a href="https://www.w3schools.com/tags/ref_attributes.asp">here</a>.</p>
+    <p>Here's an example with two tables, one without attributes, the other with attributes.</p>
+<pre class="prettyprint">
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;Hello World!&lt;/title&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+  &lt;table border="1"&gt;
+    &lt;tr&gt; &lt;!--This is row 1.--&gt;
+      &lt;td&gt;Here is a table.&lt;/td&gt;
+      &lt;td&gt;It's kind of squished&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Help!&lt;/td&gt;
+      &lt;td&gt;My text needs space!&lt;/td&gt;
+    &lt;tr&gt;
+  &lt;/table&gt;
+
+  &lt;table border="2" align="center" bgcolor="blue" width="20%" cellpadding="10px" bordercolor="white"&gt;
+    &lt;tr&gt; &lt;!--This is row 1.--&gt;
+      &lt;td align="center"&gt;&lt;font color="white"&gt;Here is a table.&lt;/font&gt;&lt;/td&gt;
+      &lt;td align="center"&gt;&lt;font color="white"&gt;The text isn't that squished anymore.&lt;/font&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td align="left"&gt;&lt;font color="white"&gt;Feels much better!&lt;/font&gt;&lt;/td&gt;
+      &lt;td align="right"&gt;&lt;font color="white"&gt;Because we used a cell padding attribute.&lt;/font&gt;&lt;/td&gt;
+    &lt;tr&gt;
+  &lt;/table&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;
+</pre>
     <p>And here's what that looks like in the web browser.</p>
-    <img src="http://via.placeholder.com/350x150">
+    <img src="attributes.jpg">
 
     <hr>
     <h1>Getting a little bit closer!</h1>
-    <p>But only a little. To make things look even better, let's look into CSS (Cascading Style Sheets).</p>
-    <h1 align="center"><a href="csstutorial.html">CSS Tutorial ></a></h1>
+    <p>Now we can customize our own colors and formatting. There are lots of other attributes for tables (Google around to find what you want). But let's not stop here! To make things look even better and make things more convenient, let's look into CSS.</p>
+    <h1 align="center"><a href="../csstutorial/csstutorial.html">CSS Tutorial ></a></h1>
   </div>
 
     <!-- Footer -->

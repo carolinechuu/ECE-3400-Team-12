@@ -76,19 +76,53 @@
     
     <!--Page content -->
     <div class="body-content">
+	    <!--
     	<h1>It's All About Integration</h1>
       <p>Now that we have all the components, it's time to put them together! We assigned our pins, put our sensors on a PCB, soldered together our treasure detection circuit, implemented the DFS and........</p>
       <h3 align="center">Things Didn't Work :(</h3>
-      <hr>
-
-      <h1>Wall Sensors</h1>
+      -->
+	<hr>
+      	<h1>Wall Distance Sensors</h1>
+      <!--
       <p>One wall sensor values were super inconsistent! The robot was detecting walls with false positives and false negatives, which throws off the maze mapping and traversal.</p>
       <p><b>Solution 1: Averaging</b><br> We try to take an average over 5 values, with a slight delay of 25 milliseconds between each reading. (Without the delay, the 5 values were too similar.) This seemed to work for a while, but was heavily affected by shadows and lighting conditions.</p>
       <p><b>Solution 2: Number of correct values</b><br> Our second solution is to take 6 values, and return a wall detected if at least 4 values detect a wall. This prevents averaging of any "spikes" in data.</p>
-      <hr>
-      <h1>Line Sensors</h1>
+      -->
+	<p>One major problem we keep running into is incorrect wall detection, which is caused by the inconsistency of wall distance 
+		sensor value we are reading. The first solution we thought of is averaging. We created a for loop to take five 
+		measurements instead of only one and used the average result to compare to the threshold. Initially, we were not 
+		aware of the ~20 ms sampling interval of the IR distance sensor and we took five consecutive measurement readings, 
+		which were essentially reading the same value. After consulting the IR distance sensor datasheet, we took into account 
+		of the sampling interval by putting a 25 ms delay between each reading. Still, the averaging wasn’t working as good as 
+		we would like mainly because the outlier value would skew the average a lot and give us incorrect detection. For example
+		, when we shakes the signal wire of the wall sensor to mimic actual robot traversing, the first sample sometimes reads 
+		800 (detect wall) following by 4 samples reading 30 (detect no wall) in a no wall situation. The average result is 
+		about 180 and it is greater than our threshold and gives us a false wall detection, even though four out of five times 
+		it correctly detects no walls. To address this, we came up with another method to detect wall by minimizing outlier 
+		interference. The second solution we thought of is to take six measurements, a wall is detected only if at least four 
+		out of six measurements are above the threshold. This way the outlier doesn’t interfere with other sample reads and 
+		our wall detection starts to work like a charm. (Though we still need to calibrate the wall sensor threshold slightly 
+		based on different lighting conditions.) Another problem that occurred in the last minute was that the IR treasures 
+		could interfere with the wall sensors measurement. To address this issue, we ingeniously stacked some washers and nuts 
+		under the wall sensors mount and this elevated the sensors to be higher and further away from the treasures. It 
+		successfully minimized treasures interference by a great deal.</p>
+	<hr>
+      	<h1>Line Sensors</h1>
+    <!--
       <p>At first, our line sensors were giving us very high values. There were faulty connection errors on our PCB (as the header pins were too big and our wires slipped easily), and also we had changed the position of the line sensors on the mount to prevent any values from falsely detecting an intersection when the robot tipped. When we finally settled on our final line sensor and mount design, we had to recalibrate the detection value.</p>
-      <hr>
+    -->
+	<p>One lesson we learned about line sensor is its insane sensitivity: a couple mm off the floor would yield drastic difference 
+		in sensor value readings, so the closer we keep the line sensor to ground the accurater our result will be. To address 
+		this, we designed a new line sensor mount with three different parts that can be laser cut out and glued together. 
+		This is over-engineering in hindsight as we didn’t have it cut out and use it. We came up with a way easier solution
+		to keep line sensor closer to ground by stacking washer to the already provided 3D printed out mounts to push it 
+		closer to ground. Before this change, our line sensors read white with values in 700 range and black in 1000 range. 
+		Since the modification, our line sensors read white with values in 200 range and black in 900 range. The larger gap 
+		between white and black detection enables our line sensors to detect black with a lot more accurate and almost free 
+		of errors.</p>
+	    <img src="Line_Sensor_Mount.png" align="center">
+	    <hr>
+	    
       <h1>DFS Optimization</h1>
       <p>After we have thoroughly tested the DFS, we started adding optimizations. The largest optimization is to prevent the last backtrack, where the usual DFS algorithm would return to the root of the tree (the starting node). But we wanted to do this in a method where we don't have to save the already-traversed path. So we used what we call a "root update" condition. Say we have the tree below.</p>
       <img src="dfs-rootupdate1.jpg" align="center">
@@ -96,15 +130,52 @@
       <img src="dfs-rootupdate2.jpg" align="center">
       <p>Similarly, in this tree, we have updated our root to 15, traversed to 15, 14, and back to 15 again. 11 is the last unexplored neighbor of the root (15). So when we go to 11, we update the root to 11. Now that 11 is the root and there are no more neighbors, we know we are done. In essence, this prevents the last backtrack in a usual DFS, where the robot would have to traverse from 11, to 15, to 19, then end.</p>
       <hr>
+	    
       <h1>Treasure Detection</h1>
       <!--Ian!-->
+	    <p>As the final competition approached, we focused our attention on full completion and mapping of the maze. We had 
+		    our treasure circuitry set and mounted from Milestone 4, but we did not find as much time to test it as we 
+		    would have liked. There also appeared to be a treasure shortage in the lab in the days leading up to the 
+		    competition, which did not help our testing. A diagram of our circuit can be found in the Sparky section of 
+		    this site. </p>
+	    <p>Our circuit could detect treasures from about 2 inches away, so we mounted our phototransistors so that they 
+		    reach out on both sides of the robot facing the wall. The issue we ran into with mounting the sensors is 
+		    that they were prone to snagging on the walls during tight turns. When the sensors would get snagged, the
+		    robot would get completely thrown off and forget where it is, run into walls, murder other robots, etc. 
+		    Therefore, because we decided to play it safe for the final competition, we shortened the reach of the 
+		    treasure sensors so that there would be no chance of it catching on the walls. Unfortunately, though, this 
+		    resulted in our robot missing a few treasures during the competition. A point we are proud of for our treasure 
+		    sensors is that we could detect treasures even if they are not placed at intersections due to the way we are 
+		    implementing it with interrupts. Even though this did not come in too much use during the final competition, 
+		    it was still pretty cool.</p>
+
       <hr>
+	    
       <h1>Radio</h1>
       <!--Felipe!-->
-      <hr>
-      <h1>Battery Pack Power</h1>
+	    <p>The radio and FPGA map drawing were working by milestone 4, so please watch the milestone 4 video to see it in action. 
+		    The robot sends two bytes of data over radio at each intersection, one with the robot's location and orientation, 
+		    and one with the wall and treasure information at that node. Data is sent even if a node has been visited before, 
+		    in order to update the location of the robot, but no new wall sensor data is taken at visited nodes (though if a 
+		    treasure is detected later it will be corrected). The receiving Arduino returns the same data back to the robot. 
+		    If the robot doesn't receive this handshake, it resends the packet, and only continues once the data has been 
+		    successfully transmitted. The receiving Arduino connects to the FPGA using SPI, and simply relays the same two 
+		    bytes it received from the robot. The FPGA only receives data about one node at a time, as opposed to receiving 
+		    the entire maze each time. It doesn't contain the logic to tell if the maze has been fully explored, this is done 
+		    through a done signal from the robot itself, and it turns the unused parts of the screen blue instead of black, 
+		    and starts up the song once it receives the done signal. </p>
+	    <p>The radio on the receiving Arduino has already been using the Arduino SPI library and Arduino SPI pins (Pin 10 MOSI 
+		    and Pin 13 CLK) to receive data. We could potentially use the same pin to transmit data to the FPGA, but we decided 
+		    it will be more fun writing our own SPI protocol so we can use any pins on the Arduino to transmit data, which we did. </p>    
+		//Code  
+    <hr>
+	    
+      	<h1>Unit Testing</h1>
       <!--Xitang-->
-      <p>Our battery pack seemed to be at 3 out of 4 bars, but it was unable to supply enough power to the motors; it kept on shutting off when we plugged it in. After looking at the spec sheet, we realized that the battery has about 5000 mAh, and the servos alone take about 200mA. This means we can only run our bot on the battery pack for about 15 minutes! We had to charge our battery pack to full every single time.</p>
+	    <p>Sensor threshold value often requires calibration depending on the environment and servo motor’s stopping signal 
+		    can sometimes change from 90 to 91 to 92 with frequent use. For ease of sensor calibration and debugging, 
+		    we created three diagnostics code to perform individual unit testing for line sensor, wall sensor and servo motor.  </p>
+	    //Code
     </div>
 
     <!-- Footer -->

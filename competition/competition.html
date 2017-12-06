@@ -41,7 +41,7 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="index.html">Home<span class="sr-only">(current)</span></a></li>
+        <li class="active"><a href="../index.html">Home<span class="sr-only">(current)</span></a></li>
         <li><a href="../sparky.html">Sparky</a></li>
         <li><a href="../team.html">Team</a></li>
         <li class="dropdown" class="active">
@@ -164,10 +164,53 @@
 		    the entire maze each time. It doesn't contain the logic to tell if the maze has been fully explored, this is done 
 		    through a done signal from the robot itself, and it turns the unused parts of the screen blue instead of black, 
 		    and starts up the song once it receives the done signal. </p>
-	    <p>The radio on the receiving Arduino has already been using the Arduino SPI library and Arduino SPI pins (Pin 10 MOSI 
-		    and Pin 13 CLK) to receive data. We could potentially use the same pin to transmit data to the FPGA, but we decided 
-		    it will be more fun writing our own SPI protocol so we can use any pins on the Arduino to transmit data, which we did. </p>    
-		//Code  
+	    <p>The radio on the receiving Arduino has already been using the Arduino SPI library and Arduino SPI pins (Pin 11 MOSI, Pin 12 MISO 
+		    and Pin 13 CLK) to receive data. We could potentially use these pins to transmit data to the FPGA, but we decided 
+		    it will be more fun writing our own bitbanging SPI protocol so we can use any pins on the Arduino to transmit data, which we did and shown below. </p>    
+		<!--Code Start-->
+	    <pre>
+<font color="#434f54">&#47;&#47;Fireworks SPI Bitbanging Transmitting Library</font>
+<font color="#00979c">int</font> <font color="#000000">SPI_cs_pin</font> <font color="#434f54">=</font> <font color="#000000">3</font><font color="#000000">;</font>
+<font color="#00979c">int</font> <font color="#000000">SPI_data_pin</font> <font color="#434f54">=</font> <font color="#000000">4</font><font color="#000000">;</font>
+<font color="#00979c">int</font> <font color="#000000">SPI_clock_pin</font> <font color="#434f54">=</font> <font color="#000000">5</font><font color="#000000">;</font>
+
+<font color="#434f54">&#47;&#47;Call setupSPI in void setup(void) to initialize SPI</font>
+<font color="#00979c">void</font> <font color="#000000">setupSPI</font><font color="#000000">(</font><font color="#00979c">void</font><font color="#000000">)</font> <font color="#000000">{</font>
+ &nbsp;<font color="#d35400">pinMode</font><font color="#000000">(</font><font color="#000000">SPI_cs_pin</font><font color="#434f54">,</font> <font color="#00979c">OUTPUT</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#d35400">pinMode</font><font color="#000000">(</font><font color="#000000">SPI_data_pin</font><font color="#434f54">,</font> <font color="#00979c">OUTPUT</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#d35400">pinMode</font><font color="#000000">(</font><font color="#000000">SPI_clock_pin</font><font color="#434f54">,</font> <font color="#00979c">OUTPUT</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#d35400">digitalWrite</font><font color="#000000">(</font><font color="#000000">SPI_cs_pin</font><font color="#434f54">,</font> <font color="#00979c">LOW</font><font color="#000000">)</font><font color="#000000">;</font> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#434f54">&#47;&#47;Initialize CS to be LOW</font>
+ &nbsp;<font color="#d35400">digitalWrite</font><font color="#000000">(</font><font color="#000000">SPI_clock_pin</font><font color="#434f54">,</font> <font color="#00979c">LOW</font><font color="#000000">)</font><font color="#000000">;</font> &nbsp;&nbsp;<font color="#434f54">&#47;&#47;Initialize Clock to be LOW</font>
+<font color="#000000">}</font>
+
+<font color="#434f54">&#47;&#47;Create our SPI function to send 8 bit of data (MSB first)</font>
+<font color="#00979c">void</font> <font color="#000000">sendSPI</font><font color="#000000">(</font><font color="#00979c">byte</font> <font color="#000000">data</font><font color="#000000">)</font> <font color="#000000">{</font>
+ &nbsp;<font color="#434f54">&#47;&#47;Create rising edge of CS to start sending packages</font>
+ &nbsp;<font color="#d35400">digitalWrite</font><font color="#000000">(</font><font color="#000000">SPI_cs_pin</font><font color="#434f54">,</font> <font color="#00979c">LOW</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#d35400">digitalWrite</font><font color="#000000">(</font><font color="#000000">SPI_cs_pin</font><font color="#434f54">,</font> <font color="#00979c">HIGH</font><font color="#000000">)</font><font color="#000000">;</font>
+
+ &nbsp;<font color="#434f54">&#47;&#47;Send a byte of data, bit by bit, MSB first</font>
+ &nbsp;<font color="#5e6d03">for</font> <font color="#000000">(</font><font color="#00979c">int</font> <font color="#5e6d03">loop</font> <font color="#434f54">=</font> <font color="#000000">0</font><font color="#000000">;</font> <font color="#5e6d03">loop</font> <font color="#434f54">&lt;</font> <font color="#000000">8</font><font color="#000000">;</font> <font color="#5e6d03">loop</font><font color="#434f54">++</font><font color="#000000">)</font> <font color="#000000">{</font>
+
+ &nbsp;&nbsp;&nbsp;<font color="#434f54">&#47;&#47;If bit is high, set data pin high; if bit is low, set data pin low</font>
+ &nbsp;&nbsp;&nbsp;<font color="#5e6d03">if</font> <font color="#000000">(</font> <font color="#434f54">!</font><font color="#434f54">!</font><font color="#000000">(</font><font color="#000000">data</font> <font color="#434f54">&amp;</font> <font color="#000000">(</font><font color="#000000">1</font> <font color="#434f54">&lt;&lt;</font> <font color="#000000">(</font><font color="#000000">7</font> <font color="#434f54">-</font> <font color="#5e6d03">loop</font><font color="#000000">)</font><font color="#000000">)</font><font color="#000000">)</font> <font color="#000000">)</font> <font color="#d35400">digitalWrite</font><font color="#000000">(</font><font color="#000000">SPI_data_pin</font><font color="#434f54">,</font> <font color="#00979c">HIGH</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;<font color="#5e6d03">else</font> <font color="#d35400">digitalWrite</font><font color="#000000">(</font><font color="#000000">SPI_data_pin</font><font color="#434f54">,</font> <font color="#00979c">LOW</font><font color="#000000">)</font><font color="#000000">;</font>
+
+ &nbsp;&nbsp;&nbsp;<font color="#434f54">&#47;&#47;Create rising edge of clock to indicate data is ready</font>
+ &nbsp;&nbsp;&nbsp;<font color="#d35400">digitalWrite</font><font color="#000000">(</font><font color="#000000">SPI_clock_pin</font><font color="#434f54">,</font> <font color="#00979c">LOW</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;<font color="#d35400">digitalWrite</font><font color="#000000">(</font><font color="#000000">SPI_clock_pin</font><font color="#434f54">,</font> <font color="#00979c">HIGH</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#000000">}</font>
+
+ &nbsp;<font color="#434f54">&#47;&#47;Create falling edge of CS to indicate finish sending packages</font>
+ &nbsp;<font color="#d35400">digitalWrite</font><font color="#000000">(</font><font color="#000000">SPI_cs_pin</font><font color="#434f54">,</font> <font color="#00979c">LOW</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#d35400">digitalWrite</font><font color="#000000">(</font><font color="#000000">SPI_clock_pin</font><font color="#434f54">,</font> <font color="#00979c">LOW</font><font color="#000000">)</font><font color="#000000">;</font>
+
+ &nbsp;<font color="#434f54">&#47;&#47;Delay 500ms</font>
+ &nbsp;<font color="#d35400">delay</font><font color="#000000">(</font><font color="#000000">500</font><font color="#000000">)</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+
+</pre>
+	    <!--Code End-->
     <hr>
 	    
       	<h1>Unit Testing</h1>
@@ -176,6 +219,124 @@
 		    can sometimes change from 90 to 91 to 92 with frequent use. For ease of sensor calibration and debugging, 
 		    we created three diagnostics code to perform individual unit testing for line sensor, wall sensor and servo motor.  </p>
 	    //Code
+	    <p>Line Sensor Diagnostics/Caliberation Code</p>
+	    <!--Code Start-->
+	    <pre>
+<font color="#434f54">&#47;&#47;Fireworks Line Sensor Diagnostics&#47;Caliberation Code</font>
+<font color="#00979c">int</font> <font color="#000000">lineMidLeft</font><font color="#434f54">,</font> <font color="#000000">lineMidRight</font><font color="#434f54">,</font> <font color="#000000">lineRight</font><font color="#434f54">,</font> <font color="#000000">lineLeft</font><font color="#000000">;</font> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#434f54">&#47;&#47;Line Sensor Values Variables</font>
+<font color="#00979c">int</font> <font color="#000000">lineMidLeftPin</font><font color="#434f54">,</font> <font color="#000000">lineMidRightPin</font><font color="#434f54">,</font> <font color="#000000">lineRightPin</font><font color="#434f54">,</font> <font color="#000000">lineLeftPin</font><font color="#000000">;</font> <font color="#434f54">&#47;&#47; Analog pins with line sensors</font>
+<font color="#00979c">int</font> <font color="#000000">blackDetect</font> <font color="#434f54">=</font> <font color="#000000">600</font><font color="#000000">;</font> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#434f54">&#47;&#47; Threshold above which sensors are reading a black line</font>
+
+<font color="#00979c">void</font> <font color="#000000">printSensors</font><font color="#000000">(</font><font color="#000000">)</font> <font color="#000000">{</font>
+ &nbsp;<font color="#000000">lineLeft</font> <font color="#434f54">=</font> <font color="#d35400">analogRead</font><font color="#000000">(</font><font color="#000000">lineLeftPin</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#000000">lineMidLeft</font> <font color="#434f54">=</font> <font color="#d35400">analogRead</font><font color="#000000">(</font><font color="#000000">lineMidLeftPin</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#000000">lineMidRight</font> <font color="#434f54">=</font> <font color="#d35400">analogRead</font><font color="#000000">(</font><font color="#000000">lineMidRightPin</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#000000">lineRight</font> <font color="#434f54">=</font> <font color="#d35400">analogRead</font><font color="#000000">(</font><font color="#000000">lineRightPin</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">print</font><font color="#000000">(</font><font color="#000000">lineLeft</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">print</font><font color="#000000">(</font><font color="#005c5f">&#34; &nbsp;&#34;</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">print</font><font color="#000000">(</font><font color="#000000">lineMidLeft</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">print</font><font color="#000000">(</font><font color="#005c5f">&#34; &nbsp;&#34;</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">print</font><font color="#000000">(</font><font color="#000000">lineMidRight</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">print</font><font color="#000000">(</font><font color="#005c5f">&#34; &nbsp;&#34;</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">print</font><font color="#000000">(</font><font color="#000000">lineRight</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">print</font><font color="#000000">(</font><font color="#005c5f">&#34; &nbsp;&#34;</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">println</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+
+<font color="#00979c">void</font> <font color="#5e6d03">setup</font><font color="#000000">(</font><font color="#000000">)</font> <font color="#000000">{</font>
+ &nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">begin</font><font color="#000000">(</font><font color="#000000">9600</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#000000">lineLeftPin</font> <font color="#434f54">=</font> <font color="#000000">A0</font><font color="#000000">;</font>
+ &nbsp;<font color="#000000">lineMidLeftPin</font> <font color="#434f54">=</font> <font color="#000000">A1</font><font color="#000000">;</font>
+ &nbsp;<font color="#000000">lineMidRightPin</font> <font color="#434f54">=</font> <font color="#000000">A2</font><font color="#000000">;</font>
+ &nbsp;<font color="#000000">lineRightPin</font> <font color="#434f54">=</font> <font color="#000000">A3</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+
+<font color="#00979c">void</font> <font color="#5e6d03">loop</font><font color="#000000">(</font><font color="#000000">)</font> <font color="#000000">{</font>
+ &nbsp;<font color="#000000">printSensors</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+
+</pre>
+	    <!--Code End-->
+	    <p>Wall Distance Sensor Diagnostics Code</p>
+	    <!--Code Start-->
+	    <pre>
+<font color="#434f54">&#47;&#47;Fireworks Wall Distance Sensor Diagnostics&#47;Caliberation</font>
+<font color="#00979c">int</font> <font color="#000000">mux_S0</font> <font color="#434f54">=</font> <font color="#000000">7</font><font color="#434f54">,</font> <font color="#000000">mux_S1</font> <font color="#434f54">=</font> <font color="#000000">8</font><font color="#000000">;</font>
+<font color="#00979c">int</font> <font color="#000000">distanceInput</font><font color="#000000">;</font>
+
+<font color="#00979c">int</font> <font color="#000000">isThereAWall</font><font color="#000000">(</font><font color="#00979c">int</font><font color="#000000">)</font><font color="#000000">;</font>
+
+<font color="#00979c">void</font> <font color="#5e6d03">setup</font><font color="#000000">(</font><font color="#000000">)</font> <font color="#000000">{</font>
+ &nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">begin</font><font color="#000000">(</font><font color="#000000">9600</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#d35400">pinMode</font><font color="#000000">(</font><font color="#000000">mux_S0</font><font color="#434f54">,</font> <font color="#00979c">OUTPUT</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#d35400">pinMode</font><font color="#000000">(</font><font color="#000000">mux_S1</font><font color="#434f54">,</font> <font color="#00979c">OUTPUT</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#000000">distanceInput</font> <font color="#434f54">=</font> <font color="#000000">A4</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+
+<font color="#00979c">void</font> <font color="#5e6d03">loop</font><font color="#000000">(</font><font color="#000000">)</font> <font color="#000000">{</font>
+ &nbsp;<font color="#5e6d03">if</font> <font color="#000000">(</font><font color="#000000">isThereAWall</font><font color="#000000">(</font><font color="#000000">0</font><font color="#000000">)</font> <font color="#434f54">==</font> <font color="#000000">1</font><font color="#000000">)</font> <b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">println</font><font color="#000000">(</font><font color="#005c5f">&#34;Leftwall detected&#34;</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#5e6d03">if</font> <font color="#000000">(</font><font color="#000000">isThereAWall</font><font color="#000000">(</font><font color="#000000">1</font><font color="#000000">)</font> <font color="#434f54">==</font> <font color="#000000">1</font><font color="#000000">)</font> <b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">println</font><font color="#000000">(</font><font color="#005c5f">&#34;Front wall detected&#34;</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#5e6d03">if</font> <font color="#000000">(</font><font color="#000000">isThereAWall</font><font color="#000000">(</font><font color="#000000">2</font><font color="#000000">)</font> <font color="#434f54">==</font> <font color="#000000">1</font><font color="#000000">)</font> <b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">println</font><font color="#000000">(</font><font color="#005c5f">&#34;Right wall detected&#34;</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">println</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#d35400">delay</font><font color="#000000">(</font><font color="#000000">2000</font><font color="#000000">)</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+
+<font color="#00979c">int</font> <font color="#000000">isThereAWall</font> <font color="#000000">(</font><font color="#00979c">int</font> <font color="#000000">sensor</font><font color="#000000">)</font> <font color="#000000">{</font>
+ &nbsp;<font color="#00979c">int</font> <font color="#000000">wallDetectCounter</font> <font color="#434f54">=</font> <font color="#000000">0</font><font color="#000000">;</font>
+ &nbsp;<font color="#00979c">int</font> <font color="#000000">temp</font> <font color="#434f54">=</font> <font color="#000000">0</font><font color="#000000">;</font>
+ &nbsp;<font color="#5e6d03">if</font> <font color="#000000">(</font><font color="#000000">sensor</font> <font color="#434f54">==</font> <font color="#000000">0</font><font color="#000000">)</font> <font color="#000000">{</font> <font color="#434f54">&#47;&#47;Y0 - left wall; S0 = 0, S1 = 0</font>
+ &nbsp;&nbsp;&nbsp;<font color="#d35400">digitalWrite</font><font color="#000000">(</font><font color="#000000">mux_S0</font><font color="#434f54">,</font> <font color="#00979c">LOW</font><font color="#000000">)</font><font color="#000000">;</font> <font color="#d35400">digitalWrite</font><font color="#000000">(</font><font color="#000000">mux_S1</font><font color="#434f54">,</font> <font color="#00979c">LOW</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;<font color="#5e6d03">for</font> <font color="#000000">(</font><font color="#00979c">int</font> <font color="#000000">i</font> <font color="#434f54">=</font> <font color="#000000">0</font><font color="#000000">;</font> <font color="#000000">i</font> <font color="#434f54">&lt;</font> <font color="#000000">6</font><font color="#000000">;</font> <font color="#000000">i</font><font color="#434f54">++</font><font color="#000000">)</font> <font color="#000000">{</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">temp</font> <font color="#434f54">=</font> <font color="#000000">temp</font> <font color="#434f54">+</font> <font color="#d35400">analogRead</font><font color="#000000">(</font><font color="#000000">distanceInput</font><font color="#000000">)</font><font color="#000000">;</font> <font color="#434f54">&#47;&#47;Calculate average value</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#434f54">&#47;&#47;Increase wall detect counter by 1 if greater than threshold</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#5e6d03">if</font> <font color="#000000">(</font><font color="#d35400">analogRead</font><font color="#000000">(</font><font color="#000000">distanceInput</font><font color="#000000">)</font> <font color="#434f54">&gt;</font> <font color="#000000">270</font><font color="#000000">)</font> <font color="#000000">wallDetectCounter</font><font color="#434f54">++</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#d35400">delay</font><font color="#000000">(</font><font color="#000000">25</font><font color="#000000">)</font><font color="#000000">;</font> <font color="#434f54">&#47;&#47;Wait for next IR sample</font>
+ &nbsp;&nbsp;&nbsp;<font color="#000000">}</font>
+ &nbsp;&nbsp;&nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">print</font><font color="#000000">(</font><font color="#005c5f">&#34;Left wall avg value:&#34;</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#000000">}</font>
+ &nbsp;<font color="#5e6d03">else</font> <font color="#5e6d03">if</font> <font color="#000000">(</font><font color="#000000">sensor</font> <font color="#434f54">==</font> <font color="#000000">1</font><font color="#000000">)</font> <font color="#000000">{</font> <font color="#434f54">&#47;&#47;Y1 - front wall; S0 = 1, S1 = 0</font>
+ &nbsp;&nbsp;&nbsp;<font color="#d35400">digitalWrite</font><font color="#000000">(</font><font color="#000000">mux_S0</font><font color="#434f54">,</font> <font color="#00979c">HIGH</font><font color="#000000">)</font><font color="#000000">;</font> <font color="#d35400">digitalWrite</font><font color="#000000">(</font><font color="#000000">mux_S1</font><font color="#434f54">,</font> <font color="#00979c">LOW</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;<font color="#5e6d03">for</font> <font color="#000000">(</font><font color="#00979c">int</font> <font color="#000000">i</font> <font color="#434f54">=</font> <font color="#000000">0</font><font color="#000000">;</font> <font color="#000000">i</font> <font color="#434f54">&lt;</font> <font color="#000000">6</font><font color="#000000">;</font> <font color="#000000">i</font><font color="#434f54">++</font><font color="#000000">)</font> <font color="#000000">{</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">temp</font> <font color="#434f54">=</font> <font color="#000000">temp</font> <font color="#434f54">+</font> <font color="#d35400">analogRead</font><font color="#000000">(</font><font color="#000000">distanceInput</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#5e6d03">if</font> <font color="#000000">(</font><font color="#d35400">analogRead</font><font color="#000000">(</font><font color="#000000">distanceInput</font><font color="#000000">)</font> <font color="#434f54">&gt;</font> <font color="#000000">100</font><font color="#000000">)</font> <font color="#000000">wallDetectCounter</font><font color="#434f54">++</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#d35400">delay</font><font color="#000000">(</font><font color="#000000">25</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;<font color="#000000">}</font>
+ &nbsp;&nbsp;&nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">print</font><font color="#000000">(</font><font color="#005c5f">&#34;Front wall avg value:&#34;</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#000000">}</font>
+ &nbsp;<font color="#5e6d03">else</font> <font color="#5e6d03">if</font> <font color="#000000">(</font><font color="#000000">sensor</font> <font color="#434f54">==</font> <font color="#000000">2</font><font color="#000000">)</font> <font color="#000000">{</font> <font color="#434f54">&#47;&#47;Y2 - right wall; S0 = 0, S1 = 1</font>
+ &nbsp;&nbsp;&nbsp;<font color="#d35400">digitalWrite</font><font color="#000000">(</font><font color="#000000">mux_S0</font><font color="#434f54">,</font> <font color="#00979c">LOW</font><font color="#000000">)</font><font color="#000000">;</font> <font color="#d35400">digitalWrite</font><font color="#000000">(</font><font color="#000000">mux_S1</font><font color="#434f54">,</font> <font color="#00979c">HIGH</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;<font color="#5e6d03">for</font> <font color="#000000">(</font><font color="#00979c">int</font> <font color="#000000">i</font> <font color="#434f54">=</font> <font color="#000000">0</font><font color="#000000">;</font> <font color="#000000">i</font> <font color="#434f54">&lt;</font> <font color="#000000">6</font><font color="#000000">;</font> <font color="#000000">i</font><font color="#434f54">++</font><font color="#000000">)</font> <font color="#000000">{</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">temp</font> <font color="#434f54">=</font> <font color="#000000">temp</font> <font color="#434f54">+</font> <font color="#d35400">analogRead</font><font color="#000000">(</font><font color="#000000">distanceInput</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#5e6d03">if</font> <font color="#000000">(</font><font color="#d35400">analogRead</font><font color="#000000">(</font><font color="#000000">distanceInput</font><font color="#000000">)</font> <font color="#434f54">&gt;</font> <font color="#000000">270</font><font color="#000000">)</font> <font color="#000000">wallDetectCounter</font><font color="#434f54">++</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#d35400">delay</font><font color="#000000">(</font><font color="#000000">25</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;<font color="#000000">}</font>
+ &nbsp;&nbsp;&nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">print</font><font color="#000000">(</font><font color="#005c5f">&#34;Right wall avg value:&#34;</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#000000">}</font>
+ &nbsp;<font color="#000000">temp</font> <font color="#434f54">=</font> <font color="#000000">temp</font> <font color="#434f54">&#47;</font> <font color="#000000">5</font><font color="#000000">;</font> <b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">println</font><font color="#000000">(</font><font color="#000000">temp</font><font color="#000000">)</font><font color="#000000">;</font> <font color="#434f54">&#47;&#47;Print average value</font>
+ &nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">print</font><font color="#000000">(</font><font color="#005c5f">&#34;Number of Wall Count:&#34;</font><font color="#000000">)</font><font color="#000000">;</font> <font color="#434f54">&#47;&#47;Print # of wall count</font>
+ &nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">println</font><font color="#000000">(</font><font color="#000000">wallDetectCounter</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#434f54">&#47;&#47;If at least 4 out of 6 wall detected, return 1 - wall detected</font>
+ &nbsp;<font color="#5e6d03">if</font> <font color="#000000">(</font><font color="#000000">wallDetectCounter</font> <font color="#434f54">&gt;=</font> <font color="#000000">4</font><font color="#000000">)</font> <font color="#5e6d03">return</font> <font color="#000000">1</font><font color="#000000">;</font>
+ &nbsp;<font color="#5e6d03">else</font> <font color="#5e6d03">return</font> <font color="#000000">0</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+
+</pre>
+	    <!--Code End-->
+	    <p>Servo Motor Diagnostics/Caliberation Code</p>
+		    <pre>
+<font color="#434f54">&#47;&#47;Fireworks Servo Motor Diagnostics&#47;Caliberation Code</font>
+<font color="#5e6d03">#include</font> <font color="#434f54">&lt;</font><b><font color="#d35400">Servo</font></b><font color="#434f54">.</font><font color="#000000">h</font><font color="#434f54">&gt;</font>
+<b><font color="#d35400">Servo</font></b> <font color="#000000">leftWheel</font><font color="#434f54">,</font> <font color="#000000">rightWheel</font><font color="#000000">;</font>
+<font color="#00979c">int</font> <font color="#000000">leftWheelPin</font> <font color="#434f54">=</font> <font color="#000000">5</font><font color="#000000">;</font>
+<font color="#00979c">int</font> <font color="#000000">rightWheelPin</font> <font color="#434f54">=</font> <font color="#000000">6</font><font color="#000000">;</font>
+
+<font color="#00979c">void</font> <font color="#5e6d03">setup</font><font color="#000000">(</font><font color="#000000">)</font> <font color="#000000">{</font>
+ &nbsp;<font color="#000000">leftWheel</font><font color="#434f54">.</font><font color="#d35400">attach</font><font color="#000000">(</font><font color="#000000">leftWheelPin</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#000000">rightWheel</font><font color="#434f54">.</font><font color="#d35400">attach</font><font color="#000000">(</font><font color="#000000">rightWheelPin</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#000000">leftWheel</font><font color="#434f54">.</font><font color="#d35400">write</font><font color="#000000">(</font><font color="#000000">91</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#000000">rightWheel</font><font color="#434f54">.</font><font color="#d35400">write</font><font color="#000000">(</font><font color="#000000">90</font><font color="#000000">)</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+</pre>
     </div>
 
     <!-- Footer -->
